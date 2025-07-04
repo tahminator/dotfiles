@@ -1,20 +1,3 @@
-backup_if_exists() {
-	local target="$1"
-	if [[ -e "$target" ]]; then
-		local backup="${target}.bak"
-		local counter=1
-
-		# Find a unique backup name if .bak already exists
-		while [[ -e "$backup" ]]; do
-			backup="${target}.bak.${counter}"
-			((counter++))
-		done
-
-		echo "Backing up existing $target to $backup"
-		mv "$target" "$backup"
-	fi
-}
-
 if ! which brew &>/dev/null; then
 	echo "Error: homebrew not found. Install homebrew from https://brew.sh"
 	return 1
@@ -22,13 +5,13 @@ fi
 
 cd ~
 if [[ -d ~/dotfiles ]]; then
-    echo "Removing existing ~/dotfiles directory..."
-    rm -rf ~/dotfiles
+	echo "~/dotfiles exists already. Please delete/backup the directory."
+	return 1
 fi
 
+echo "Cloning repository to ~/dotfiles"
 git clone https://github.com/tahminator/dotfiles.git ~/dotfiles
 
-backup_failed=0
 conflicts_found=0
 
 for item in ~/dotfiles/.[^.]* ~/dotfiles/*; do
@@ -40,28 +23,19 @@ for item in ~/dotfiles/.[^.]* ~/dotfiles/*; do
 	if [[ -e "$target" ]]; then
 		conflicts_found=$((conflicts_found + 1))
 		echo "Conflict found: $basename_item"
-
-		if ! backup_if_exists "$target"; then
-			backup_failed=$((backup_failed + 1))
-		fi
 	fi
 done
 
-if [[ $backup_failed -gt 0 ]]; then
-	echo "Error: $backup_failed backup operations failed. Aborting copy operation."
+if [[ $conflicts_found -gt 0 ]]; then
+	echo "Error: $conflicts_found conflicts found. Aborting copy operation."
 	exit 1
 fi
-
-if [[ $conflicts_found -gt 0 ]]; then
-	echo "Successfully backed up $conflicts_found conflicting files/directories."
-else
-	echo "No conflicts found."
-fi
+echo "No conflicts found. Completing copy opertion now."
 
 copy_failed=0
 
 for item in ~/dotfiles/.[^.]* ~/dotfiles/*; do
-	[[ -e "$item" ]] || continue # Skip if glob doesn't match anything
+	[[ -e "$item" ]] || continue
 
 	basename_item=$(basename "$item")
 	target="$HOME/$basename_item"
@@ -76,7 +50,7 @@ done
 
 # Final status
 if [[ $copy_failed -eq 0 ]]; then
-	echo "Successfully copied over all files that were expected to be copied!"
+	echo "Successfully copied over all files/directories!"
 else
 	echo "Failed to copy $copy_failed files from ~/dotfiles to ~"
 	exit 1
