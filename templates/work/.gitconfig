@@ -1,0 +1,5 @@
+[user]
+	email = $WORK_GIT_EMAIL
+	name = $NAME
+[push]
+  autoSetupRemote = true

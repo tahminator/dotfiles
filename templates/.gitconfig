@@ -1,0 +1,8 @@
+[user]
+	email = $PERSONAL_GIT_EMAIL
+	name = $NAME
+[push]
+  autoSetupRemote = true
+
+[includeIf "gitdir:~/work"]
+    path = ~/work/.gitconfig
