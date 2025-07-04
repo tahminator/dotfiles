@@ -1,4 +1,12 @@
-SCRIPTS_DIR="~/scripts/files"
+SCRIPTS_DIR=$(eval echo "~/scripts/files")
 
-alias gradle-fix="$SCRIPTS_DIR/gradle-fix.sh"
-alias string-printer="$SCRIPTS_DIR/string-printer.sh"
+# no extensions, just filenames
+SCRIPTS=("gradle-fix" "string-printer")
+
+for script in "${SCRIPTS[@]}"; do
+    alias "$script"="$SCRIPTS_DIR/$script.sh"
+done
+
+for script in "${SCRIPTS[@]}"; do
+    chmod +x "$SCRIPTS_DIR/$script.sh"
+done
