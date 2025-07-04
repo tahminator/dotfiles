@@ -57,7 +57,7 @@ else
 fi
 
 echo "Downloading dependencies from .Brewfile"
-brew bundle install
+brew bundle install --file .Brewfile
 
 touch ~/personal/.zshrc
 touch ~/work/.zshrc
