@@ -31,3 +31,4 @@ source ~/personal/.zshrc
 
 # uncomment next line & commit inline secrets if you REALLY need to (would not recommend)
 # source ~/.zshrc-local
+export PATH="/opt/homebrew/opt/trash/bin:$PATH"
