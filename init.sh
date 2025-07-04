@@ -1,12 +1,12 @@
 if ! which brew &>/dev/null; then
 	echo "Error: homebrew not found. Install homebrew from https://brew.sh"
-	return 1
+	exit 1
 fi
 
 cd ~
 if [[ -d ~/dotfiles ]]; then
 	echo "~/dotfiles exists already. Please delete/backup the directory."
-	return 1
+	exit 1
 fi
 
 echo "Cloning repository to ~/dotfiles"
@@ -67,7 +67,7 @@ read -p "What is your personal Git email? (type s to skip) " PERSONAL_GIT_EMAIL
 if [ $PERSONAL_GIT_EMAIL != "s" ]; then
 	if [[ ! -f ~/templates/.gitconfig ]]; then
 		echo "Error: ~/templates/.gitconfig not found"
-		return 1
+		exit 1
 	fi
 
 	sed "s/\$PERSONAL_GIT_EMAIL/$PERSONAL_GIT_EMAIL/g" ~/templates/.gitconfig >~/.gitconfig
@@ -81,7 +81,7 @@ read -p "What is your work Git email? (type s to skip) " WORK_GIT_EMAIL
 if [ "$WORK_GIT_EMAIL" != "s" ]; then
 	if [[ ! -f ~/templates/work/.gitconfig ]]; then
 		echo "Error: ~/templates/work/.gitconfig not found"
-		return 1
+		exit 1
 	fi
 
 	sed "s/\$WORK_GIT_EMAIL/$WORK_GIT_EMAIL/g" ~/templates/work/.gitconfig >~/work/.gitconfig
