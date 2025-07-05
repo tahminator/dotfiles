@@ -1,7 +1,12 @@
 SCRIPTS_DIR=$(eval echo "~/scripts/files")
 
 # no extensions, just filenames
-SCRIPTS=("gradle-fix" "string-printer" "recursive-git-pull")
+SCRIPTS=(
+  "gradle-fix"
+  "string-printer"
+  "recursive-git-pull"
+  "bitwarden"
+)
 
 for script in "${SCRIPTS[@]}"; do
     alias "$script"="$SCRIPTS_DIR/$script.sh"
