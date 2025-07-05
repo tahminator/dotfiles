@@ -7,6 +7,15 @@ export NVM_DIR="$HOME/.nvm"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=180'
 export PATH="/opt/homebrew/opt/tomcat@9/bin:$PATH"
+export PATH="/opt/homebrew/opt/trash/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/Users/tahminator/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
 # show current git branch if in a git repo.
 function parse_git_branch() {
@@ -31,4 +40,3 @@ source ~/personal/.zshrc
 
 # uncomment next line & commit inline secrets if you REALLY need to (would not recommend)
 # source ~/.zshrc-local
-export PATH="/opt/homebrew/opt/trash/bin:$PATH"
