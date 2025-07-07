@@ -57,6 +57,12 @@ vim.keymap.set("n", "m", "'", { desc = "Jump to mark" })
 
 vim.keymap.set("n", "<leader>m", "m", { desc = "Set mark" })
 
+-- no more yanking stuff that I don't want.
+-- vim.keymap.set("n", "d", '"_d')
+-- vim.keymap.set("n", "D", '"_D')
+-- vim.keymap.set("n", "c", '"_c')
+-- vim.keymap.set("n", "C", '"_C')
+
 vim.g.VM_custom_motions = {
   ["k"] = "j",
   ["j"] = "k",

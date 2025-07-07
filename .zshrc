@@ -8,6 +8,7 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=180'
 export PATH="/opt/homebrew/opt/tomcat@9/bin:$PATH"
 export PATH="/opt/homebrew/opt/trash/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 
 # pnpm
 export PNPM_HOME="/Users/tahminator/Library/pnpm"
