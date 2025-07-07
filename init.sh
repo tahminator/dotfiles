@@ -62,6 +62,8 @@ brew bundle install --file .Brewfile
 touch ~/personal/.zshrc
 touch ~/work/.zshrc
 
+read -p "What is your name? (required) " NAME
+
 read -p "What is your personal Git email? (type s to skip) " PERSONAL_GIT_EMAIL
 
 if [ $PERSONAL_GIT_EMAIL != "s" ]; then
@@ -70,7 +72,7 @@ if [ $PERSONAL_GIT_EMAIL != "s" ]; then
 		exit 1
 	fi
 
-	sed "s/\$PERSONAL_GIT_EMAIL/$PERSONAL_GIT_EMAIL/g" ~/templates/.gitconfig >~/.gitconfig
+	sed -e "s/\$PERSONAL_GIT_EMAIL/$PERSONAL_GIT_EMAIL/g" -e "s/\$NAME/$NAME/g" ~/templates/.gitconfig >~/.gitconfig
 
 	echo "Personal email: $PERSONAL_GIT_EMAIL"
 	echo "~/.gitconfig created successfully!"
@@ -84,7 +86,7 @@ if [ "$WORK_GIT_EMAIL" != "s" ]; then
 		exit 1
 	fi
 
-	sed "s/\$WORK_GIT_EMAIL/$WORK_GIT_EMAIL/g" ~/templates/work/.gitconfig >~/work/.gitconfig
+	sed -e "s/\$WORK_GIT_EMAIL/$WORK_GIT_EMAIL/g" -e "s/\$NAME/$NAME/g" ~/templates/work/.gitconfig >~/work/.gitconfig
 	echo "Work email: $WORK_GIT_EMAIL"
 	echo "~/work/.gitconfig created successfully!"
 	echo "NOTE: Work email may not show as overriden until inside of a git repo inside of ~/work/*"
