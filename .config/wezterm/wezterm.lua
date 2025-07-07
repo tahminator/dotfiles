@@ -6,9 +6,7 @@ local BG_BLUR = 0
 local BG_OPACITY = 0.9
 
 local config = {
-	font = wezterm.font("Monocraft Nerd Font", {
-		weight = "Book",
-	}),
+	font = wezterm.font("SF Mono"),
 	font_size = 16,
 	line_height = 1.3,
 	freetype_load_target = "Light",
