@@ -4,7 +4,7 @@ local gui = wezterm.gui
 
 local BG_BLUR = 8
 local BR_BLUR_UNFOCUSED = 15
-local BG_OPACITY = 0.3
+local BG_OPACITY = 0.4
 
 local config = {
 	font = wezterm.font("SF Mono"),
