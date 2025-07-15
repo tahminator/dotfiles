@@ -2,7 +2,8 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 local mux = wezterm.mux
 local gui = wezterm.gui
 
-local BG_BLUR = 0
+local BG_BLUR = 8
+local BR_BLUR_UNFOCUSED = 15
 local BG_OPACITY = 0.3
 
 local config = {
@@ -99,7 +100,7 @@ wezterm.on("update-status", function(window, pane)
 	if window:is_focused() then
 		overrides.macos_window_background_blur = BG_BLUR
 	else
-		overrides.macos_window_background_blur = 10
+		overrides.macos_window_background_blur = BR_BLUR_UNFOCUSED
 	end
 	window:set_config_overrides(overrides)
 end)
