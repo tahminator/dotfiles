@@ -5,6 +5,7 @@ local gui = wezterm.gui
 local BG_BLUR = 8
 local BR_BLUR_UNFOCUSED = 15
 local BG_OPACITY = 0.4
+local BG_OPACITY_UNFOCUSED = 0.2
 
 local config = {
 	font = wezterm.font("SF Mono"),
@@ -99,8 +100,10 @@ wezterm.on("update-status", function(window, pane)
 	local overrides = window:get_config_overrides() or {}
 	if window:is_focused() then
 		overrides.macos_window_background_blur = BG_BLUR
+		overrides.window_background_opacity = BG_OPACITY
 	else
 		overrides.macos_window_background_blur = BR_BLUR_UNFOCUSED
+		overrides.window_background_opacity = BG_OPACITY_UNFOCUSED
 	end
 	window:set_config_overrides(overrides)
 end)
