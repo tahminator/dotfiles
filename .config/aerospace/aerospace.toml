@@ -73,7 +73,7 @@ outer.bottom = 0
 outer.top = [
   { monitor."Built-in Retina Display" = 5 },
   { monitor."Sceptre K25" = 35 },
-  5
+  35
 ]
 outer.right = 0
 
