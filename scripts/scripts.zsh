@@ -6,6 +6,7 @@ SCRIPTS=(
   "string-printer"
   "recursive-git-pull"
   "bitwarden"
+  "latex-compile"
 )
 
 for script in "${SCRIPTS[@]}"; do
@@ -15,3 +16,6 @@ done
 for script in "${SCRIPTS[@]}"; do
     chmod +x "$SCRIPTS_DIR/$script.sh"
 done
+
+# extra short aliases below here
+alias lc=latex-compile
