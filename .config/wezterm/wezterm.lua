@@ -89,6 +89,26 @@ local config = {
 			mods = "CMD",
 			action = wezterm.action.SendString("\x05"),
 		},
+    {
+      key = "UpArrow",
+      mods = "CMD",
+      action = wezterm.action.ScrollToTop
+    },
+    {
+      key = "DownArrow",
+      mods = "CMD",
+      action = wezterm.action.ScrollToBottom
+    },
+    {
+      key = "d",
+      mods = "CMD",
+      action = wezterm.action.ScrollByLine(10)
+    },
+    {
+      key = "u",
+      mods = "CMD",
+      action = wezterm.action.ScrollByLine(-10)
+    }
 	},
 }
 
