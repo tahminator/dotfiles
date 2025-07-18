@@ -8,8 +8,18 @@ vim.keymap.set({ "n", "v", "o" }, "k", "j", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v", "o" }, "<C-k>", "<C-w>j", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v", "o" }, "<C-j>", "<C-w>k", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<leader>mt", "<cmd>RenderMarkdown toggle<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreview<CR>", { noremap = true, silent = true })
+vim.keymap.set(
+  "n",
+  "<leader>mt",
+  "<cmd>RenderMarkdown toggle<CR>",
+  { noremap = true, silent = true, desc = "Toggle Markdown beautify" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>mp",
+  "<cmd>MarkdownPreview<CR>",
+  { noremap = true, silent = true, desc = "Launch Markdown preview" }
+)
 
 vim.keymap.set("n", "<leader>p", ":lua require('gitsigns').preview_hunk()<CR>")
 
@@ -51,17 +61,17 @@ end, { noremap = true, silent = true, desc = "Open diagnostics/errors on buffer"
 vim.keymap.set({ "n", "v" }, "dma", function()
   vim.cmd("delm! | delm A-Z0-9")
   vim.cmd("wshada!")
-end)
+end, { desc = "Delete all marks" })
 
 vim.keymap.set("n", "m", "'", { desc = "Jump to mark" })
 
 vim.keymap.set("n", "<leader>m", "m", { desc = "Set mark" })
 
--- no more yanking stuff that I don't want.
--- vim.keymap.set("n", "d", '"_d')
--- vim.keymap.set("n", "D", '"_D')
--- vim.keymap.set("n", "c", '"_c')
--- vim.keymap.set("n", "C", '"_C')
+vim.keymap.set({ "n", "v" }, "d", '"_d', { noremap = true })
+vim.keymap.set({ "n", "v" }, "c", '"_c', { noremap = true })
+
+vim.keymap.set("n", "x", "d", { noremap = true })
+vim.keymap.set("n", "xx", "dd", { noremap = true })
 
 vim.g.VM_custom_motions = {
   ["k"] = "j",
