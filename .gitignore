@@ -10,6 +10,7 @@
 !/init.sh
 !/.Brewfile
 !/.simplebarrc
+!/.ideavimrc
 
 !templates/
 !templates/**

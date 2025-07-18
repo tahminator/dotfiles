@@ -83,6 +83,9 @@ outer.right = 0
 # Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
 
+cmd-h = [] # Disable "hide application"
+cmd-alt-h = [] # Disable "hide others"
+
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -239,3 +242,45 @@ alt-shift-l = ['join-with right', 'mode main']
 down = 'volume down'
 up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
+
+# Shared
+
+[[on-window-detected]]
+  if.app-id = 'com.spotify.client'
+  check-further-callbacks = false
+  run = ['move-node-to-workspace M']
+
+[[on-window-detected]]
+  if.app-id = 'com.apple.ActivityMonitor'
+  check-further-callbacks = false
+  run = ['move-node-to-workspace Q']
+
+[[on-window-detected]]
+  if.app-id = 'com.apple.iCal'
+  check-further-callbacks = false
+  run = ['move-node-to-workspace C']
+
+[[on-window-detected]]
+  if.app-id = 'us.zoom.xos'
+  check-further-callbacks = false
+  run = ['move-node-to-workspace Z']
+
+# Work-specific
+
+[[on-window-detected]]
+  if.app-id = 'com.tinyspeck.slackmacgap'
+  check-further-callbacks = false
+  run = ['move-node-to-workspace S']
+
+[[on-window-detected]]
+  if.app-id = 'com.docker.docker'
+  check-further-callbacks = false
+  run = ['move-node-to-workspace D']
+
+# Personal-specific
+
+[[on-window-detected]]
+  if.app-id = 'com.apple.MobileSMS'
+  check-further-callbacks = false
+  run = ['move-node-to-workspace T']
+

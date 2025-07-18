@@ -32,7 +32,7 @@
   },
   "themes": {
     "lightTheme": "NightShiftLight",
-    "darkTheme": "MacOSDark",
+    "darkTheme": "TokyoNight",
     "colorMain": "",
     "colorMainAlt": "",
     "colorMinor": "",
@@ -94,7 +94,7 @@
     "dateWidget": true,
     "timeWidget": true,
     "keyboardWidget": false,
-    "spotifyWidget": true,
+    "spotifyWidget": false,
     "cryptoWidget": false,
     "stockWidget": false,
     "youtubeMusicWidget": false,
