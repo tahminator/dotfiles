@@ -48,7 +48,7 @@ vim.keymap.set("n", "<Leader>r", function()
     count = 1
   end
   for _ = 1, count do
-    vim.cmd("normal! @" .. register)
+    vim.cmd("normal @" .. register)
   end
 end, { noremap = true, silent = true, desc = "Replay macro on given key" })
 
