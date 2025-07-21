@@ -94,7 +94,7 @@
     "dateWidget": true,
     "timeWidget": true,
     "keyboardWidget": false,
-    "spotifyWidget": false,
+    "spotifyWidget": true,
     "cryptoWidget": false,
     "stockWidget": false,
     "youtubeMusicWidget": false,
@@ -222,7 +222,8 @@
     "refreshFrequency": 10000,
     "showOnDisplay": "",
     "showIcon": true,
-    "showSpecter": false
+    "showSpecter": false,
+    "showSpotifyMetadata": false
   },
   "youtubeMusicWidgetOptions": {
     "refreshFrequency": 10000,
