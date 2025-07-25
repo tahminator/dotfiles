@@ -2,13 +2,13 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 local mux = wezterm.mux
 local gui = wezterm.gui
 
-local BG_BLUR = 8
+local BG_BLUR = 12
 local BR_BLUR_UNFOCUSED = 15
 local BG_OPACITY = 0.4
 local BG_OPACITY_UNFOCUSED = 0.2
 
 local config = {
-	font = wezterm.font("SF Mono"),
+	font = wezterm.font("Monocraft Nerd Font"),
 	font_size = 16,
 	line_height = 1.3,
 	freetype_load_target = "Light",
@@ -16,7 +16,7 @@ local config = {
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 
 	colors = {
-		background = "#191919",
+		background = "#000000",
 		foreground = "#feffff",
 		cursor_bg = "#feffff",
 		cursor_fg = "#161616",
@@ -89,26 +89,26 @@ local config = {
 			mods = "CMD",
 			action = wezterm.action.SendString("\x05"),
 		},
-    {
-      key = "UpArrow",
-      mods = "CMD",
-      action = wezterm.action.ScrollToTop
-    },
-    {
-      key = "DownArrow",
-      mods = "CMD",
-      action = wezterm.action.ScrollToBottom
-    },
-    {
-      key = "d",
-      mods = "CMD",
-      action = wezterm.action.ScrollByLine(10)
-    },
-    {
-      key = "u",
-      mods = "CMD",
-      action = wezterm.action.ScrollByLine(-10)
-    }
+		{
+			key = "UpArrow",
+			mods = "CMD",
+			action = wezterm.action.ScrollToTop,
+		},
+		{
+			key = "DownArrow",
+			mods = "CMD",
+			action = wezterm.action.ScrollToBottom,
+		},
+		{
+			key = "d",
+			mods = "CMD",
+			action = wezterm.action.ScrollByLine(10),
+		},
+		{
+			key = "u",
+			mods = "CMD",
+			action = wezterm.action.ScrollByLine(-10),
+		},
 	},
 }
 
