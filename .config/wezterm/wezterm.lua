@@ -8,8 +8,10 @@ local BG_OPACITY = 0.4
 local BG_OPACITY_UNFOCUSED = 0.2
 
 local config = {
-	font = wezterm.font("Monocraft Nerd Font"),
-	font_size = 16,
+	font = wezterm.font("Monocraft Nerd Font", {
+		weight = "Book",
+	}),
+	font_size = 13,
 	line_height = 1.3,
 	freetype_load_target = "Light",
 	freetype_load_flags = "NO_AUTOHINT",
