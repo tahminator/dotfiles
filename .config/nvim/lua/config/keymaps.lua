@@ -54,6 +54,9 @@ end, { noremap = true, silent = true, desc = "Replay macro on given key" })
 
 vim.keymap.set("n", "J", "<Nop>", { noremap = true, silent = true })
 
+vim.keymap.set("n", "<S-h>", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set("n", "<S-l>", "<Nop>", { noremap = true, silent = true })
+
 vim.keymap.set("n", "J", function()
   vim.diagnostic.open_float()
 end, { noremap = true, silent = true, desc = "Open diagnostics/errors on buffer" })
