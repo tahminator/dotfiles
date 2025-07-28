@@ -7,6 +7,7 @@ SCRIPTS=(
   "recursive-git-pull"
   "bitwarden"
   "latex-compile"
+  "spotless"
 )
 
 for script in "${SCRIPTS[@]}"; do
