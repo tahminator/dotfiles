@@ -7,7 +7,7 @@
     "noBarBg": true,
     "noColorInData": false,
     "bottomBar": false,
-    "sideDecoration": false,
+    "sideDecoration": true,
     "inlineSpacesOptions": false,
     "disableAnimations": false,
     "spacesBackgroundColorAsForeground": false,
@@ -31,8 +31,8 @@
     "flashspaceServerRefresh": false
   },
   "themes": {
-    "lightTheme": "NightShiftLight",
-    "darkTheme": "TokyoNight",
+    "lightTheme": "MacOSLight",
+    "darkTheme": "MacOSDark",
     "colorMain": "",
     "colorMainAlt": "",
     "colorMinor": "",
