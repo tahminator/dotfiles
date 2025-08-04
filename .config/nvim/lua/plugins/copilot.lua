@@ -2,7 +2,6 @@ return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = {
-      { "zbirenbaum/copilot.lua" },
       { "nvim-lua/plenary.nvim", branch = "master" },
     },
     opts = {},
@@ -13,11 +12,16 @@ return {
     cmd = "Copilot",
     event = "InsertEnter",
     opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-      filetypes = {
-        markdown = true,
-        help = true,
+      suggestion = {
+        auto_trigger = true,
+        keymap = {
+          accept = "<Tab>",
+          accept_word = "<C-l>",
+          accept_line = "<C-y>",
+          next = false,
+          prev = false,
+          dismiss = "<C-d>",
+        },
       },
     },
   },

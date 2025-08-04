@@ -53,7 +53,7 @@ return {
         auto_show_delay_ms = 200,
       },
       ghost_text = {
-        enabled = vim.g.ai_cmp,
+        enabled = false,
       },
     },
 
@@ -75,7 +75,7 @@ return {
       preset = "enter",
       ["<C-k>"] = { "select_next", "fallback" },
       ["<C-j>"] = { "select_prev", "fallback" },
-      ["<C-y>"] = { "select_and_accept" },
+      ["<C-y>"] = false,
     },
   },
   ---@param opts blink.cmp.Config | { sources: { compat: string[] } }

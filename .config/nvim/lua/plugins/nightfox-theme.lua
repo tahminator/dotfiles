@@ -3,6 +3,12 @@ return {
     "EdenEast/nightfox.nvim",
     opts = function()
       require("nightfox").setup({
+        palettes = {
+          carbonfox = {
+            bg0 = "NONE", -- floating windows
+            bg3 = "NONE", -- tabline + project name in neotree
+          },
+        },
         specs = {
           carbonfox = {
             syntax = {
