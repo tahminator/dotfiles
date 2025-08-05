@@ -12,35 +12,45 @@ return {
     cmd = "Copilot",
     event = "InsertEnter",
     opts = {
+      panel = {
+        enabled = false,
+      },
       suggestion = {
+        enabled = false,
         auto_trigger = true,
         keymap = {
           accept = "<Tab>",
           accept_word = "<C-l>",
           accept_line = "<C-y>",
           next = false,
+          refresh = "<C-e>",
           prev = false,
           dismiss = "<C-d>",
         },
       },
     },
   },
-  -- {
-  --   "saghen/blink.cmp",
-  --   optional = true,
-  --   dependencies = { "fang2hou/blink-copilot" },
-  --   opts = {
-  --     sources = {
-  --       default = { "copilot" },
-  --       providers = {
-  --         copilot = {
-  --           name = "copilot",
-  --           module = "blink-copilot",
-  --           score_offset = 100,
-  --           async = true,
-  --         },
-  --       },
-  --     },
-  --   },
-  -- },
+  {
+    "saghen/blink.cmp",
+    optional = true,
+    dependencies = { "fang2hou/blink-copilot" },
+    opts = {
+      sources = {
+        default = { "copilot" },
+        providers = {
+          copilot = {
+            name = "copilot",
+            module = "blink-copilot",
+            score_offset = 100,
+            async = true,
+          },
+        },
+      },
+      completion = {
+        ghost_text = {
+          enabled = true,
+        },
+      },
+    },
+  },
 }
