@@ -227,7 +227,7 @@ t = [
   'layout floating tiling',
   'mode main',
 ] # Toggle between floating and tiling layout
-f = ["fullscreen"]
+f = ["fullscreen", "mode main"]
 backspace = ['close-all-windows-but-current', 'mode main']
 
 # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
