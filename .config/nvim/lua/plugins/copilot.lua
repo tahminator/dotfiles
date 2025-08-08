@@ -17,7 +17,7 @@ return {
       },
       suggestion = {
         enabled = false,
-        auto_trigger = true,
+        auto_trigger = false,
         keymap = {
           accept = "<Tab>",
           accept_word = "<C-l>",
@@ -30,27 +30,27 @@ return {
       },
     },
   },
-  {
-    "saghen/blink.cmp",
-    optional = true,
-    dependencies = { "fang2hou/blink-copilot" },
-    opts = {
-      sources = {
-        default = { "copilot" },
-        providers = {
-          copilot = {
-            name = "copilot",
-            module = "blink-copilot",
-            score_offset = 100,
-            async = true,
-          },
-        },
-      },
-      completion = {
-        ghost_text = {
-          enabled = true,
-        },
-      },
-    },
-  },
+  -- {
+  --   "saghen/blink.cmp",
+  --   optional = true,
+  --   dependencies = { "fang2hou/blink-copilot" },
+  --   opts = {
+  --     sources = {
+  --       default = { "copilot" },
+  --       providers = {
+  --         copilot = {
+  --           name = "copilot",
+  --           module = "blink-copilot",
+  --           score_offset = 100,
+  --           async = true,
+  --         },
+  --       },
+  --     },
+  --     completion = {
+  --       ghost_text = {
+  --         enabled = true,
+  --       },
+  --     },
+  --   },
+  -- },
 }
