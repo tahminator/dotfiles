@@ -29,6 +29,8 @@
 !.config/aerospace/**
 !.config/borders/
 !.config/borders/**
+!.config/karabiner/
+!.config/karabiner/**
 !.config/nvim/
 !.config/nvim/**
 !.config/wezterm/
