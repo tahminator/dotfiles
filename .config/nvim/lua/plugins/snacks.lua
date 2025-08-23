@@ -2,6 +2,13 @@ return {
   "folke/snacks.nvim",
   opts = {
     picker = {
+      sources = {
+        explorer = {
+          layout = {
+            auto_hide = { "input" },
+          },
+        },
+      },
       win = {
         input = {
           keys = {
@@ -14,6 +21,7 @@ return {
         list = {
           wo = { number = true, relativenumber = true, signcolumn = "no" },
           keys = {
+            ["e"] = "toggle_maximize",
             ["<c-k>"] = "list_down",
             ["<c-j>"] = "list_up",
             ["k"] = "list_down",
