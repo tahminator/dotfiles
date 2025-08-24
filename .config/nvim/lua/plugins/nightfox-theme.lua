@@ -20,7 +20,7 @@ return {
         groups = {
           carbonfox = {
             Visual = {
-              bg = "bg4",
+              bg = "bg2",
             },
           },
         },
