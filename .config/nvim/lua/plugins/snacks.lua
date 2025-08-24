@@ -51,5 +51,25 @@ return {
       end,
       desc = "Grep (cwd)",
     },
+    {
+      "<leader>fe",
+      function()
+        Snacks.explorer.open({
+          cwd = vim.fn.getcwd(),
+        })
+      end,
+      desc = "Explorer Snacks (cwd)",
+    },
+    { "<leader>e", "<leader>fe", desc = "Explorer Snacks (cwd)", remap = true },
+    {
+      "<leader>fE",
+      function()
+        Snacks.explorer.open({
+          cwd = LazyVim.root(),
+        })
+      end,
+      desc = "Explorer Snacks (Root Dir)",
+    },
+    { "<leader>E", "<leader>fE", desc = "Explorer Snacks (Root Dir)", remap = true },
   },
 }
