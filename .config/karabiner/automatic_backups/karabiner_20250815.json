@@ -15,7 +15,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "f2",
+                                    "key_code": "f1",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
@@ -37,7 +37,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "f2",
+                                    "key_code": "f1",
                                     "modifiers": { "optional": ["any"] }
                                 },
                                 "to": [
