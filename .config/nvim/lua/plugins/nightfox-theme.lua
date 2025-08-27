@@ -6,7 +6,7 @@ return {
         palettes = {
           carbonfox = {
             bg0 = "NONE", -- floating windows
-            bg3 = "NONE", -- tabline + project name in neotree
+            -- bg3 = "NONE", -- tabline + project name in neotree
           },
         },
         specs = {

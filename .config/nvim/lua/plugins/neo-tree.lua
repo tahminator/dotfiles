@@ -15,18 +15,15 @@ return {
     },
 
     window = {
-      mappings = {
-        ["/"] = "filter_on_submit",
+      fuzzy_finder_mappings = {
+        ["<C-j>"] = "move_cursor_up",
+        ["<C-k>"] = "move_cursor_down",
       },
     },
     filesystem = {
       filtered_items = {
+        visible = true,
         hide_dotfiles = false,
-        window = {
-          mappings = {
-            ["/"] = "filter_on_submit",
-          },
-        },
       },
     },
   },
