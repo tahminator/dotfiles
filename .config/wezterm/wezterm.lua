@@ -11,7 +11,7 @@ local config = {
 	font = wezterm.font("Monocraft Nerd Font", {
 		weight = "Book",
 	}),
-	font_size = 10,
+	font_size = 16,
 	line_height = 1.3,
 	freetype_load_target = "Light",
 	freetype_load_flags = "NO_AUTOHINT",
