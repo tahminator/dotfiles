@@ -13,7 +13,7 @@ return {
         end,
       },
     },
-
+    use_popups_for_input = false,
     window = {
       fuzzy_finder_mappings = {
         ["<C-j>"] = "move_cursor_up",
