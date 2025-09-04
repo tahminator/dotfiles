@@ -14,6 +14,7 @@ return {
             syntax = {
               keyword = "magenta.dim",
               variable = "magenta",
+              comment = "white.dim",
             },
           },
         },
