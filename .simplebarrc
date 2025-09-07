@@ -82,9 +82,9 @@
     "processWidget": false,
     "weatherWidget": false,
     "netstatsWidget": false,
-    "cpuWidget": false,
-    "gpuWidget": false,
-    "memoryWidget": false,
+    "cpuWidget": true,
+    "gpuWidget": true,
+    "memoryWidget": true,
     "batteryWidget": true,
     "wifiWidget": true,
     "vpnWidget": false,
@@ -121,14 +121,14 @@
     "refreshFrequency": 2000,
     "showOnDisplay": "",
     "showIcon": true,
-    "displayAsGraph": false,
+    "displayAsGraph": true,
     "cpuMonitorApp": "Activity Monitor"
   },
   "gpuWidgetOptions": {
     "refreshFrequency": 3000,
     "showOnDisplay": "",
     "showIcon": true,
-    "displayAsGraph": false,
+    "displayAsGraph": true,
     "gpuMacmonBinaryPath": "/opt/homebrew/bin/macmon"
   },
   "memoryWidgetOptions": {
