@@ -3,57 +3,66 @@ if ! which brew &>/dev/null; then
 	exit 1
 fi
 
-cd ~
-if [[ -d ~/dotfiles ]]; then
-	echo "~/dotfiles exists already. Please delete/backup the directory."
-	exit 1
+# Check for --skip-clone argument
+SKIP_CLONE=false
+if [[ "$1" == "--skip-clone" ]]; then
+	SKIP_CLONE=true
+	echo "Skipping clone and copy operations"
 fi
 
-echo "Cloning repository to ~/dotfiles"
-git clone https://github.com/tahminator/dotfiles.git ~/dotfiles
-
-conflicts_found=0
-
-for item in ~/dotfiles/.[^.]* ~/dotfiles/*; do
-	[[ -e "$item" ]] || continue
-
-	basename_item=$(basename "$item")
-	target="$HOME/$basename_item"
-
-	if [[ -e "$target" ]]; then
-		conflicts_found=$((conflicts_found + 1))
-		echo "Conflict found: $basename_item"
+if [[ "$SKIP_CLONE" == false ]]; then
+	cd ~
+	if [[ -d ~/dotfiles ]]; then
+		echo "~/dotfiles exists already. Please delete/backup the directory."
+		exit 1
 	fi
-done
 
-if [[ $conflicts_found -gt 0 ]]; then
-	echo "Error: $conflicts_found conflicts found. Aborting copy operation."
-	exit 1
-fi
-echo "No conflicts found. Completing copy opertion now."
+	echo "Cloning repository to ~/dotfiles"
+	git clone https://github.com/tahminator/dotfiles.git ~/dotfiles
 
-copy_failed=0
+	conflicts_found=0
 
-for item in ~/dotfiles/.[^.]* ~/dotfiles/*; do
-	[[ -e "$item" ]] || continue
+	for item in ~/dotfiles/.[^.]* ~/dotfiles/*; do
+		[[ -e "$item" ]] || continue
 
-	basename_item=$(basename "$item")
-	target="$HOME/$basename_item"
+		basename_item=$(basename "$item")
+		target="$HOME/$basename_item"
 
-	if cp -r "$item" "$target"; then
-		echo "Copied $basename_item"
+		if [[ -e "$target" ]]; then
+			conflicts_found=$((conflicts_found + 1))
+			echo "Conflict found: $basename_item"
+		fi
+	done
+
+	if [[ $conflicts_found -gt 0 ]]; then
+		echo "Error: $conflicts_found conflicts found. Aborting copy operation."
+		exit 1
+	fi
+	echo "No conflicts found. Completing copy opertion now."
+
+	copy_failed=0
+
+	for item in ~/dotfiles/.[^.]* ~/dotfiles/*; do
+		[[ -e "$item" ]] || continue
+
+		basename_item=$(basename "$item")
+		target="$HOME/$basename_item"
+
+		if cp -r "$item" "$target"; then
+			echo "Copied $basename_item"
+		else
+			echo "Failed to copy $basename_item"
+			copy_failed=$((copy_failed + 1))
+		fi
+	done
+
+	# Final status
+	if [[ $copy_failed -eq 0 ]]; then
+		echo "Successfully copied over all files/directories!"
 	else
-		echo "Failed to copy $basename_item"
-		copy_failed=$((copy_failed + 1))
+		echo "Failed to copy $copy_failed files from ~/dotfiles to ~"
+		exit 1
 	fi
-done
-
-# Final status
-if [[ $copy_failed -eq 0 ]]; then
-	echo "Successfully copied over all files/directories!"
-else
-	echo "Failed to copy $copy_failed files from ~/dotfiles to ~"
-	exit 1
 fi
 
 echo "Downloading dependencies from .Brewfile"
