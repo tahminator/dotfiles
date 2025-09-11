@@ -2,6 +2,7 @@ tap "felixkratz/formulae"
 tap "nikitabobko/tap"
 tap "versent/taps"
 brew "awscli", args: ["HEAD"]
+brew "sst/tap/opencode"
 brew "cloc"
 brew "gh"
 brew "go"
