@@ -66,7 +66,7 @@ if [[ "$SKIP_CLONE" == false ]]; then
 fi
 
 echo "Downloading dependencies from .Brewfile"
-brew bundle install --file .Brewfile
+brew bundle install --file .Brewfile --verbose
 
 touch ~/personal/.zshrc
 touch ~/work/.zshrc
