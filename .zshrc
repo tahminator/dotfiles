@@ -1,3 +1,8 @@
+# Sane defaults for MacOS 
+
+# Disable hold on key to show accents
+defaults write -g ApplePressAndHoldEnabled -bool false
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(jenv init -)"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
