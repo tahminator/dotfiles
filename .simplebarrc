@@ -80,6 +80,7 @@
   },
   "widgets": {
     "processWidget": false,
+    "githubWidget": false,
     "weatherWidget": false,
     "netstatsWidget": false,
     "cpuWidget": true,
@@ -101,6 +102,14 @@
     "musicWidget": true,
     "mpdWidget": false,
     "browserTrackWidget": false
+  },
+  "githubWidgetOptions": {
+    "refreshFrequency": 600000,
+    "showOnDisplay": "",
+    "showIcon": true,
+    "hideWhenNoNotification": false,
+    "notificationUrl": "https://github.com/notifications",
+    "ghBinaryPath": "/opt/homebrew/bin/gh"
   },
   "weatherWidgetOptions": {
     "refreshFrequency": 1800000,
