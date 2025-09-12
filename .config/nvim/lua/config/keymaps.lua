@@ -89,6 +89,26 @@ vim.keymap.set("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search(
   desc = "Search on current file",
 })
 
+vim.keymap.set("n", "<Space>cd", function()
+  -- Check if we're in diff mode
+  if not vim.wo.diff then
+    print("Not in diff mode")
+    return
+  end
+
+  -- Get all differences in the current buffer
+  local diffs = vim.fn.diff_hlID(vim.fn.line("."), vim.fn.col("."))
+
+  -- Alternative: check if there are any diff highlights
+  local has_diffs = vim.fn.search("\\%#=1\\C\\%(DiffAdd\\|DiffChange\\|DiffDelete\\)", "nw") > 0
+
+  if has_diffs then
+    print("Files have differences")
+  else
+    print("Files are equivalent")
+  end
+end, { desc = "Check if files in diff mode are equivalent" })
+
 vim.g.VM_custom_motions = {
   ["k"] = "j",
   ["j"] = "k",
