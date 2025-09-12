@@ -89,23 +89,45 @@ vim.keymap.set("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search(
   desc = "Search on current file",
 })
 
-vim.keymap.set("n", "<Space>cd", function()
+vim.keymap.set("n", "<Space>cc", function()
   -- Check if we're in diff mode
   if not vim.wo.diff then
     print("Not in diff mode")
     return
   end
 
-  -- Get all differences in the current buffer
-  local diffs = vim.fn.diff_hlID(vim.fn.line("."), vim.fn.col("."))
+  -- Get all diff buffers
+  local diff_buffers = {}
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+    if vim.api.nvim_win_get_option(win, "diff") then
+      table.insert(diff_buffers, buf)
+    end
+  end
 
-  -- Alternative: check if there are any diff highlights
-  local has_diffs = vim.fn.search("\\%#=1\\C\\%(DiffAdd\\|DiffChange\\|DiffDelete\\)", "nw") > 0
+  if #diff_buffers < 2 then
+    print("Need at least 2 buffers in diff mode")
+    return
+  end
 
-  if has_diffs then
-    print("Files have differences")
-  else
+  -- Compare content of first two diff buffers
+  local buf1_lines = vim.api.nvim_buf_get_lines(diff_buffers[1], 0, -1, false)
+  local buf2_lines = vim.api.nvim_buf_get_lines(diff_buffers[2], 0, -1, false)
+
+  local are_equal = #buf1_lines == #buf2_lines
+  if are_equal then
+    for i = 1, #buf1_lines do
+      if buf1_lines[i] ~= buf2_lines[i] then
+        are_equal = false
+        break
+      end
+    end
+  end
+
+  if are_equal then
     print("Files are equivalent")
+  else
+    print("Files have differences")
   end
 end, { desc = "Check if files in diff mode are equivalent" })
 
