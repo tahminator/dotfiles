@@ -2,6 +2,12 @@
 
 # Disable hold on key to show accents
 defaults write -g ApplePressAndHoldEnabled -bool false
+# https://nikitabobko.github.io/AeroSpace/guide#a-note-on-mission-control
+defaults write com.apple.dock expose-group-apps -bool true
+# https://www.reddit.com/r/MacOS/comments/1ccfycq/why_is_inserting_an_emoji_so_slow/
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+
+
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(jenv init -)"
