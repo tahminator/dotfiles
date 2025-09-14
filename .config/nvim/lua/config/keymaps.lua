@@ -131,6 +131,39 @@ vim.keymap.set("n", "<Space>cc", function()
   end
 end, { desc = "Check if files in diff mode are equivalent" })
 
+vim.keymap.set("n", "<leader>le", function()
+  vim.ui.input(
+    { prompt = "What is the Leetcode question you would like to convert to a directory name? " },
+    function(input)
+      if not input or input == "" then
+        return
+      end
+
+      local number = input:match("^(%d+)%.?")
+      if not number then
+        vim.notify("Could not extract question number from input", vim.log.levels.ERROR)
+        return
+      end
+
+      local title = input:match("^%d+%.?%s*(.+)$")
+      if not title then
+        vim.notify("Could not extract question title from input", vim.log.levels.ERROR)
+        return
+      end
+
+      title = title:gsub("%s*$", "")
+
+      local formatted_title = title:lower():gsub("[^%w%s]", ""):gsub("%s+", "_")
+
+      local padded_number = string.format("%04d", tonumber(number))
+      local result = "l" .. padded_number .. "_" .. formatted_title
+
+      vim.fn.setreg("+", result)
+      vim.notify("Copied to clipboard: " .. result, vim.log.levels.INFO)
+    end
+  )
+end, { noremap = true, silent = true, desc = "Convert LeetCode question to directory name" })
+
 vim.g.VM_custom_motions = {
   ["k"] = "j",
   ["j"] = "k",
