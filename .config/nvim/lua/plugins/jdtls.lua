@@ -24,11 +24,11 @@ return {
             },
           },
         },
-        format = {
-          settings = {
-            url = vim.fn.expand("~/.config/nvim/java-formatter.xml"),
-          },
-        },
+        -- format = {
+        --   settings = {
+        --     url = vim.fn.expand("~/.config/nvim/java-formatter.xml"),
+        --   },
+        -- },
       },
     },
   },

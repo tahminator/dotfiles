@@ -80,7 +80,6 @@
   },
   "widgets": {
     "processWidget": false,
-    "githubWidget": false,
     "weatherWidget": false,
     "netstatsWidget": false,
     "cpuWidget": true,
@@ -101,15 +100,8 @@
     "youtubeMusicWidget": false,
     "musicWidget": true,
     "mpdWidget": false,
-    "browserTrackWidget": false
-  },
-  "githubWidgetOptions": {
-    "refreshFrequency": 600000,
-    "showOnDisplay": "",
-    "showIcon": true,
-    "hideWhenNoNotification": false,
-    "notificationUrl": "https://github.com/notifications",
-    "ghBinaryPath": "/opt/homebrew/bin/gh"
+    "browserTrackWidget": false,
+    "githubWidget": false
   },
   "weatherWidgetOptions": {
     "refreshFrequency": 1800000,
@@ -268,5 +260,13 @@
   },
   "customStyles": {
     "styles": "/* your custom css styles here */"
+  },
+  "githubWidgetOptions": {
+    "refreshFrequency": 600000,
+    "showOnDisplay": "",
+    "showIcon": true,
+    "hideWhenNoNotification": false,
+    "notificationUrl": "https://github.com/notifications",
+    "ghBinaryPath": "/opt/homebrew/bin/gh"
   }
 }
