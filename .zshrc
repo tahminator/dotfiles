@@ -21,6 +21,7 @@ export PATH="/opt/homebrew/opt/tomcat@9/bin:$PATH"
 export PATH="/opt/homebrew/opt/trash/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # pnpm
 export PNPM_HOME="/Users/tahminator/Library/pnpm"

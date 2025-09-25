@@ -37,6 +37,8 @@
 !.config/wezterm/**
 !.config/opencode/
 !.config/opencode/**
+!.config/sketchybar/
+!.config/sketchybar/**
 
 
 
