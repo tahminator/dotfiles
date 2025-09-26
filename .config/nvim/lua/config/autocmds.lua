@@ -67,3 +67,13 @@ vim.schedule(function()
     vim.notify("Deleted <C-k> keymap from LazyVim keymaps.lua", vim.log.levels.INFO)
   end
 end)
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "go",
+  callback = function()
+    vim.opt_local.expandtab = false
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 0
+  end,
+})
