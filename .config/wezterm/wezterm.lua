@@ -4,7 +4,7 @@ local gui = wezterm.gui
 
 local BG_BLUR = 30
 local BR_BLUR_UNFOCUSED = 0
-local BG_OPACITY = 0.4
+local BG_OPACITY = 0.45
 local BG_OPACITY_UNFOCUSED = 0.35
 
 local config = {
