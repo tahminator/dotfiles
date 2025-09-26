@@ -53,6 +53,7 @@ vim.keymap.set("n", "<Leader>r", function()
 end, { noremap = true, silent = true, desc = "Replay macro on given key" })
 
 vim.keymap.set("n", "J", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set("v", "J", "<Nop>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<S-h>", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "<S-l>", "<Nop>", { noremap = true, silent = true })
