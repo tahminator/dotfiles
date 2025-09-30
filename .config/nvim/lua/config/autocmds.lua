@@ -77,3 +77,9 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.softtabstop = 0
   end,
 })
+vim.api.nvim_create_user_command("JdtClean", function()
+  vim.fn.delete(vim.fn.expand("~/.cache/nvim/jdtls"), "rf")
+  vim.fn.delete(vim.fn.expand("~/.cache/jdtls"), "rf")
+  vim.fn.delete(vim.fn.expand("~/.local/share/jdtls"), "rf")
+  print("Deleted cache!")
+end, {})
