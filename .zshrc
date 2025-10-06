@@ -22,6 +22,7 @@ export PATH="/opt/homebrew/opt/trash/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+export PATH="$PATH:/Users/tahminator/Library/Application Support/Coursier/bin"
 
 # pnpm
 export PNPM_HOME="/Users/tahminator/Library/pnpm"

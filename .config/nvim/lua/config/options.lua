@@ -4,3 +4,5 @@
 
 vim.g.lazyvim_prettier_needs_config = false
 vim.opt.spell = false
+
+vim.lsp.enable("kotlin_lsp")
