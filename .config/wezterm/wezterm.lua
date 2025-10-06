@@ -56,6 +56,8 @@ local config = {
 	animation_fps = 240,
 
 	keys = {
+		-- claude code
+		{ key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
 		{
 			key = "Backspace",
 			mods = "CMD",
