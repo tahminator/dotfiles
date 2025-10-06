@@ -48,10 +48,10 @@ export PROMPT='%F{magenta}$(get_git_user_email)%f %1~ $(parse_git_branch) %F{red
 source ~/scripts/scripts.zsh
 
 # commit work specific config here
-source ~/work/.zshrc
+source "$HOME/work/.zshrc"
 
 # commit personal specific config here
-source ~/personal/.zshrc
+source "$HOME/personal/.zshrc"
 
 # uncomment next line & commit inline secrets if you REALLY need to (would not recommend)
 # source ~/.zshrc-local
