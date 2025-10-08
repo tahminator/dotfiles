@@ -2,9 +2,9 @@ local wezterm = require("wezterm") --[[@as Wezterm]]
 local mux = wezterm.mux
 local gui = wezterm.gui
 
-local BG_BLUR = 30
+local BG_BLUR = 20
 local BR_BLUR_UNFOCUSED = 0
-local BG_OPACITY = 0.75
+local BG_OPACITY = 0.1
 local BG_OPACITY_UNFOCUSED = 0.4
 
 local config = {
