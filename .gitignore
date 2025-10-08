@@ -11,6 +11,7 @@
 !/.Brewfile
 !/.simplebarrc
 !/.ideavimrc
+!/.tmux.conf
 
 !templates/
 !templates/**
