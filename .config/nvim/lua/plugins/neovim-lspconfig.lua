@@ -46,6 +46,11 @@ return {
         severity_sort = enabledFlag,
         signs = enabledFlag,
       },
+      setup = {
+        jdtls = function()
+          return true -- avoid duplicate servers
+        end,
+      },
       servers = {
         marksman = {
           mason = false,
@@ -56,6 +61,7 @@ return {
         clangd = {
           filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
         },
+        jdtls = {},
         tsserver = {
           handlers = {
             ["textDocument/publishDiagnostics"] = function(_, result, ctx, config)

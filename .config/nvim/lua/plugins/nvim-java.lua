@@ -1,0 +1,96 @@
+return {}
+
+-- return {
+--   "nvim-java/nvim-java",
+--   config = false,
+--   ft = { "java" },
+--   dependencies = {
+--     {
+--       "neovim/nvim-lspconfig",
+--       opts = {
+--         servers = {
+--           -- Your JDTLS configuration goes here
+--           jdtls = {
+--             settings = {
+--               java = {
+--                 configuration = {
+--                   runtimes = {
+--                     {
+--                       name = "JavaSE-17",
+--                       path = "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home",
+--                     },
+--                     {
+--                       name = "JavaSE-11",
+--                       path = "/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home",
+--                     },
+--                     {
+--                       name = "JavaSE-21",
+--                       path = "/Library/Java/JavaVirtualMachines/openjdk-21.jdk/Contents/Home",
+--                     },
+--                     {
+--                       name = "JavaSE-25",
+--                       path = "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home",
+--                     },
+--                   },
+--                 },
+--                 -- format = {
+--                 --   settings = {
+--                 --     url = vim.fn.expand("~/.config/nvim/java-formatter.xml"),
+--                 --   },
+--                 -- },
+--               },
+--             },
+--           },
+--         },
+--         setup = {
+--           jdtls = function()
+--             -- Your nvim-java configuration goes here
+--             require("java").setup({
+--               java_debug_adapter = {
+--                 enable = false,
+--               },
+--               jdk = {
+--                 auto_install = false,
+--               },
+--               java_test = {
+--                 enable = false,
+--               },
+--               verification = {
+--                 invalid_mason_registry = true,
+--               },
+--               spring_boot_tools = {
+--                 enable = false,
+--                 version = "1.55.1",
+--               },
+--               -- root_markers = {
+--               --   "settings.gradle",
+--               --   "settings.gradle.kts",
+--               --   "pom.xml",
+--               --   "build.gradle",
+--               --   "mvnw",
+--               --   "gradlew",
+--               --   "build.gradle",
+--               --   "build.gradle.kts",
+--               -- },
+--             })
+--           end,
+--         },
+--       },
+--     },
+--     {
+--       "nvim-treesitter/nvim-treesitter",
+--       opts = {
+--         ensure_installed = { "java" },
+--       },
+--     },
+--     {
+--       "williamboman/mason.nvim",
+--       opts = {
+--         registries = {
+--           "github:nvim-java/mason-registry",
+--           "github:mason-org/mason-registry",
+--         },
+--       },
+--     },
+--   },
+-- }
