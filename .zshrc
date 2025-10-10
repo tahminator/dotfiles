@@ -6,7 +6,8 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 defaults write com.apple.dock expose-group-apps -bool true
 # https://www.reddit.com/r/MacOS/comments/1ccfycq/why_is_inserting_an_emoji_so_slow/
 defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
-
+# https://wezterm.org/faq.html#how-do-i-enable-undercurl-curly-underlines
+export TERM=wezterm
 
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
