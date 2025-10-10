@@ -11,6 +11,8 @@ SCRIPTS=(
   "path"
   "tn"
   "ta"
+  "tk"
+  "ts"
 )
 
 for script in "${SCRIPTS[@]}"; do
