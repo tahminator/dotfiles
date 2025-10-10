@@ -8,6 +8,9 @@ SCRIPTS=(
   "bitwarden"
   "latex-compile"
   "spotless"
+  "path"
+  "tn"
+  "ta"
 )
 
 for script in "${SCRIPTS[@]}"; do
