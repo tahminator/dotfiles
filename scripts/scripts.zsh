@@ -9,8 +9,7 @@ SCRIPTS=(
   "latex-compile"
   "spotless"
   "path"
-  "tn"
-  "ta"
+  "t"
   "tk"
   "ts"
 )
