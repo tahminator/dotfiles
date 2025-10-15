@@ -10,6 +10,7 @@ SCRIPTS=(
   "spotless"
   "path"
   "t"
+  "td"
   "tk"
   "ts"
 )
