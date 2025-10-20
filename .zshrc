@@ -1,3 +1,5 @@
+zmodload zsh/zprof
+
 # Sane defaults for MacOS 
 
 # Disable hold on key to show accents
@@ -13,9 +15,7 @@ export TERM=wezterm
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(jenv init -)"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+eval "$(fnm env --use-on-cd --shell zsh)"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=180'
 export PATH="/opt/homebrew/opt/tomcat@9/bin:$PATH"
@@ -56,3 +56,5 @@ source "$HOME/personal/.zshrc"
 
 # uncomment next line & commit inline secrets if you REALLY need to (would not recommend)
 # source ~/.zshrc-local
+
+zprof
