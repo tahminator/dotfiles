@@ -1,4 +1,5 @@
-zmodload zsh/zprof
+# uncomment next line (and last line) to check performance timings when ~/.zshrc is sourced
+# zmodload zsh/zprof
 
 # Sane defaults for MacOS 
 
@@ -57,4 +58,4 @@ source "$HOME/personal/.zshrc"
 # uncomment next line & commit inline secrets if you REALLY need to (would not recommend)
 # source ~/.zshrc-local
 
-zprof
+# zprof
