@@ -216,7 +216,7 @@ c = ['''exec-and-forget osascript -e '
       activate
   end tell'
   ''', 'mode main']
-s = ['exec-and-forget sketchybar']
+s = ['exec-and-forget sketchybar', 'mode main']
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
