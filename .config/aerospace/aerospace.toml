@@ -216,7 +216,13 @@ c = ['''exec-and-forget osascript -e '
       activate
   end tell'
   ''', 'mode main']
-s = ['exec-and-forget sketchybar', 'mode main']
+s = ['''exec-and-forget osascript -e '
+  tell application "Safari"
+      make new document at end of documents
+      activate
+  end tell'
+  ''', 'mode main']
+b = ['exec-and-forget sketchybar', 'mode main']
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -243,6 +249,12 @@ up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
 
 # Shared
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.Safari'
+    if.app-name-regex-substring = 'Bitwarden'
+    check-further-callbacks = false
+    run = ['layout floating']
 
 [[on-window-detected]]
   if.app-id = 'com.spotify.client'
