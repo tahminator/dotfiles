@@ -35,7 +35,7 @@ return {
     "LazyVim/LazyVim",
     opts = {
       -- colorscheme = "dayfox",
-      colorscheme = "nightfox",
+      colorscheme = "carbonfox",
       transparent = true,
     },
   },
