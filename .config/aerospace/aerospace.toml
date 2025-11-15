@@ -210,8 +210,14 @@ else
   tell application appName to activate
 end if'
 ''', 'mode main']
+# c = ['''exec-and-forget osascript -e '
+#   tell application "/Applications/Google Chrome.app"
+#       make new window
+#       activate
+#   end tell'
+#   ''', 'mode main']
 c = ['''exec-and-forget osascript -e '
-  tell application "/Applications/Google Chrome.app"
+  tell application "/Applications/Helium.app"
       make new window
       activate
   end tell'
