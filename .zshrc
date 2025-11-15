@@ -1,9 +1,6 @@
 # uncomment next line (and last line) to check performance timings when ~/.zshrc is sourced
 # zmodload zsh/zprof
 
-autoload -Uz compinit
-compinit
-
 # oh my zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
@@ -67,5 +64,8 @@ source "$HOME/personal/.zshrc"
 
 # uncomment next line & commit inline secrets if you REALLY need to (would not recommend)
 # source ~/.zshrc-local
+
+autoload -Uz compinit
+compinit
 
 # zprof
