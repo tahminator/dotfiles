@@ -70,7 +70,7 @@ inner.vertical = 15
 outer.left = 15
 outer.bottom = 15
 outer.top = [
-  { monitor."Built-in Retina Display" = 10 },
+  { monitor."Built-in Retina Display" = 12 },
   { monitor."Sceptre K25" = 50 },
   50
 ]
