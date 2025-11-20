@@ -1,6 +1,7 @@
 return {
   "folke/snacks.nvim",
   opts = {
+    gh = {},
     dashboard = {
       preset = {
         header = [[
@@ -43,6 +44,8 @@ return {
     },
     picker = {
       sources = {
+        gh_issue = {},
+        gh_pr = {},
         explorer = {
           layout = {
             auto_hide = { "input" },
@@ -111,5 +114,33 @@ return {
       desc = "Explorer Snacks (Root Dir)",
     },
     { "<leader>E", "<leader>fE", desc = "Explorer Snacks (Root Dir)", remap = true },
+    {
+      "<leader>gi",
+      function()
+        Snacks.picker.gh_issue()
+      end,
+      desc = "GitHub Issues (open)",
+    },
+    {
+      "<leader>gI",
+      function()
+        Snacks.picker.gh_issue({ state = "all" })
+      end,
+      desc = "GitHub Issues (all)",
+    },
+    {
+      "<leader>gp",
+      function()
+        Snacks.picker.gh_pr()
+      end,
+      desc = "GitHub Pull Requests (open)",
+    },
+    {
+      "<leader>gP",
+      function()
+        Snacks.picker.gh_pr({ state = "all" })
+      end,
+      desc = "GitHub Pull Requests (all)",
+    },
   },
 }
