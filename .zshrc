@@ -65,6 +65,10 @@ source "$HOME/personal/.zshrc"
 # uncomment next line & commit inline secrets if you REALLY need to (would not recommend)
 # source ~/.zshrc-local
 
+# disable shared history (enabled by default from oh-my-zsh)
+setopt noincappendhistory
+setopt nosharehistory
+
 autoload -Uz compinit
 compinit
 
