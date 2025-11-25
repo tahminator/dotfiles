@@ -165,6 +165,11 @@ vim.keymap.set("n", "<leader>le", function()
   )
 end, { noremap = true, silent = true, desc = "Convert LeetCode question to directory name" })
 
+vim.keymap.set("n", "<Up>", "<C-w>+")
+vim.keymap.set("n", "<Down>", "<C-w>-")
+vim.keymap.set("n", "<Left>", "<C-w><")
+vim.keymap.set("n", "<Right>", "<C-w>>")
+
 vim.g.VM_custom_motions = {
   ["k"] = "j",
   ["j"] = "k",
