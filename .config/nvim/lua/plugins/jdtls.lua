@@ -32,11 +32,12 @@ return {
               },
             },
           },
-          -- format = {
-          --   settings = {
-          --     url = vim.fn.expand("~/.config/nvim/java-formatter.xml"),
-          --   },
-          -- },
+          format = {
+            enabled = false,
+            -- settings = {
+            --   url = vim.fn.expand("~/.config/nvim/java-formatter.xml"),
+            -- },
+          },
         },
       },
     },

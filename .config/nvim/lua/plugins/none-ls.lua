@@ -35,9 +35,6 @@ return {
       nls.builtins.diagnostics.fish,
       nls.builtins.formatting.stylua,
       nls.builtins.formatting.shfmt,
-      nls.builtins.diagnostics.checkstyle.with({
-        extra_args = { "-c", vim.fn.expand("~/.config/nvim/checkstyle.xml") },
-      }),
     })
   end,
 }
