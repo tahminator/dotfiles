@@ -143,4 +143,18 @@ return {
       })
     end,
   },
+  {
+    "leoluz/nvim-dap-go",
+    config = function()
+      require("dap-go").setup()
+
+      local dap = require("dap")
+      local original_go_adapter = dap.adapters.go
+      dap.adapters.go = function(callback, config)
+        config.env = config.env or {}
+        config.env.NO_COLOR = "1"
+        original_go_adapter(callback, config)
+      end
+    end,
+  },
 }
