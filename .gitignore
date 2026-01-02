@@ -36,6 +36,8 @@
 !.config/nvim/**
 !.config/wezterm/
 !.config/wezterm/**
+!.config/ghostty/
+!.config/ghostty/**
 !.config/opencode/
 !.config/opencode/**
 !.config/sketchybar/

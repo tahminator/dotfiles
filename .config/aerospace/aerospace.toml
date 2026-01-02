@@ -203,13 +203,21 @@ alt-n = 'mode open'
 [mode.open.binding]
 esc = 'mode main'
 t = ['''exec-and-forget osascript -e '
-set appName to "WezTerm"
+set appName to "Ghostty"
 if application appName is running then
-  Do Shell Script "/Applications/WezTerm.app/Contents/MacOS/wezterm-gui"
+  do shell script "/Applications/Ghostty.app/Contents/MacOS/ghostty"
 else
   tell application appName to activate
 end if'
 ''', 'mode main']
+# t = ['''exec-and-forget osascript -e '
+# set appName to "WezTerm"
+# if application appName is running then
+#   Do Shell Script "/Applications/WezTerm.app/Contents/MacOS/wezterm-gui"
+# else
+#   tell application appName to activate
+# end if'
+# ''', 'mode main']
 # c = ['''exec-and-forget osascript -e '
 #   tell application "/Applications/Google Chrome.app"
 #       make new window
