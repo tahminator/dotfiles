@@ -145,6 +145,15 @@ return {
   },
   {
     "leoluz/nvim-dap-go",
+    keys = {
+      {
+        "<leader>dT",
+        function()
+          require("dap-go").debug_test()
+        end,
+        desc = "Run nearest test (Go)",
+      },
+    },
     config = function()
       require("dap-go").setup()
 
