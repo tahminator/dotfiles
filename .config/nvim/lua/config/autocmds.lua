@@ -49,7 +49,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 -- I am not going to try to fix this BS anymore, I have had ENOUGH. Literally just removing this keymap so I don't have to
 -- deal with these terrible defaults.
 vim.schedule(function()
-  local path = vim.fn.expand("~/.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/lsp/keymaps.lua")
+  local path = vim.fn.expand("~/.local/share/nvim/lazy/LazyVim/lua/lazyvim/plugins/lsp/init.lua")
   if vim.fn.filereadable(path) == 0 then
     return
   end
