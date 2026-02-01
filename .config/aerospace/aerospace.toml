@@ -202,14 +202,8 @@ alt-n = 'mode open'
 
 [mode.open.binding]
 esc = 'mode main'
-t = ['''exec-and-forget osascript -e '
-set appName to "Ghostty"
-if application appName is running then
-  do shell script "/Applications/Ghostty.app/Contents/MacOS/ghostty"
-else
-  tell application appName to activate
-end if'
-''', 'mode main']
+t = ["exec-and-forget /Applications/Ghostty.app/Contents/MacOS/ghostty", 'mode main']
+w = ["exec-and-forget /Applications/Ghostty.app/Contents/MacOS/ghostty -e 'spacelist'", 'mode main']
 # t = ['''exec-and-forget osascript -e '
 # set appName to "WezTerm"
 # if application appName is running then
