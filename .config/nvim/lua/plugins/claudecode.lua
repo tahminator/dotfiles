@@ -3,8 +3,7 @@ return {
   dependencies = { "folke/snacks.nvim" },
   config = true,
   opts = {
-    -- will not work on personal machine, but do not have any intention in doing so anyways.
-    terminal_cmd = "~/work/github/dev-scripts/claude/run-claude-aws.sh",
+    terminal_cmd = "~/work/github/dev-scripts/claude/run-claude-aws.sh || claude",
   },
   keys = {
     { "<leader>a", nil, desc = "AI/Claude Code" },
