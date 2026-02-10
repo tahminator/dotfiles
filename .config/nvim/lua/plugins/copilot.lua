@@ -1,3 +1,8 @@
+local block = true
+if block then
+  return {}
+end
+
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",

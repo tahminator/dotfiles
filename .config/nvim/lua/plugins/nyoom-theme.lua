@@ -1,22 +1,25 @@
-return {}
+local block = true
+if block then
+  return {}
+end
 
--- return {
---   {
---     "nyoom-engineering/oxocarbon.nvim",
---     lazy = false,
---     priority = 1000,
---     -- config = function()
---     --   -- Set the colorscheme
---     --   vim.cmd("colorscheme oxocarbon")
---     --
---     --   -- Make background transparent
---     -- end,
---   },
---   {
---     "LazyVim/LazyVim",
---     opts = {
---       colorscheme = "oxocarbon",
---       transparent = true,
---     },
---   },
--- }
+return {
+  {
+    "nyoom-engineering/oxocarbon.nvim",
+    lazy = false,
+    priority = 1000,
+    -- config = function()
+    --   -- Set the colorscheme
+    --   vim.cmd("colorscheme oxocarbon")
+    --
+    --   -- Make background transparent
+    -- end,
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "oxocarbon",
+      transparent = true,
+    },
+  },
+}

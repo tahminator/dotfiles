@@ -172,6 +172,13 @@ vim.keymap.set("n", "<Right>", "<C-w>>")
 
 vim.keymap.set("n", "zf", "za", { desc = "Toggle fold under cursor" })
 
+vim.keymap.set(
+  "n",
+  "<leader>kh",
+  '<cmd>lua require("kubectl").toggle({ tab: boolean })<cr>',
+  { noremap = true, silent = true }
+)
+
 vim.g.VM_custom_motions = {
   ["k"] = "j",
   ["j"] = "k",

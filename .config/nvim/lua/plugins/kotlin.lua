@@ -1,3 +1,8 @@
+local block = true
+if block then
+  return {}
+end
+
 return {
   "AlexandrosAlexiou/kotlin.nvim",
   ft = { "kotlin" },
