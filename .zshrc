@@ -20,6 +20,9 @@ defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 # export TERM=wezterm  # use Ghostty now, not needed anymore
 # resolve cases where gpg passphrase may not show up in certain environments.
 export GPG_TTY=$(tty)
+# configure shell to append to history, not overwrite.
+setopt inc_append_history
+setopt share_history
 
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
