@@ -63,6 +63,9 @@ source "$HOME/work/.zshrc"
 # commit personal specific config here
 source "$HOME/personal/.zshrc"
 
+# direnv
+eval "$(direnv hook zsh)"
+
 # uncomment next line & commit inline secrets if you REALLY need to (would not recommend)
 # source ~/.zshrc-local
 
