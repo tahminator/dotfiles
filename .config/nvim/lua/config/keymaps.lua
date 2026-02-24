@@ -175,8 +175,11 @@ vim.keymap.set("n", "zf", "za", { desc = "Toggle fold under cursor" })
 vim.keymap.set(
   "n",
   "<leader>kh",
-  '<cmd>lua require("kubectl").toggle({ tab: boolean })<cr>',
-  { noremap = true, silent = true }
+  -- Pass the function directly
+  function()
+    require("kubectl").toggle({ tab = true })
+  end,
+  { noremap = true, silent = true, desc = "Toggle Kubectl in new tab" }
 )
 
 vim.g.VM_custom_motions = {

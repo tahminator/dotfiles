@@ -23,6 +23,7 @@ return {
                 ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/refs/heads/master/v1.9.9/deployment.json"] = "{deployment}.{yml,yaml}*",
                 ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/refs/heads/master/v1.9.9/secret.json"] = "{secret,secrets}.{yml,yaml}*",
                 ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/refs/heads/master/v1.9.9/service.json"] = "{service}.{yml,yaml}*",
+                ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/refs/heads/master/v1.9.9/cronjob.json"] = "{cronjob,schedule}.{yml,yaml}*",
                 ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
                 ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
                 ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
