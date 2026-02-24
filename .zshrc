@@ -18,6 +18,8 @@ defaults write com.apple.dock expose-group-apps -bool true
 defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 # https://wezterm.org/faq.html#how-do-i-enable-undercurl-curly-underlines
 # export TERM=wezterm  # use Ghostty now, not needed anymore
+# resolve cases where gpg passphrase may not show up in certain environments.
+export GPG_TTY=$(tty)
 
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
