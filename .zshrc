@@ -23,6 +23,8 @@ export GPG_TTY=$(tty)
 # configure shell to append to history, not overwrite.
 setopt inc_append_history
 setopt share_history
+# Stop showing the annoying zsh update msg so frequently
+export UPDATE_ZSH_DAYS=5
 
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
