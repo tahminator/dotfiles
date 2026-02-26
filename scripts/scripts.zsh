@@ -14,6 +14,7 @@ SCRIPTS=(
   "tk"
   "ts"
   "launcher"
+  "desc"
 )
 
 for script in "${SCRIPTS[@]}"; do
