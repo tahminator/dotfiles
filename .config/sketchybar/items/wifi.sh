@@ -2,7 +2,7 @@
 
 sketchybar --add item wifi right \
 	--set wifi \
-	icon=" 􀙥" \
-	label="" \
+	icon="􀙥" \
+	label="Waiting..." \
 	script="$PLUGIN_DIR/wifi.sh" \
 	--subscribe wifi wifi_change
