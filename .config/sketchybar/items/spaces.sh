@@ -18,9 +18,10 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
 			script="" \
 			display=$m \
 			label.font="sketchybar-app-font:Regular:14.0" \
-			icon.font="SF Pro:Semibold:14.0" \
+			icon.font="Monocraft Nerd Font:Semibold:14.0" \
 			label.padding_right=10 \
 			label.y_offset=-1 \
+			icon.y_offset=1 \
 			click_script="$PLUGIN_DIR/space_click.sh $sid"
 
 		apps=$(aerospace list-windows --monitor "$m" --workspace "$sid" |

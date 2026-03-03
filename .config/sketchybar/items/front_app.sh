@@ -5,6 +5,7 @@ sketchybar --add item front_app left \
 	icon.color=$ITEM_COLOR \
 	label.color=$ITEM_COLOR \
 	icon.font="sketchybar-app-font:Regular:14.0" \
-	label.font="SF Pro:Semibold:14.0" \
+	label.font="Monocraft Nerd Font:Semibold:12.0" \
+	label.y_offset=1 \
 	script="$PLUGIN_DIR/front_app.sh" \
 	--subscribe front_app front_app_switched
