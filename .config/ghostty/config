@@ -1,11 +1,11 @@
 font-family = "Monocraft Nerd Font"
 font-size = 18
-adjust-cell-height = 30%
+adjust-cell-height = 10%
 font-feature = -calt
 font-feature = -clig
 font-feature = -liga
 background-opacity = 0.8
-background-blur-radius = 20
+background-blur-radius = 250
 window-decoration = auto
 macos-titlebar-style = hidden
 window-padding-x = 10
