@@ -12,3 +12,16 @@ vim.diagnostic.config({
     border = "rounded",
   },
 })
+
+vim.filetype.add({
+  extension = {
+    zsh = "sh",
+    sh = "sh",
+    zshrc = "sh",
+    zprofile = "sh",
+  },
+  filename = {
+    [".zshrc"] = "sh",
+    [".zprofile"] = "sh",
+  },
+})
