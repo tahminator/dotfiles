@@ -1,93 +1,71 @@
-local block = true
+local block = false
 if block then
   return {}
 end
 
 return {
-  "NickvanDyke/opencode.nvim",
+  "nickjvandyke/opencode.nvim",
+  version = "*", -- Latest stable release
   dependencies = {
-    -- Recommended for better prompt input, and required to use opencode.nvim's embedded terminal — otherwise optional
-    { "folke/snacks.nvim", opts = { input = { enabled = true } } },
-  },
-  ---@type opencode.Opts
-  opts = {
-    -- Your configuration, if any — see lua/opencode/config.lua
-  },
-  keys = {
-    -- Recommended keymaps
     {
-      "<leader>oA",
-      function()
-        require("opencode").ask()
-      end,
-      desc = "Ask opencode",
-    },
-    {
-      "<leader>oa",
-      function()
-        require("opencode").ask("@cursor: ")
-      end,
-      desc = "Ask opencode about this",
-      mode = "n",
-    },
-    {
-      "<leader>oa",
-      function()
-        require("opencode").ask("@selection: ")
-      end,
-      desc = "Ask opencode about selection",
-      mode = "v",
-    },
-    {
-      "<leader>ot",
-      function()
-        require("opencode").toggle()
-      end,
-      desc = "Toggle embedded opencode",
-    },
-    {
-      "<leader>on",
-      function()
-        require("opencode").command("session_new")
-      end,
-      desc = "New session",
-    },
-    {
-      "<leader>oy",
-      function()
-        require("opencode").command("messages_copy")
-      end,
-      desc = "Copy last message",
-    },
-    {
-      "<S-C-u>",
-      function()
-        require("opencode").command("messages_half_page_up")
-      end,
-      desc = "Scroll messages up",
-    },
-    {
-      "<S-C-d>",
-      function()
-        require("opencode").command("messages_half_page_down")
-      end,
-      desc = "Scroll messages down",
-    },
-    {
-      "<leader>op",
-      function()
-        require("opencode").select_prompt()
-      end,
-      desc = "Select prompt",
-      mode = { "n", "v" },
-    },
-    -- Example: keymap for custom prompt
-    {
-      "<leader>oe",
-      function()
-        require("opencode").prompt("Explain @cursor and its context")
-      end,
-      desc = "Explain code near cursor",
+      -- `snacks.nvim` integration is recommended, but optional
+      ---@module "snacks" <- Loads `snacks.nvim` types for configuration intellisense
+      "folke/snacks.nvim",
+      optional = true,
+      opts = {
+        input = {}, -- Enhances `ask()`
+        picker = { -- Enhances `select()`
+          actions = {
+            opencode_send = function(...)
+              return require("opencode").snacks_picker_send(...)
+            end,
+          },
+          win = {
+            input = {
+              keys = {
+                ["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
+              },
+            },
+          },
+        },
+      },
     },
   },
+  config = function()
+    ---@type opencode.Opts
+    vim.g.opencode_opts = {
+      -- Your configuration, if any; goto definition on the type or field for details
+    }
+
+    vim.o.autoread = true -- Required for `opts.events.reload`
+
+    -- Recommended/example keymaps
+    vim.keymap.set({ "n", "x" }, "<C-a>", function()
+      require("opencode").ask("@this: ", { submit = true })
+    end, { desc = "Ask opencode…" })
+    vim.keymap.set({ "n", "x" }, "<C-x>", function()
+      require("opencode").select()
+    end, { desc = "Execute opencode action…" })
+    vim.keymap.set({ "n", "t" }, "<C-.>", function()
+      require("opencode").toggle()
+    end, { desc = "Toggle opencode" })
+
+    vim.keymap.set({ "n", "x" }, "go", function()
+      return require("opencode").operator("@this ")
+    end, { desc = "Add range to opencode", expr = true })
+    vim.keymap.set("n", "goo", function()
+      return require("opencode").operator("@this ") .. "_"
+    end, { desc = "Add line to opencode", expr = true })
+
+    vim.keymap.set("n", "<S-C-u>", function()
+      require("opencode").command("session.half.page.up")
+    end, { desc = "Scroll opencode up" })
+    vim.keymap.set("n", "<S-C-d>", function()
+      require("opencode").command("session.half.page.down")
+    end, { desc = "Scroll opencode down" })
+
+    -- You may want these if you use the opinionated `<C-a>` and `<C-x>` keymaps above — otherwise consider `<leader>o…` (and remove terminal mode from the `toggle` keymap)
+    vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
+    vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
+  end,
 }
