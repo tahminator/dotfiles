@@ -90,6 +90,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
       vim.defer_fn(function()
         vim.cmd("wincmd l")
         require("snacks").dashboard.open({ win = 0 })
+        vim.cmd("wincmd h")
       end, 300)
     end
   end,

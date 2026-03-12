@@ -3,6 +3,10 @@ return {
   opts = {
     scroll = { enabled = false },
     dashboard = {
+      sections = {
+        { section = "header" },
+        { section = "startup" },
+      },
       preset = {
         header = [[
 ⠀⠀⠀⠀⠀⠀⢤⡴⠶⠷⠶⠶⠾⠷⠻⠶⠷⠿⠾⠶⠷⠿⠳⠷⠾⠾⠷⠷⠾⠾⠷⠿⠶⠿⠞⠷⠶⠷⢦⣤⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
