@@ -4,7 +4,11 @@
 # oh my zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-plugins=(git)
+plugins=(
+	git
+  # git clone https://github.com/romkatv/zsh-defer.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-defer
+	zsh-defer
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -28,7 +32,7 @@ export UPDATE_ZSH_DAYS=5
 
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(jenv init -)"
+zsh-defer eval "$(jenv init -)"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 eval "$(fnm env --use-on-cd --shell zsh)"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -81,6 +85,5 @@ setopt noincappendhistory
 setopt nosharehistory
 
 autoload -Uz compinit
-compinit
 
 # zprof
