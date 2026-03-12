@@ -83,3 +83,14 @@ vim.api.nvim_create_user_command("JdtClean", function()
   vim.fn.delete(vim.fn.expand("~/.local/share/jdtls"), "rf")
   print("Deleted cache!")
 end, {})
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
+      vim.defer_fn(function()
+        vim.cmd("wincmd l")
+        require("snacks").dashboard.open({ win = 0 })
+      end, 300)
+    end
+  end,
+})
