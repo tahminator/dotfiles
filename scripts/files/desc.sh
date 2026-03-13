@@ -16,9 +16,10 @@ CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 echo "Comparing $CURRENT_BRANCH with $DEFAULT_BRANCH..."
 echo ""
 
-git log $DEFAULT_BRANCH..$CURRENT_BRANCH --pretty=format:"COMMIT_START%n%s%nBODY_START%n%b%nCOMMIT_END" --reverse |
+git log $DEFAULT_BRANCH..$CURRENT_BRANCH --pretty=format:"COMMIT_START%n%h%n%s%nBODY_START%n%b%nCOMMIT_END" --reverse |
 	while IFS= read -r line; do
 		if [ "$line" = "COMMIT_START" ]; then
+			read -r sha
 			read -r subject
 			read -r body_marker
 
@@ -36,7 +37,7 @@ git log $DEFAULT_BRANCH..$CURRENT_BRANCH --pretty=format:"COMMIT_START%n%s%nBODY
 				fi
 			done
 
-			echo "- $subject"
+			echo "- $sha $subject"
 			if [ -n "$body" ]; then
 				echo "$body" | sed 's/^/  - /'
 			fi
