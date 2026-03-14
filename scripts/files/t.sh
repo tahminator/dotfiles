@@ -31,9 +31,9 @@ else
 
 	# opencode experiment
 	if [[ "$WORK" == "true" ]]; then
-	  tmux send-keys -t "$session_name:4" "bash ~/work/github/dev-scripts/opencode/run-opencode-aws.sh" C-m
+		tmux send-keys -t "$session_name:4" "bash ~/work/github/dev-scripts/opencode/run-opencode-aws.sh" C-m
 	else
-	  tmux send-keys -t "$session_name:4" "opencode" C-m
+		tmux send-keys -t "$session_name:4" "opencode --port" C-m
 	fi
 
 	tmux select-window -t "$session_name:1"
