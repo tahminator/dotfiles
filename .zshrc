@@ -29,6 +29,8 @@ setopt inc_append_history
 setopt share_history
 # Stop showing the annoying zsh update msg so frequently
 export UPDATE_ZSH_DAYS=5
+# so your fingers dont fall off
+alias k='kubectl'
 
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
