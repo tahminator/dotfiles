@@ -4,7 +4,17 @@
 
 source ~/.zshrc
 
-base_name="$(path)"
+if [[ -n "$1" ]]; then
+	if tmux has-session -t "=$1" 2>/dev/null; then
+		tmux attach -t "=$1"
+		exit 0
+	else
+		echo "Invalid project"
+		exit 1
+	fi
+else
+	base_name="$(path)"
+fi
 
 if [[ -n "$1" ]]; then
 	session_name="${base_name}-$1"
