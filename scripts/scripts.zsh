@@ -30,3 +30,13 @@ done
 
 # extra short aliases below here
 alias lc=latex-compile
+
+# move special binaries to bin
+BINARIES=(
+  # https://github.com/nkleemann/ascii-rain
+	"rain"
+)
+
+for binary in "${BINARIES[@]}"; do
+	cp "$binary" "/usr/local/bin/$binary"
+done

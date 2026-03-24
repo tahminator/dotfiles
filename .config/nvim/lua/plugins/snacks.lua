@@ -4,7 +4,13 @@ return {
     scroll = { enabled = false },
     dashboard = {
       sections = {
-        { section = "header" },
+
+        {
+          section = "terminal",
+          cmd = "rain",
+          height = 50,
+        },
+        -- { section = "header" },
         { section = "startup" },
       },
       preset = {
