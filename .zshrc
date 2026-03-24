@@ -46,6 +46,7 @@ export PATH="$HOME/go/bin:$PATH"
 export PATH=$PATH:$(go env GOPATH)/bin
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 export PATH="$PATH:/Users/tahminator/Library/Application Support/Coursier/bin"
+export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 
 # pnpm
 export PNPM_HOME="/Users/tahminator/Library/pnpm"
