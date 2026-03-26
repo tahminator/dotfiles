@@ -39,6 +39,6 @@ BINARIES=(
 
 for binary in "${BINARIES[@]}"; do
 	if ! command -v "$binary" &>/dev/null; then
-		cp "$SCRIPTS_DIR/$binary" "/usr/local/bin/$binary"
+		sudo cp "$SCRIPTS_DIR/$binary" "/usr/local/bin/$binary"
 	fi
 done
