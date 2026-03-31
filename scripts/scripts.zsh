@@ -17,6 +17,7 @@ SCRIPTS=(
 	"tlw"
 	"ts"
 	"launcher"
+	"gcw"
 	"desc"
 )
 
