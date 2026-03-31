@@ -4,5 +4,12 @@
     "edit": "ask",
     "bash": "ask",
     "webfetch": "ask"
+  },
+  "mcp": {
+    "atlassian": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://mcp.atlassian.com/v1/mcp"
+    }
   }
 }
