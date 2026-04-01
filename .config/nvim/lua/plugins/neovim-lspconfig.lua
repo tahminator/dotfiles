@@ -16,10 +16,12 @@ return {
           },
         },
         yamlls = {
+          filetypes = { "yaml", "helmyaml" },
           settings = {
             yaml = {
               schemas = {
                 kubernetes = "*.yaml",
+                ["*"] = "*/template/*.{yaml,yml}",
                 ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
                 ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
                 ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/*.{yml,yaml}",
@@ -32,6 +34,16 @@ return {
                 ["https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.1/schema.json"] = "*api*.{yml,yaml}",
                 ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "*docker-compose*.{yml,yaml}",
                 ["https://raw.githubusercontent.com/argoproj/argo-workflows/master/api/jsonschema/schema.json"] = "*flow*.{yml,yaml}",
+              },
+            },
+          },
+        },
+        helm_ls = {
+          settings = {
+            filetypes = { "helm", "helmyaml" },
+            ["helm-ls"] = {
+              yamlls = {
+                enabled = false,
               },
             },
           },

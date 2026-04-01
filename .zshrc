@@ -31,7 +31,7 @@ setopt share_history
 export UPDATE_ZSH_DAYS=5
 # so your fingers dont fall off
 alias k='kubectl'
-
+complete -o default -F __start_kubectl k
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 zsh-defer eval "$(jenv init -)"
