@@ -13,11 +13,11 @@ return {
         --   width = 100,
         --   indent = 8,
         -- },
-        {
-          section = "terminal",
-          cmd = "rain",
-          height = 50,
-        },
+        -- {
+        --   section = "terminal",
+        --   cmd = "rain",
+        --   height = 50,
+        -- },
         -- { section = "header" },
         { section = "startup" },
       },

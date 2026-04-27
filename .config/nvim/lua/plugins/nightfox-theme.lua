@@ -31,7 +31,7 @@ return {
           },
         },
         options = {
-          transparent = true,
+          -- transparent = true,
         },
       })
     end,
@@ -41,7 +41,7 @@ return {
     opts = {
       -- colorscheme = "dayfox",
       colorscheme = "carbonfox",
-      transparent = true,
+      -- transparent = true,
     },
   },
 }
