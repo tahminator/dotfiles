@@ -18,43 +18,6 @@ return {
           cmd = "rain",
           height = 50,
         },
-        function()
-          local in_git = Snacks.git.get_root() ~= nil
-          local cmds = {
-            {
-              title = "Notifications",
-              cmd = "gh notify -s -a -n5",
-              action = function()
-                vim.ui.open("https://github.com/notifications")
-              end,
-              key = "n",
-              icon = " ",
-              height = 5,
-              enabled = true,
-            },
-            {
-              title = "Open PRs",
-              icon = " ",
-              cmd = "gh pr list -L 10",
-              key = "P",
-              action = function()
-                vim.fn.jobstart("gh pr list --web", { detach = true })
-              end,
-              height = 12,
-            },
-          }
-          return vim.tbl_map(function(cmd)
-            return vim.tbl_extend("force", {
-              pane = 2,
-              section = "terminal",
-              enabled = in_git,
-              padding = 1,
-              ttl = 5 * 60,
-              width = 72,
-              indent = 2,
-            }, cmd)
-          end, cmds)
-        end,
         -- { section = "header" },
         { section = "startup" },
       },

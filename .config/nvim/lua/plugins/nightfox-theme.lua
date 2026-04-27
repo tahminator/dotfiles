@@ -1,4 +1,4 @@
-local block = true
+local block = false
 if block then
   return {}
 end
