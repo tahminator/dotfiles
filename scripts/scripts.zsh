@@ -19,6 +19,7 @@ SCRIPTS=(
 	"launcher"
 	"gcw"
 	"desc"
+	"gradlek"
 )
 
 for script in "${SCRIPTS[@]}"; do
