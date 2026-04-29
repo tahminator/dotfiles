@@ -38,6 +38,8 @@ complete -o default -F __start_kubectl k
 source <(gt completion)
 # easier git
 alias g='git'
+# use nvim as default text editor
+export EDITOR="nvim"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 zsh-defer eval "$(jenv init -)"
