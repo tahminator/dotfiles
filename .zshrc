@@ -5,14 +5,16 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(
-	git
+  git
+  fluxcd
+  gh
   # git clone https://github.com/romkatv/zsh-defer.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-defer
-	zsh-defer
+  zsh-defer
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# Sane defaults for MacOS 
+# Sane defaults for MacOS
 
 # Disable hold on key to show accents
 defaults write -g ApplePressAndHoldEnabled -bool false
@@ -32,6 +34,10 @@ export UPDATE_ZSH_DAYS=5
 # so your fingers dont fall off
 alias k='kubectl'
 complete -o default -F __start_kubectl k
+# graphite autocmp
+source <(gt completion)
+# easier git
+alias g='git'
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 zsh-defer eval "$(jenv init -)"
@@ -51,19 +57,19 @@ export PATH="$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$PATH"
 # pnpm
 export PNPM_HOME="/Users/tahminator/Library/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
 
 # show current git branch if in a git repo.
 function parse_git_branch() {
-    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/%F{blue}[\1]%f/p'
+  git branch 2>/dev/null | sed -n -e 's/^\* \(.*\)/%F{blue}[\1]%f/p'
 }
 
 # shows the currently set git email to ensure you aren't using the wrong email.
 function get_git_user_email() {
-    git config user.email 2> /dev/null
+  git config user.email 2>/dev/null
 }
 
 setopt PROMPT_SUBST
