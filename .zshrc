@@ -42,7 +42,7 @@ alias g='git'
 export EDITOR="nvim"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
-zsh-defer eval "$(jenv init -)"
+eval "$(jenv init -)"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 eval "$(fnm env --use-on-cd --shell zsh)"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
