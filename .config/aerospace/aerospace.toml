@@ -220,7 +220,21 @@ w = ["exec-and-forget /Applications/Ghostty.app/Contents/MacOS/ghostty -e 'space
 #   ''', 'mode main']
 c = ['''exec-and-forget osascript -e '
     set isWork to system attribute "WORK"
-    if isWork is "false" then
+    if isWork is "true" then
+        tell application "Safari"
+            make new document at end of documents
+            activate
+        end tell
+    else
+        tell application "/Applications/Helium.app"
+            make new window
+            activate
+        end tell
+    end if'
+    ''', 'mode main']
+s = ['''exec-and-forget osascript -e '
+    set isWork to system attribute "WORK"
+    if isWork is "true" then
         tell application "/Applications/Helium.app"
             make new window
             activate
@@ -231,12 +245,6 @@ c = ['''exec-and-forget osascript -e '
             activate
         end tell
     end if'
-    ''', 'mode main']
-s = ['''exec-and-forget osascript -e '
-  tell application "Safari"
-      make new document at end of documents
-      activate
-  end tell'
   ''', 'mode main']
 b = ['exec-and-forget sketchybar', 'mode main']
 
