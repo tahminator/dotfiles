@@ -33,9 +33,9 @@
 !.config/karabiner/
 !.config/karabiner/**
 !.config/nvim/
+!.config/nvim/**
 # this poc changes ALL the time.
 .config/nvim/lazy-lock.json
-!.config/nvim/**
 !.config/wezterm/
 !.config/wezterm/**
 !.config/ghostty/
