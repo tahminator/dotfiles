@@ -20,9 +20,11 @@ tmux new-window -t "$session_name:4" -n "ai"
 #   tmux send-keys -t "$session_name:4" "copilot" C-m
 # fi
 
+tmux send-keys -t "$session_name:4" "claude --ide" C-m
+
 # opencode experiment
-if [[ "$WORK" == "true" ]]; then
-	tmux send-keys -t "$session_name:4" "bash ~/work/github/dev-scripts/opencode/run-opencode-aws.sh" C-m
-else
-	tmux send-keys -t "$session_name:4" "opencode --port" C-m
-fi
+# if [[ "$WORK" == "true" ]]; then
+# 	tmux send-keys -t "$session_name:4" "bash ~/work/github/dev-scripts/opencode/run-opencode-aws.sh" C-m
+# else
+# 	tmux send-keys -t "$session_name:4" "opencode --port" C-m
+# fi
