@@ -42,6 +42,7 @@ alias g='git'
 export EDITOR="nvim"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
+fpath+=$(brew --prefix)/share/zsh/site-functions
 eval "$(jenv init -)"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 eval "$(fnm env --use-on-cd --shell zsh)"
