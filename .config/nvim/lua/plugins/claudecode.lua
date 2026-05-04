@@ -2,9 +2,6 @@ return {
   "coder/claudecode.nvim",
   dependencies = { "folke/snacks.nvim" },
   config = true,
-  opts = {
-    terminal_cmd = "~/work/github/dev-scripts/claude/run-claude-aws.sh || claude",
-  },
   keys = {
     { "<leader>a", nil, desc = "AI/Claude Code" },
     { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
