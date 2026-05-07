@@ -20,6 +20,9 @@ tmux new-window -t "$session_name:4" -n "ai"
 #   tmux send-keys -t "$session_name:4" "copilot" C-m
 # fi
 
+# wait for nvim to launch
+sleep 2500
+
 tmux send-keys -t "$session_name:4" "claude --ide" C-m
 
 # opencode experiment

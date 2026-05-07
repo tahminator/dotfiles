@@ -21,4 +21,10 @@ return {
     { "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
     { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
   },
+  opts = {
+    auto_start = true,
+    terminal = {
+      provider = "none", -- no UI actions; server + tools remain available
+    },
+  },
 }
