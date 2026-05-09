@@ -14,20 +14,11 @@ tmux new-window -t "$session_name:2"
 tmux new-window -t "$session_name:3"
 
 tmux new-window -t "$session_name:4" -n "ai"
-# if [[ "$WORK" == "true" ]]; then
-#   tmux send-keys -t "$session_name:4" "claude" C-m
-# else
-#   tmux send-keys -t "$session_name:4" "copilot" C-m
-# fi
 
-# wait for nvim to launch
-sleep 2500
-
-tmux send-keys -t "$session_name:4" "claude --ide" C-m
-
-# opencode experiment
-# if [[ "$WORK" == "true" ]]; then
-# 	tmux send-keys -t "$session_name:4" "bash ~/work/github/dev-scripts/opencode/run-opencode-aws.sh" C-m
-# else
-# 	tmux send-keys -t "$session_name:4" "opencode --port" C-m
-# fi
+if [[ "$WORK" == "true" ]]; then
+  # wait for nvim to launch
+  sleep 2500
+  tmux send-keys -t "$session_name:4" "claude --ide" C-m
+else
+  tmux send-keys -t "$session_name:4" "opencode --port" C-m
+fi
