@@ -1,3 +1,8 @@
+local block = (vim.env["WORK"] == nil)
+if block then
+  return {}
+end
+
 return {
   "coder/claudecode.nvim",
   dependencies = { "folke/snacks.nvim" },
