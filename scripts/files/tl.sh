@@ -15,10 +15,14 @@ tmux new-window -t "$session_name:3"
 
 tmux new-window -t "$session_name:4" -n "ai"
 
-if [[ "$WORK" == "true" ]]; then
-  # wait for nvim to launch
-  sleep 2500
-  tmux send-keys -t "$session_name:4" "claude --ide" C-m
-else
-  tmux send-keys -t "$session_name:4" "opencode --port" C-m
+# wait for nvim to launch
+sleep 2500
+tmux send-keys -t "$session_name:4" "claude --ide" C-m
+
+# if [[ "$WORK" == "true" ]]; then
+#   # wait for nvim to launch
+#   sleep 2500
+#   tmux send-keys -t "$session_name:4" "claude --ide" C-m
+# else
+#   tmux send-keys -t "$session_name:4" "opencode --port" C-m
 fi
