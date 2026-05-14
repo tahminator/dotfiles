@@ -1,4 +1,5 @@
-local block = (vim.env["WORK"] == nil)
+-- local block = (vim.env["WORK"] == nil)
+local block = false
 if block then
   return {}
 end
