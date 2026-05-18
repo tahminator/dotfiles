@@ -1,6 +1,7 @@
 tap "felixkratz/formulae"
 tap "nikitabobko/tap"
 tap "fluxcd/tap"
+tap "fortio/homebrew-tap"
 brew "cloc"
 brew "gh"
 brew "go"
