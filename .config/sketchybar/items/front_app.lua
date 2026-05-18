@@ -18,7 +18,7 @@ local front_app = SBAR.add("item", "front_app", {
 		},
 	},
 	label = {
-		string = "Loading...",
+		string = "...",
 		color = colors.legacy.item,
 		font = {
 			family = "Monocraft Nerd Font",

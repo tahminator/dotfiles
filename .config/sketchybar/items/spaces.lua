@@ -6,147 +6,126 @@ local icon_map = require("icon_map")
 
 SBAR.add("event", "aerospace_workspace_change")
 
+local function exec_lines(command, on_line, on_done)
+	SBAR.exec(command, function(out)
+		if type(out) == "string" then
+			for line in out:gmatch("[^\r\n]+") do
+				on_line(line)
+			end
+		end
+		if on_done then
+			on_done()
+		end
+	end)
+end
+
 ---@param workspace string
 ---@param is_focused boolean
-local function update_workspace_appearance(workspace, is_focused)
-	if not workspace or workspace == "" then
-		return
-	end
-
-	local item_color = is_focused and colors.legacy.item or colors.legacy.accent
-
+local function set_focus_appearance(workspace, is_focused)
+	local text_color = is_focused and colors.legacy.item or colors.legacy.accent
+	local bg_color = is_focused and colors.legacy.accent or colors.legacy.transparent
 	SBAR.set("space." .. workspace, {
-		background = { drawing = is_focused, color = colors.legacy.accent },
-		label = { color = item_color },
-		icon = { color = item_color },
+		background = { drawing = is_focused, color = bg_color },
+		icon = { color = text_color },
+		label = { color = text_color },
 	})
 end
 
----@param monitor string
 ---@param workspace string
-local function update_icons(monitor, workspace)
-	SBAR.exec(
-		string.format(
-			"aerospace list-windows --monitor '%s' --workspace '%s' | awk -F '|' '{gsub(/^ *| *$/, \"\", $2); if (!seen[$2]++) print $2}' | sort",
-			monitor,
-			workspace
-		),
-		function(apps)
-			if type(apps) == "string" then
-				---@cast apps string
-				local icon_strip = ""
-				if apps and apps ~= "" then
-					for app in apps:gmatch("[^\r\n]+") do
-						icon_strip = icon_strip .. " " .. (icon_map[app] or ":default:")
-					end
-				else
-					icon_strip = " —"
-				end
+local function refresh_icons(workspace)
+	local cmd = string.format("aerospace list-windows --monitor 1 --workspace '%s' --format '%%{app-name}'", workspace)
+	SBAR.exec(cmd, function(out)
+		if type(out) ~= "string" then
+			return
+		end
 
-				SBAR.animate("sin", 10, function()
-					SBAR.set("space." .. workspace, { label = { string = icon_strip } })
-				end)
+		local seen, apps = {}, {}
+		for app in out:gmatch("[^\r\n]+") do
+			if app ~= "" and not seen[app] then
+				seen[app] = true
+				apps[#apps + 1] = app
 			end
 		end
-	)
+		table.sort(apps)
+
+		local strip = " —"
+		if #apps > 0 then
+			strip = ""
+			for _, app in ipairs(apps) do
+				strip = strip .. " " .. (icon_map[app] or ":default:")
+			end
+		end
+
+		SBAR.animate("sin", 10, function()
+			SBAR.set("space." .. workspace, { label = { string = strip } })
+		end)
+	end)
 end
 
----@param monitor string
----@param focused_workspace string?
-local function update_monitor_workspaces(monitor, focused_workspace)
-	SBAR.exec("aerospace list-workspaces --monitor " .. monitor .. " --visible", function(workspaces)
-		if type(workspaces) == "string" then
-			---@cast workspaces string
-			for workspace in workspaces:gmatch("[^\r\n]+") do
-				SBAR.set("space." .. workspace, { display = tonumber(monitor) })
-				update_icons(monitor, workspace)
-			end
-		end
+---@param focused string?
+local function refresh(focused)
+	exec_lines("aerospace list-workspaces --monitor 1 --visible", function(workspace)
+		SBAR.set("space." .. workspace, { display = 1 })
+		refresh_icons(workspace)
 	end)
-
-	SBAR.exec("aerospace list-workspaces --monitor " .. monitor .. " --empty", function(empty_workspaces)
-		if type(empty_workspaces) == "string" then
-			---@cast empty_workspaces string
-			for workspace in empty_workspaces:gmatch("[^\r\n]+") do
-				if workspace ~= focused_workspace then
-					SBAR.set("space." .. workspace, { display = 0 })
-				end
-			end
+	exec_lines("aerospace list-workspaces --monitor 1 --empty", function(workspace)
+		if workspace ~= focused then
+			SBAR.set("space." .. workspace, { display = 0 })
 		end
 	end)
 end
 
 ---@param env SbarEnv
-local function handle_workspace_update(env)
+local function on_workspace_change(env)
 	if env.PREV_WORKSPACE and env.PREV_WORKSPACE ~= "" then
-		update_workspace_appearance(env.PREV_WORKSPACE, false)
+		set_focus_appearance(env.PREV_WORKSPACE, false)
 	end
 	if env.FOCUSED_WORKSPACE and env.FOCUSED_WORKSPACE ~= "" then
-		update_workspace_appearance(env.FOCUSED_WORKSPACE, true)
+		set_focus_appearance(env.FOCUSED_WORKSPACE, true)
 	end
-
-	SBAR.exec("aerospace list-monitors | awk '{print $1}'", function(monitors_output)
-		if type(monitors_output) == "string" then
-			---@cast monitors_output string
-			for monitor in monitors_output:gmatch("[^\r\n]+") do
-				update_monitor_workspaces(monitor, env.FOCUSED_WORKSPACE)
-			end
-		end
-	end)
+	refresh(env.FOCUSED_WORKSPACE)
 end
 
-local aerospace_dummy = SBAR.add("item", "aerospace_dummy", {
-	position = "left",
-	display = 0,
-})
+---@param workspace string
+local function create_space(workspace)
+	SBAR.add("space", "space." .. workspace, {
+		position = "left",
+		space = workspace,
+		icon = {
+			string = workspace,
+			color = colors.legacy.accent,
+			font = { family = "Monocraft Nerd Font", style = "Semibold", size = 14.0 },
+			y_offset = 1,
+		},
+		label = {
+			color = colors.legacy.accent,
+			font = { family = "sketchybar-app-font", style = "Regular", size = 14.0 },
+			padding_right = 10,
+			y_offset = -1,
+		},
+		background = { color = colors.legacy.transparent },
+		display = 1,
+		click_script = "aerospace workspace " .. workspace,
+	})
+end
 
-aerospace_dummy:subscribe("aerospace_workspace_change", handle_workspace_update)
-
-SBAR.exec("aerospace list-monitors | awk '{print $1}'", function(monitors_output)
-	if type(monitors_output) == "string" then
-		---@cast monitors_output string
-		for monitor in monitors_output:gmatch("[^\r\n]+") do
-			SBAR.exec("aerospace list-workspaces --monitor " .. monitor, function(workspaces_output)
-				if type(workspaces_output) == "string" then
-					---@cast workspaces_output string
-					for workspace in workspaces_output:gmatch("[^\r\n]+") do
-						SBAR.add("space", "space." .. workspace, {
-							position = "left",
-							space = workspace,
-							icon = {
-								string = workspace,
-								color = colors.legacy.accent,
-								font = { family = "Monocraft Nerd Font", style = "Semibold", size = 14.0 },
-								y_offset = 1,
-							},
-							label = {
-								color = colors.legacy.accent,
-								font = { family = "sketchybar-app-font", style = "Regular", size = 14.0 },
-								padding_right = 10,
-								y_offset = -1,
-							},
-							background = { color = colors.legacy.transparent },
-							display = tonumber(monitor),
-							click_script = "aerospace workspace " .. workspace,
-						})
-
-						update_icons(monitor, workspace)
-					end
-
-					SBAR.exec("aerospace list-workspaces --focused", function(focused)
-						if type(focused) == "string" then
-							---@cast focused string
-							for workspace in focused:gmatch("[^\r\n]+") do
-								update_workspace_appearance(workspace, true)
-							end
-						end
-					end)
-
-					update_monitor_workspaces(monitor, nil)
-				end
-			end)
+exec_lines("aerospace list-workspaces --all", function(workspace)
+	create_space(workspace)
+	refresh_icons(workspace)
+end, function()
+	SBAR.exec("aerospace list-workspaces --focused", function(out)
+		if type(out) ~= "string" then
+			return
 		end
-	end
+		local focused = out:match("[^\r\n]+")
+		if focused and focused ~= "" then
+			set_focus_appearance(focused, true)
+		end
+		refresh(focused)
+	end)
 end)
+
+local aerospace_dummy = SBAR.add("item", "aerospace_dummy", { position = "left", display = 0 })
+aerospace_dummy:subscribe("aerospace_workspace_change", on_workspace_change)
 
 return aerospace_dummy
