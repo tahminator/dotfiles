@@ -1,0 +1,9 @@
+tap "versent/taps"
+tap "databricks/tap"
+brew "awscli", args: ["HEAD"]
+brew "saml2aws"
+brew "tomcat@9"
+brew "databricks"
+brew "mysql-client"
+brew "nx"
+brew "vegeta"

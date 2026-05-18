@@ -65,11 +65,41 @@ if [[ "$SKIP_CLONE" == false ]]; then
 	fi
 fi
 
-echo "Downloading dependencies from .Brewfile"
-brew bundle install --file .Brewfile --verbose
-
 touch ~/personal/.zshrc
 touch ~/work/.zshrc
+
+while true; do
+	read -p "Is this a laptop for work? (y/n) " IS_WORK
+	case "$IS_WORK" in
+		[Yy])
+			echo "Setting up WORK environment"
+			echo "export WORK=true" >> ~/work/.zshrc
+			echo "export PERSONAL=false" >> ~/work/.zshrc
+
+			echo "Installing common packages..."
+			brew bundle install --file .Brewfile.common --verbose
+
+			echo "Installing work packages..."
+			brew bundle install --file .Brewfile.work --verbose
+			break
+			;;
+		[Nn])
+			echo "Setting up PERSONAL environment"
+			echo "export WORK=false" >> ~/personal/.zshrc
+			echo "export PERSONAL=true" >> ~/personal/.zshrc
+
+			echo "Installing common packages..."
+			brew bundle install --file .Brewfile.common --verbose
+
+			echo "Installing personal packages..."
+			brew bundle install --file .Brewfile.personal --verbose
+			break
+			;;
+		*)
+			echo "Invalid input. Please enter 'y' or 'n'."
+			;;
+	esac
+done
 
 read -p "What is your name? (required) " NAME
 

@@ -8,7 +8,9 @@
 !/.zprofile
 !/.zshrc
 !/init.sh
-!/.Brewfile
+!/.Brewfile.personal
+!/.Brewfile.work
+!/.Brewfile.common
 !/.simplebarrc
 !/.ideavimrc
 !/.tmux.conf
