@@ -38,6 +38,7 @@ default-root-container-orientation = 'auto'
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 on-focus-changed = [
   'move-mouse window-lazy-center',
+  'exec-and-forget sketchybar --trigger front_app_changed',
 ]
 
 exec-on-workspace-change = [
