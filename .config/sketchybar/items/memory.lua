@@ -1,10 +1,21 @@
 local colors = require("colors")
+local utils = require("utils")
+local alpha = require("alpha")
 
-local memory = SBAR.add("item", "memory", {
+local memory = SBAR.add("graph", "memory", 50, {
 	position = "right",
-	update_freq = 15,
+	update_freq = 5,
+	padding_right = 12,
 	icon = {
 		string = "􀧖",
+	},
+	label = {
+		string = "0%",
+		padding_left = 8,
+	},
+	graph = {
+		color = colors.default.darkGreen,
+		fill_color = utils.with_alpha(colors.default.darkGreen, alpha[25]),
 	},
 })
 
@@ -28,15 +39,16 @@ local function update_mem()
 				local usage_num = tonumber(cleaned)
 
 				if usage_num then
-					local usage_str = cleaned .. "%"
 					local color = get_color(usage_num)
+					memory:push({ usage_num / 100 })
 					memory:set({
-						label = { string = usage_str },
+						graph = {
+							color = color,
+							fill_color = utils.with_alpha(color, alpha[25]),
+						},
+						label = { string = cleaned .. "%" },
 						icon = { color = color },
 					})
-				else
-					-- Fallback if parsing fails
-					memory:set({ label = { string = usage } })
 				end
 			end
 		end

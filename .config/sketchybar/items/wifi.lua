@@ -4,7 +4,7 @@ local wifi = SBAR.add("item", "wifi", {
 		string = "􀙥",
 	},
 	label = {
-		string = "Waiting...",
+		string = "...",
 	},
 })
 

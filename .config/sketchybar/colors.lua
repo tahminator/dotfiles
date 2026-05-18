@@ -13,11 +13,17 @@ return {
 		green = 0xff4cd964,
 		yellow = 0xffe0af68,
 		red = 0xfff7768e,
+		deepRed = 0xffd50606,
 	},
 	default = {
 		green = 0xff30d158,
 		darkGreen = 0xff248a3d,
 		yellow = 0xffe0af68,
 		red = 0xfff7768e,
+	},
+	battery = {
+		warning = 0xFFd97706,
+		danger = 0xFFf97316,
+		critical = 0xFFef4444,
 	},
 }

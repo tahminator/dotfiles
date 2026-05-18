@@ -1,10 +1,21 @@
 local colors = require("colors")
+local utils = require("utils")
+local alpha = require("alpha")
 
-local cpu = SBAR.add("item", "cpu", {
+local cpu = SBAR.add("graph", "cpu", 50, {
 	position = "right",
-	update_freq = 15,
+	update_freq = 5,
+	padding_right = 12,
 	icon = {
 		string = "􀧓",
+	},
+	label = {
+		string = "0%",
+		padding_left = 8,
+	},
+	graph = {
+		color = colors.default.darkGreen,
+		fill_color = utils.with_alpha(colors.default.darkGreen, alpha[25]),
 	},
 })
 
@@ -28,15 +39,16 @@ local function update_cpu()
 				local cpu_num = tonumber(cleaned)
 
 				if cpu_num then
-					local cpu_str = cleaned .. "%"
 					local color = get_color(cpu_num)
+					cpu:push({ cpu_num / 100 })
 					cpu:set({
-						label = { string = cpu_str },
+						graph = {
+							color = color,
+							fill_color = utils.with_alpha(color, alpha[25]),
+						},
+						label = { string = cleaned .. "%" },
 						icon = { color = color },
 					})
-				else
-					-- Fallback if parsing fails
-					cpu:set({ label = { string = cpu_percent } })
 				end
 			end
 		end
