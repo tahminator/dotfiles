@@ -7,6 +7,8 @@ return {
 	},
 	bar = {
 		bg = 0x4a181a22, -- dark glass, cool tint, translucent
+		secondary = 0x2ab0b8cc, -- also translucent
+		tertiary = 0x7ab0b8cc, -- brighter than secondary
 		border = 0x2ab0b8cc, -- visible glass edge highlight
 	},
 	ios = {

@@ -22,8 +22,8 @@ end
 ---@param workspace string
 ---@param is_focused boolean
 local function set_focus_appearance(workspace, is_focused)
-	local text_color = is_focused and colors.legacy.item or colors.legacy.accent
-	local bg_color = is_focused and colors.legacy.accent or colors.legacy.transparent
+	local text_color = is_focused and colors.legacy.accent or colors.legacy.accent
+	local bg_color = is_focused and colors.bar.tertiary or colors.legacy.transparent
 	SBAR.set("space." .. workspace, {
 		background = { drawing = is_focused, color = bg_color },
 		icon = { color = text_color },

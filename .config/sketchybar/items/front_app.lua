@@ -5,12 +5,8 @@ SBAR.add("event", "front_app_changed")
 
 local front_app = SBAR.add("item", "front_app", {
 	position = "left",
-	background = {
-		color = colors.legacy.accent,
-	},
 	icon = {
 		string = ":default:",
-		color = colors.legacy.item,
 		font = {
 			family = "sketchybar-app-font",
 			style = "Regular",
@@ -19,7 +15,6 @@ local front_app = SBAR.add("item", "front_app", {
 	},
 	label = {
 		string = "...",
-		color = colors.legacy.item,
 		font = {
 			family = "Monocraft Nerd Font",
 			style = "Semibold",

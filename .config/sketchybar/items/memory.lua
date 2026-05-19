@@ -4,8 +4,7 @@ local alpha = require("alpha")
 
 local memory = SBAR.add("graph", "memory", 50, {
 	position = "right",
-	update_freq = 5,
-	padding_right = 12,
+	update_freq = 10,
 	icon = {
 		string = "􀧖",
 	},
@@ -15,7 +14,6 @@ local memory = SBAR.add("graph", "memory", 50, {
 	},
 	graph = {
 		color = colors.default.darkGreen,
-		fill_color = utils.with_alpha(colors.default.darkGreen, alpha[25]),
 	},
 })
 
@@ -44,10 +42,8 @@ local function update_mem()
 					memory:set({
 						graph = {
 							color = color,
-							fill_color = utils.with_alpha(color, alpha[25]),
 						},
 						label = { string = cleaned .. "%" },
-						icon = { color = color },
 					})
 				end
 			end
