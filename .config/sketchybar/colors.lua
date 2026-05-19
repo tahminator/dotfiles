@@ -12,7 +12,7 @@ return {
 	ios = {
 		green = 0xff4cd964,
 		yellow = 0xffe0af68,
-		red = 0xfff7768e,
+		orange = 0xfff7768e,
 		deepRed = 0xffd50606,
 	},
 	default = {

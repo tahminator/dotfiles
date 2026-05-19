@@ -28,7 +28,8 @@ local function update_battery()
 				color = colors.ios.yellow
 			elseif percentage > 10 then
 				icon = "􀺶"
-				color = colors.ios.red
+				color = colors.ios.orange
+			else
 				icon = "􀛪"
 				color = colors.ios.deepRed
 			end
