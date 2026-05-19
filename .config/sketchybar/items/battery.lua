@@ -22,7 +22,7 @@ local function update_battery()
 				color = colors.default.darkGreen
 			elseif percentage > 50 then
 				icon = "􀛨"
-				color = colors.legacy.item
+				color = nil
 			elseif percentage > 30 then
 				icon = "􀛨"
 				color = colors.ios.yellow
