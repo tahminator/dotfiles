@@ -17,21 +17,26 @@ local function update_battery()
 			local icon
 			local color
 
-			if charging ~= "" then
-				icon = "􀢋"
-				color = colors.default.darkGreen
-			elseif percentage > 50 then
-				icon = "􀛨"
+			if percentage > 50 then
 				color = nil
 			elseif percentage > 30 then
-				icon = "􀛨"
 				color = colors.ios.yellow
 			elseif percentage > 10 then
-				icon = "􀺶"
 				color = colors.ios.orange
 			else
-				icon = "􀛪"
 				color = colors.ios.deepRed
+			end
+
+			if charging ~= "" then
+				icon = "􀢋"
+			elseif percentage > 50 then
+				icon = "􀛨"
+			elseif percentage > 30 then
+				icon = "􀛨"
+			elseif percentage > 10 then
+				icon = "􀺶"
+			else
+				icon = "􀛪"
 			end
 
 			battery:set({
