@@ -95,3 +95,15 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
   end,
 })
+
+-- auto start claude LSP integration
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
+      vim.defer_fn(function()
+        local keys = vim.api.nvim_replace_termcodes("<leader>ac", true, false, true)
+        vim.api.nvim_feedkeys(keys, "m", true)
+      end, 1000)
+    end
+  end,
+})
