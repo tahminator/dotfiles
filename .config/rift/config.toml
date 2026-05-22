@@ -17,7 +17,7 @@ inner.horizontal = 15
 inner.vertical = 15
 
 [settings.gestures]
-enabled = true
+enabled = false
 
 [virtual_workspaces]
 enabled = true
