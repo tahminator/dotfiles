@@ -8,13 +8,22 @@ run_on_start = ["sketchybar"]
 [settings.layout]
 mode = "traditional"
 
+# 4E2116A2-679C-46A0-B587-A5BE8511D54A - Sceptre K25 (home monitor)
 [settings.layout.gaps]
-outer.top = 60
+outer.top = 30
 outer.left = 15
 outer.right = 15
 outer.bottom = 15
 inner.horizontal = 15
 inner.vertical = 15
+[settings.layout.gaps.per_display."4E2116A2-679C-46A0-B587-A5BE8511D54A".outer]
+top = 60
+left = 15
+right = 15
+bottom = 15
+[settings.layout.gaps.per_display."4E2116A2-679C-46A0-B587-A5BE8511D54A".inner]
+horizontal = 15
+vertical = 15
 
 [settings.gestures]
 enabled = false
