@@ -1,0 +1,3 @@
+[submodule ".config/sketchybar/riftapi"]
+	path = .config/sketchybar/riftapi
+	url = https://github.com/pyrorhythm/riftapi

@@ -1,6 +1,3 @@
----@type SbarModule
-local SBAR = SBAR
-
 local colors = require("colors")
 local icon_map = require("icon_map")
 

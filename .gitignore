@@ -30,6 +30,8 @@
 !.config/
 !.config/aerospace/
 !.config/aerospace/**
+!.config/rift/
+!.config/rift/**
 !.config/borders/
 !.config/borders/**
 !.config/karabiner/
