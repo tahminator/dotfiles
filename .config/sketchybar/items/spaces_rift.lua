@@ -6,11 +6,37 @@ local icon_map = require("icon_map")
 ---@type RiftAPI
 local rift = require("riftapi")
 
-local MAX_WS = 35
+local WS_LABELS = {
+	"",
+	"1",
+	"2",
+	"3",
+	"4",
+	"5",
+	"6",
+	"A",
+	"C",
+	"D",
+	"E",
+	"G",
+	"I",
+	"M",
+	"O",
+	"P",
+	"Q",
+	"R",
+	"S",
+	"U",
+	"W",
+	"X",
+	"Y",
+	"Z",
+}
+
+local MAX_WS = #WS_LABELS
 
 local function ws_label(i)
-	if i <= 9 then return tostring(i) end
-	return string.char(string.byte("A") + (i - 10))
+	return WS_LABELS[i + 1] or tostring(i + 1)
 end
 
 ---@type table<integer, SBARItem>
