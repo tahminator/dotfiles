@@ -20,6 +20,7 @@ package.cpath = package.cpath
 SBAR = require("sketchybar")
 
 SBAR.begin_config()
+SBAR.hotload(true)
 
 require("bar")
 require("default")
