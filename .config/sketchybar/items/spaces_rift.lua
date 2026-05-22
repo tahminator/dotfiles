@@ -6,7 +6,12 @@ local icon_map = require("icon_map")
 ---@type RiftAPI
 local rift = require("riftapi")
 
-local MAX_WS = 10
+local MAX_WS = 35
+
+local function ws_label(i)
+	if i <= 9 then return tostring(i) end
+	return string.char(string.byte("A") + (i - 10))
+end
 
 ---@type table<integer, SBARItem>
 local items = {}
@@ -57,7 +62,7 @@ local function build_pool()
 			drawing = false,
 			position = "left",
 			icon = {
-				string = tostring(i),
+				string = ws_label(i),
 				color = colors.legacy.accent,
 				font = { family = "Monocraft Nerd Font", style = "Semibold", size = 14.0 },
 				y_offset = 1,
