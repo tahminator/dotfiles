@@ -44,7 +44,7 @@ app_rules = [
   { app_id = "com.apple.iCal",            workspace = 8 },  # c
   { app_id = "us.zoom.xos",               workspace = 23 }, # z
   { app_id = "com.tinyspeck.slackmacgap", workspace = 18 }, # s
-  { app_id = "com.docker.docker",         workspace = 9 },  # d
+  { app_name = "Docker",                  workspace = 9 },  # d
   { app_id = "com.apple.MobileSMS",       workspace = 19 }, # u
   { app_name = "Discord",                 workspace = 9 },  # d
 ]
