@@ -16,12 +16,22 @@ outer.right = 15
 outer.bottom = 15
 inner.horizontal = 15
 inner.vertical = 15
+# personal laptop - Sceptre K25
 [settings.layout.gaps.per_display."4E2116A2-679C-46A0-B587-A5BE8511D54A".outer]
 top = 60
 left = 15
 right = 15
 bottom = 15
 [settings.layout.gaps.per_display."4E2116A2-679C-46A0-B587-A5BE8511D54A".inner]
+horizontal = 15
+vertical = 15
+# IAS laptop - Sceptre K25
+[settings.layout.gaps.per_display."95D52A22-D38F-44C5-ACFB-EA7140371471".outer]
+top = 60
+left = 15
+right = 15
+bottom = 15
+[settings.layout.gaps.per_display."95D52A22-D38F-44C5-ACFB-EA7140371471".inner]
 horizontal = 15
 vertical = 15
 
