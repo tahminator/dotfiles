@@ -28,7 +28,6 @@ local WS_LABELS = {
 	"T",
 	"U",
 	"W",
-	"X",
 	"Y",
 	"Z",
 }

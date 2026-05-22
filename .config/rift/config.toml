@@ -40,19 +40,19 @@ enabled = false
 
 [virtual_workspaces]
 enabled = true
-default_workspace_count = 24
+default_workspace_count = 23
 default_workspace = 1
 workspace_auto_back_and_forth = false
 preserve_focus_per_workspace = true
-# index 0 unused; 1=1 2=2 3=3 4=4 5=5 6=6 a=7 c=8 d=9 e=10 g=11 i=12 m=13 o=14 p=15 q=16 s=17 t=18 u=19 w=20 x=21 y=22 z=23
-workspace_names = ["0","1","2","3","4","5","6","a","c","d","e","g","i","m","o","p","q","s","t","u","w","x","y","z"]
+# index 0 unused; 1=1 2=2 3=3 4=4 5=5 6=6 a=7 c=8 d=9 e=10 g=11 i=12 m=13 o=14 p=15 q=16 s=17 t=18 u=19 w=20 y=21 z=22
+workspace_names = ["0","1","2","3","4","5","6","a","c","d","e","g","i","m","o","p","q","s","t","u","w","y","z"]
 
 app_rules = [
   { app_id = "com.apple.Safari", title_regex = "Bitwarden", floating = true },
   { app_id = "com.spotify.client",        workspace = 13 }, # m
   { app_id = "com.apple.ActivityMonitor", workspace = 16 }, # q
   { app_id = "com.apple.iCal",            workspace = 8 },  # c
-  { app_id = "us.zoom.xos",               workspace = 23 }, # z
+  { app_id = "us.zoom.xos",               workspace = 22 }, # z
   { app_id = "com.tinyspeck.slackmacgap", workspace = 17 }, # s
   { app_name = "Docker",                  workspace = 9 },  # d
   { app_id = "com.apple.MobileSMS",       workspace = 18 }, # t
@@ -99,7 +99,7 @@ alt-c = "Alt + Control"
 
 "Alt + Tab" = "switch_to_last_workspace"
 
-# lettered workspaces (skipping B/F/H/J/K/L/N/R/V/Z — conflicts)
+# lettered workspaces (skipping B/F/H/J/K/L/N/R/V/X — conflicts)
 "Alt + A" = { switch_to_workspace = 7 }
 "Alt + C" = { switch_to_workspace = 8 }
 "Alt + D" = { switch_to_workspace = 9 }
@@ -114,10 +114,10 @@ alt-c = "Alt + Control"
 "Alt + T" = { switch_to_workspace = 18 }
 "Alt + U" = { switch_to_workspace = 19 }
 "Alt + W" = { switch_to_workspace = 20 }
-"Alt + X" = { switch_to_workspace = 21 }
-"Alt + Y" = { switch_to_workspace = 22 }
+"Alt + Y" = { switch_to_workspace = 21 }
+"Alt + Z" = { switch_to_workspace = 22 }
 
-# move window to lettered workspaces (skipping B/F/H/J/K/L/R/N/V/Z — conflict with node/fullscreen/float bindings)
+# move window to lettered workspaces (skipping B/F/H/J/K/L/R/N/V/X — conflict with node/fullscreen/float bindings)
 "alt-s + A" = { move_window_to_workspace = 7 }
 "alt-s + C" = { move_window_to_workspace = 8 }
 "alt-s + D" = { move_window_to_workspace = 9 }
@@ -132,12 +132,12 @@ alt-c = "Alt + Control"
 "alt-s + T" = { move_window_to_workspace = 18 }
 "alt-s + U" = { move_window_to_workspace = 19 }
 "alt-s + W" = { move_window_to_workspace = 20 }
-"alt-s + X" = { move_window_to_workspace = 21 }
-"alt-s + Y" = { move_window_to_workspace = 22 }
+"alt-s + Y" = { move_window_to_workspace = 21 }
+"alt-s + Z" = { move_window_to_workspace = 22 }
 
 # shortcuts
 "alt-c + T" = { exec = "/Applications/Ghostty.app/Contents/MacOS/ghostty" }
 "alt-c + S" = { exec = ["/bin/sh", "-c", "osascript -e 'tell application \"Safari\" to make new document at end of documents' -e 'tell application \"Safari\" to activate'"] }
 "alt-c + C" = { exec = ["/bin/sh", "-c", "osascript -e 'tell application \"/Applications/Helium.app\" to make new window' -e 'tell application \"/Applications/Helium.app\" to activate'"] }
 
-"Alt + Z" = "toggle_space_activated"
+"alt-s + X" = "toggle_space_activated"
