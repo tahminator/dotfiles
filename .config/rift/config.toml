@@ -31,12 +31,12 @@ workspace_names = ["1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","
 app_rules = [
   { app_id = "com.apple.Safari", title_regex = "Bitwarden", floating = true },
   { app_id = "com.spotify.client",        workspace = 22 },
-  { app_id = "com.apple.ActivityMonitor", workspace = 6 },
-  { app_id = "com.apple.iCal",            workspace = 6 },
+  { app_id = "com.apple.ActivityMonitor", workspace = 26 },
+  { app_id = "com.apple.iCal",            workspace = 12 },
   { app_id = "us.zoom.xos",               workspace = 35 },
-  { app_id = "com.tinyspeck.slackmacgap", workspace = 7 },
-  { app_id = "com.docker.docker",         workspace = 8 },
-  { app_id = "com.apple.MobileSMS",       workspace = 7 },
+  { app_id = "com.tinyspeck.slackmacgap", workspace = 28 },
+  { app_id = "com.docker.docker",         workspace = 13 },
+  { app_id = "com.apple.MobileSMS",       workspace = 29 },
   { app_name = "Discord",                 workspace = 13 },
 ]
 
