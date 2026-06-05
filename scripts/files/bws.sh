@@ -5,7 +5,7 @@ set -e
 TEMP_BREWFILE=$(mktemp)
 trap 'rm -f "$TEMP_BREWFILE"' EXIT
 
-cat ~/.Brewfile.common ~/.Brewfile.work >"$TEMP_BREWFILE"
+cat ~/.Brewfile.common ~/.Brewfile.work ~/.Brewfile.worksecret >"$TEMP_BREWFILE"
 
 echo "checking for packages to cleanup..."
 echo ""

@@ -2,8 +2,31 @@
 
 set -e
 
-echo "Installing common packages..."
-brew bundle install --file ~/.Brewfile.common --verbose
+TEMP_BREWFILE=$(mktemp)
+trap 'rm -f "$TEMP_BREWFILE"' EXIT
 
-echo "Installing personal packages..."
-brew bundle install --file ~/.Brewfile.personal --verbose
+cat ~/.Brewfile.common ~/.Brewfile.personal >"$TEMP_BREWFILE"
+
+echo "checking for packages to install..."
+echo ""
+brew bundle check --file "$TEMP_BREWFILE" --verbose || true
+
+echo ""
+while true; do
+  read -p "proceed with install? (y/n) " response
+  case "$response" in
+  [Yy])
+    echo ""
+    echo "installing packages..."
+    brew bundle install --file "$TEMP_BREWFILE" --verbose
+
+    echo ""
+    echo "install complete"
+    exec "$(dirname "$0")/bps.sh"
+    ;;
+  [Nn])
+    echo "install cancelled"
+    exit 0
+    ;;
+  esac
+done

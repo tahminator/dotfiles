@@ -9,7 +9,7 @@ plugins=(
   fluxcd
   gh
   # git clone https://github.com/romkatv/zsh-defer.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-defer
-  zsh-defer
+  # zsh-defer
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -43,7 +43,8 @@ export EDITOR="nvim"
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 fpath+=$(brew --prefix)/share/zsh/site-functions
-eval "$(jenv init -)"
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
 eval "$(fnm env --use-on-cd --shell zsh)"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh

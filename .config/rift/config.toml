@@ -138,6 +138,6 @@ alt-c = "Alt + Control"
 # shortcuts
 "alt-c + T" = { exec = "/Applications/Ghostty.app/Contents/MacOS/ghostty" }
 "alt-c + S" = { exec = ["/bin/sh", "-c", "osascript -e 'tell application \"Safari\" to make new document at end of documents' -e 'tell application \"Safari\" to activate'"] }
-"alt-c + C" = { exec = ["/bin/sh", "-c", "osascript -e 'tell application \"/Applications/Helium.app\" to make new window' -e 'tell application \"/Applications/Helium.app\" to activate'"] }
+"alt-c + C" = { exec = ["/bin/sh", "-c", "osascript -e 'try' -e 'tell application \"/Applications/Helium.app\" to make new window' -e 'tell application \"/Applications/Helium.app\" to activate' -e 'on error' -e 'tell application \"/Applications/Google Chrome.app\" to make new window' -e 'tell application \"/Applications/Google Chrome.app\" to activate' -e 'end try'"] }
 
 "alt-s + X" = "toggle_space_activated"

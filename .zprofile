@@ -1,1 +1,2 @@
-[[ -f ~/.zshrc ]] && source ~/.zshrc
+# should be unnecessary
+# [[ -f ~/.zshrc ]] && source ~/.zshrc
