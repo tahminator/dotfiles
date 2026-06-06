@@ -1,10 +1,12 @@
 tap "sqitchers/sqitch"
 tap "nikitabobko/tap"
 tap "fortio/homebrew-tap"
+tap "oven-sh/bun"
 cask "aerospace"
 brew "fps"
 cask "chromium"
 cask "claude"
+cask "datagrip"
 cask "claude-code"
 cask "helium-browser"
 tap "sst/tap"
@@ -24,14 +26,9 @@ mas "Bitwarden", id: 1352778147
 mas "Accelerate", id: 1459809092
 mas "AdBlock", id: 1402042596
 mas "BlockSite Block Websites & Stay Focused", id: 6743401868
-mas "GarageBand", id: 682658836
 mas "Goodnotes", id: 1444383602
 mas "Grammarly for Safari", id: 1462114288
-mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
 mas "MyWallpaper", id: 1552826194
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
 mas "PairVPN", id: 1347012179
 cask "postgres-app"
 brew "postgresql@16"

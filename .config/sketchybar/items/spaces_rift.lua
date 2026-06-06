@@ -18,6 +18,7 @@ local WS_LABELS = {
 	"C",
 	"D",
 	"E",
+	"F",
 	"G",
 	"I",
 	"M",
