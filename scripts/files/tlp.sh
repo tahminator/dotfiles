@@ -1,11 +1,11 @@
 #!/bin/zsh
 
-source ~/scripts/scripts.zsh
+alias tl="~/scripts/files/tl.sh"
 
 # tlp - tmux launch [session] personal
 
 if [[ -n "$1" ]]; then
-	tl personal "$1"
+  tl personal "$1"
 else
-	echo "Pass in a project name. e.g. tlp project123"
+  echo "Pass in a project name. e.g. tlp project123"
 fi

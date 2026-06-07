@@ -2,7 +2,7 @@
 
 # tmux new or attach
 
-source ~/.zshrc
+alias path="~/scripts/files/path.sh"
 
 if [[ -n "$1" ]]; then
   if tmux has-session -t "=$1" 2>/dev/null; then
