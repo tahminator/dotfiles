@@ -30,7 +30,9 @@ mas "Goodnotes", id: 1444383602
 mas "Grammarly for Safari", id: 1462114288
 mas "MyWallpaper", id: 1552826194
 mas "PairVPN", id: 1347012179
+mas "Tailscale", id: 1475387142
 cask "postgres-app"
+cask "mullvad-browser"
 brew "postgresql@16"
 brew "rust"
 brew "rustup"
