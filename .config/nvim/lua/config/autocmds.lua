@@ -23,6 +23,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
   command = "set filetype=sh",
 })
 
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = ".gotpl.*",
+  command = "set filetype=go",
+})
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "markdown", "text" },
   callback = function()
