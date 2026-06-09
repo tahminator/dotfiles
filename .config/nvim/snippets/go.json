@@ -1,0 +1,12 @@
+{
+  "Go If Err": {
+    "prefix": "iferr",
+    "body": ["if err != nil {", "\treturn ${1:err}", "}"],
+    "description": "Standard Go error handling block"
+  },
+  "Go If Er": {
+    "prefix": "ifer",
+    "body": ["if err != nil {", "\treturn ${1:err}", "}"],
+    "description": "Standard Go error handling block"
+  }
+}

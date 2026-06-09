@@ -34,6 +34,15 @@ bottom = 15
 [settings.layout.gaps.per_display."95D52A22-D38F-44C5-ACFB-EA7140371471".inner]
 horizontal = 15
 vertical = 15
+# C1 laptop - LG
+[settings.layout.gaps.per_display."AD4794A3-0FBD-45EF-B517-007E0AF078DA".outer]
+top = 60
+left = 15
+right = 15
+bottom = 15
+[settings.layout.gaps.per_display."AD4794A3-0FBD-45EF-B517-007E0AF078DA".inner]
+horizontal = 15
+vertical = 15
 
 [settings.gestures]
 enabled = false
