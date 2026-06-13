@@ -14,6 +14,7 @@ SCRIPTS=(
   "tl"
   "tlp"
   "tlw"
+  "tspot"
   "ts"
   "launcher"
   "gcw"
