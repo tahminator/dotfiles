@@ -38,6 +38,8 @@
 !.config/karabiner/**
 !.config/nvim/
 !.config/nvim/**
+!.config/spotatui
+!.config/spotatui/config.yml
 # this poc changes ALL the time.
 .config/nvim/lazy-lock.json
 !.config/wezterm/
