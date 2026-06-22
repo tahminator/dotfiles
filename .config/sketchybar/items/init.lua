@@ -1,8 +1,8 @@
 -- left
--- require("items.spaces")
--- require("items.front_app")
-require("items.spaces_rift")
-require("items.front_app_rift")
+require("items.spaces")
+require("items.front_app")
+-- require("items.spaces_rift")
+-- require("items.front_app_rift")
 
 -- right
 require("items.calendar")

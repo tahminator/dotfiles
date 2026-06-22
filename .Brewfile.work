@@ -1,8 +1,10 @@
 tap "versent/taps"
 tap "databricks/tap"
+tap "saadjs/tap"
 brew "awscli", args: ["HEAD"]
 brew "saml2aws"
 brew "tomcat@9"
+cask "saadjs/tap/flightdeck"
 brew "databricks"
 brew "mysql-client"
 brew "nx"

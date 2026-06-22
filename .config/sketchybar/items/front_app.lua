@@ -1,6 +1,8 @@
 local colors = require("colors")
 local icon_map = require("icon_map")
 
+local binary = os.getenv("WORK") == "true" and "flightdeck" or "aerospace"
+
 SBAR.add("event", "front_app_changed")
 
 local front_app = SBAR.add("item", "front_app", {
@@ -26,7 +28,7 @@ local front_app = SBAR.add("item", "front_app", {
 
 local function update_front_app()
 	SBAR.exec(
-		"aerospace list-windows --focused | awk -F '|' '{gsub(/^ *| *$/, \"\", $2); print $2}'",
+		binary .. " list-windows --focused | awk -F '|' '{gsub(/^ *| *$/, \"\", $2); print $2}'",
 		function(app_name)
 			if type(app_name) == "string" then
 				---@cast app_name string

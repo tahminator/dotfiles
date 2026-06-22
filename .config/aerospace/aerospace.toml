@@ -222,8 +222,8 @@ w = ["exec-and-forget /Applications/Ghostty.app/Contents/MacOS/ghostty -e 'space
 c = ['''exec-and-forget osascript -e '
     set isWork to system attribute "WORK"
     if isWork is "true" then
-        tell application "Safari"
-            make new document at end of documents
+        tell application "/Applications/Google Chrome.app"
+            make new window
             activate
         end tell
     else

@@ -1,6 +1,8 @@
 local colors = require("colors")
 local icon_map = require("icon_map")
 
+local binary = os.getenv("WORK") == "true" and "flightdeck" or "aerospace"
+
 SBAR.add("event", "aerospace_workspace_change")
 
 local function exec_lines(command, on_line, on_done)
@@ -29,7 +31,7 @@ end
 
 ---@param workspace string
 local function refresh_icons(workspace)
-	local cmd = string.format("aerospace list-windows --monitor 1 --workspace '%s' --format '%%{app-name}'", workspace)
+	local cmd = string.format(binary .. " list-windows --monitor 1 --workspace '%s' --format '%%{app-name}'", workspace)
 	SBAR.exec(cmd, function(out)
 		if type(out) ~= "string" then
 			return
@@ -60,11 +62,11 @@ end
 
 ---@param focused string?
 local function refresh(focused)
-	exec_lines("aerospace list-workspaces --monitor 1 --visible", function(workspace)
+	exec_lines(binary .. " list-workspaces --monitor 1 --visible", function(workspace)
 		SBAR.set("space." .. workspace, { display = 1 })
 		refresh_icons(workspace)
 	end)
-	exec_lines("aerospace list-workspaces --monitor 1 --empty", function(workspace)
+	exec_lines(binary .. " list-workspaces --monitor 1 --empty", function(workspace)
 		if workspace ~= focused then
 			SBAR.set("space." .. workspace, { display = 0 })
 		end
@@ -101,15 +103,15 @@ local function create_space(workspace)
 		},
 		background = { color = colors.legacy.transparent },
 		display = 1,
-		click_script = "aerospace workspace " .. workspace,
+		click_script = binary .. " workspace " .. workspace,
 	})
 end
 
-exec_lines("aerospace list-workspaces --all", function(workspace)
+exec_lines(binary .. " list-workspaces --all", function(workspace)
 	create_space(workspace)
 	refresh_icons(workspace)
 end, function()
-	SBAR.exec("aerospace list-workspaces --focused", function(out)
+	SBAR.exec(binary .. " list-workspaces --focused", function(out)
 		if type(out) ~= "string" then
 			return
 		end
