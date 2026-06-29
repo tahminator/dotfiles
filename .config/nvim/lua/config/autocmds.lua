@@ -109,7 +109,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
 -- auto start claude LSP integration
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
-    if vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
+    local dir = tostring(vim.fn.argv(0))
+
+    if vim.fn.isdirectory(dir) == 1 and dir ~= vim.fn.expand("~") then
       vim.defer_fn(function()
         local keys = vim.api.nvim_replace_termcodes("<leader>ac", true, false, true)
         vim.api.nvim_feedkeys(keys, "m", true)
@@ -121,4 +123,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "*.{ts,js,tsx,jsx}",
   command = "LspEslintFixAll",
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function(args)
+    require("conform").format({ bufnr = args.buf })
+  end,
 })
