@@ -25,4 +25,4 @@ tmux send-keys -t "$session_name:4" "claude --ide" C-m
 #   tmux send-keys -t "$session_name:4" "claude --ide" C-m
 # else
 #   tmux send-keys -t "$session_name:4" "opencode --port" C-m
-fi
+# fi
