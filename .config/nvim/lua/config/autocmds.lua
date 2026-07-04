@@ -111,7 +111,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     local dir = tostring(vim.fn.argv(0))
 
-    if vim.fn.isdirectory(dir) == 1 and dir ~= vim.fn.expand("~") then
+    -- resolve to an absolute path (argv(0) may be ".", "", or relative)
+    local abs = vim.fn.fnamemodify(dir, ":p"):gsub("/$", "")
+    local home = vim.fn.expand("~")
+
+    if vim.fn.isdirectory(dir) == 1 and abs ~= home then
       vim.defer_fn(function()
         local keys = vim.api.nvim_replace_termcodes("<leader>ac", true, false, true)
         vim.api.nvim_feedkeys(keys, "m", true)
