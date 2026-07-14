@@ -158,6 +158,9 @@ return {
           git = {
             module = "blink-cmp-git",
             name = "Git",
+            enabled = function()
+              return vim.bo.filetype == "markdown"
+            end,
             opts = {
               -- options for the blink-cmp-git
             },
