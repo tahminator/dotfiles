@@ -1,5 +1,5 @@
 return {
-  "pwntester/octo.nvim",
+  "tahminator/octo.nvim",
   cmd = "Octo",
   opts = {
     -- or "fzf-lua" or "snacks" or "default"
@@ -45,9 +45,9 @@ return {
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
+    -- "nvim-telescope/telescope.nvim",
     -- OR "ibhagwan/fzf-lua",
-    -- OR "folke/snacks.nvim",
+    "folke/snacks.nvim",
     "nvim-tree/nvim-web-devicons", -- optional if file_panel.icons is a function
   },
 }
