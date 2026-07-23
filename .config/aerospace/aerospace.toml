@@ -301,6 +301,11 @@ shift-down = ['volume set 0', 'mode main']
   check-further-callbacks = false
   run = ['move-node-to-workspace Z']
 
+[[on-window-detected]]
+  if.app-id = 'com.apple.mail'
+  check-further-callbacks = false
+  run = ['move-node-to-workspace 0']
+
 # Work-specific
 
 [[on-window-detected]]
