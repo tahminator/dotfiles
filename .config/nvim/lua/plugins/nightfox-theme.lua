@@ -32,6 +32,15 @@ return {
         },
         options = {
           transparent = true,
+          colorblind = {
+            enable = true,
+            -- simulate_only = true,
+            severity = {
+              protan = 1,
+              -- deutan = 1,
+              -- tritan = 1,
+            },
+          },
         },
       })
     end,

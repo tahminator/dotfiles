@@ -18,7 +18,7 @@ local front_app = SBAR.add("item", "front_app", {
 	label = {
 		string = "...",
 		font = {
-			family = "Monocraft Nerd Font",
+			family = "Monaspace Krypton NF",
 			style = "Semibold",
 			size = 12.0,
 		},
