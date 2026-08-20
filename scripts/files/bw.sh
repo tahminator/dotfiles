@@ -2,6 +2,8 @@
 
 set -e
 
+sudo -v
+
 TEMP_BREWFILE=$(mktemp)
 trap 'rm -f "$TEMP_BREWFILE"' EXIT
 
