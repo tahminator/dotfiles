@@ -40,6 +40,8 @@ source <(gt completion)
 alias g='git'
 # use nvim as default text editor
 export EDITOR="nvim"
+# remove annoying brew formulae trusting, all go through Brewfiles anyways
+export HOMEBREW_NO_REQUIRE_TAP_TRUST=1
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 fpath+=$(brew --prefix)/share/zsh/site-functions

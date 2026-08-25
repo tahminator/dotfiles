@@ -2,10 +2,14 @@
 
 set -e
 
-sudo -v
+if [ -z "${SUDO_KEEPALIVE_PID:-}" ]; then
+  sudo -v
+  (set +e; while true; do sudo -n -v 2>/dev/null || sudo -v; sleep 60; kill -0 "$$" 2>/dev/null || exit; done) &
+  export SUDO_KEEPALIVE_PID=$!
+fi
 
 TEMP_BREWFILE=$(mktemp)
-trap 'rm -f "$TEMP_BREWFILE"' EXIT
+trap 'kill "$SUDO_KEEPALIVE_PID" 2>/dev/null; rm -f "$TEMP_BREWFILE"' EXIT
 
 cat ~/.Brewfile.common ~/.Brewfile.work ~/.Brewfile.worksecret >"$TEMP_BREWFILE"
 
