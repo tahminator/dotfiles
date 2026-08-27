@@ -235,6 +235,13 @@ s = ['''exec-and-forget osascript -e '
         end tell
 '
   ''', 'mode main']
+f = ['''exec-and-forget osascript -e '
+        tell application "Finder"
+            make new Finder window
+            activate
+        end tell
+'
+  ''', 'mode main']
 b = ['exec-and-forget sketchybar', 'mode main']
 
 # 'service' binding mode declaration.
