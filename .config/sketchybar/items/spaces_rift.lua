@@ -90,7 +90,7 @@ local function build_pool()
 			icon = {
 				string = ws_label(i),
 				color = colors.legacy.accent,
-				font = { family = "Monocraft Nerd Font", style = "Semibold", size = 14.0 },
+				font = { family = "Monocraft Nerd Font Nerd Font", style = "Semibold", size = 14.0 },
 				y_offset = 1,
 			},
 			label = {

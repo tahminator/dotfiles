@@ -7,7 +7,7 @@ local colors = require("colors")
 SBAR.default({
 	icon = {
 		font = {
-			family = "Monaspace Krypton NF",
+			family = "Monocraft Nerd Font",
 			style = "Semibold",
 			size = 12.0,
 		},
@@ -17,7 +17,7 @@ SBAR.default({
 	},
 	label = {
 		font = {
-			family = "Monaspace Krypton NF",
+			family = "Monocraft Nerd Font",
 			style = "Semibold",
 			size = 12.0,
 		},
