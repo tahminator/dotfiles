@@ -16,19 +16,19 @@ return {
             runtimes = {
               {
                 name = "JavaSE-17",
-                path = "/Library/Java/JavaVirtualMachines/openjdk-17.jdk/Contents/Home",
+                path = "/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/17.0.20-tem",
               },
               {
                 name = "JavaSE-11",
-                path = "/Library/Java/JavaVirtualMachines/openjdk-11.jdk/Contents/Home",
+                path = "/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/11.0.32-tem",
               },
               {
                 name = "JavaSE-21",
-                path = "/Library/Java/JavaVirtualMachines/openjdk-21.jdk/Contents/Home",
+                path = "/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/21.0.12-tem",
               },
               {
                 name = "JavaSE-25",
-                path = "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home",
+                path = "/opt/homebrew/opt/sdkman-cli/libexec/candidates/java/25.0.4-tem",
               },
             },
           },
