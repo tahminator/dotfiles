@@ -1,7 +1,7 @@
 local colors = require("colors")
 local icon_map = require("icon_map")
 
-local binary = os.getenv("WORK") == "true" and "flightdeck" or "aerospace"
+local binary = "aerospace"
 
 SBAR.add("event", "front_app_changed")
 

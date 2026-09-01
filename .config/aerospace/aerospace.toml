@@ -289,7 +289,7 @@ shift-down = ['volume set 0', 'mode main']
 [[on-window-detected]]
   if.app-id = 'com.apple.iCal'
   check-further-callbacks = false
-  run = ['move-node-to-workspace C']
+  run = ['move-node-to-workspace 0']
 
 [[on-window-detected]]
   if.app-id = 'us.zoom.xos'
