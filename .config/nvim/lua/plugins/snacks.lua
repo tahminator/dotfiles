@@ -18,7 +18,7 @@ return {
         --   cmd = "rain",
         --   height = 50,
         -- },
-        -- { section = "header" },
+        { section = "header" },
         { section = "startup" },
       },
       preset = {
