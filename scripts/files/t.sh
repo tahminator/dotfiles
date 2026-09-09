@@ -34,17 +34,14 @@ else
 
   tmux new-window -t "$session_name:4" -n "ai"
 
-  # wait for nvim to launch
-  sleep 2.5
-  tmux send-keys -t "$session_name:4" "claude --ide" C-m
-
-  # if [[ "$WORK" == "true" ]]; then
-  #   # wait for nvim to launch
-  #   sleep 2500
-  #   tmux send-keys -t "$session_name:4" "claude --ide" C-m
-  # else
-  #   tmux send-keys -t "$session_name:4" "opencode --port" C-m
-  # fi
+  if [[ "$WORK" == "true" ]]; then
+    # pi needs to start first to open socket
+    tmux send-keys -t "$session_name:4" "pi" C-m
+  else
+    # wait for nvim to launch
+    sleep 2.5
+    tmux send-keys -t "$session_name:4" "claude --ide" C-m
+  fi
 
   tmux select-window -t "$session_name:1"
   tmux attach -t "=$session_name"
