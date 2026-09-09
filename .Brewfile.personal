@@ -12,6 +12,8 @@ tap "sst/tap"
 cask "mactex"
 cask "grandperspective"
 brew "act"
+cask "rustdesk"
+cask "headlamp"
 brew "azure-cli"
 brew "cppman"
 brew "pkg-config"
@@ -30,8 +32,8 @@ cask "obs"
 mas "Bitwarden", id: 1352778147
 mas "Accelerate", id: 1459809092
 mas "AdBlock", id: 1402042596
+mas "Xcode", id: 497799835
 mas "BlockSite Block Websites & Stay Focused", id: 6743401868
-mas "Goodnotes", id: 1444383602
 mas "Grammarly for Safari", id: 1462114288
 mas "MyWallpaper", id: 1552826194
 mas "PairVPN", id: 1347012179
