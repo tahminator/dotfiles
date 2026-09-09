@@ -44,7 +44,6 @@ keybind = super+left=text:\x01
 keybind = super+right=text:\x05
 keybind = super+d=scroll_page_down
 keybind = super+u=scroll_page_up
-keybind = shift+enter=text:\x1b\r
 focus-follows-mouse = true
 cursor-style = block
 cursor-style-blink = false
