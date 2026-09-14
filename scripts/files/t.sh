@@ -38,9 +38,8 @@ else
     # pi needs to start first to open socket
     tmux send-keys -t "$session_name:4" "pi" C-m
   else
-    # wait for nvim to launch
-    sleep 2.5
-    tmux send-keys -t "$session_name:4" "claude --ide" C-m
+    # pi needs to start first to open socket
+    tmux send-keys -t "$session_name:4" "pi" C-m
   fi
 
   tmux select-window -t "$session_name:1"
