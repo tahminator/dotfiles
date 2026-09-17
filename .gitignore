@@ -50,6 +50,7 @@
 !.config/opencode/**
 !.config/sketchybar/
 !.config/sketchybar/**
-
+!.config/vimium/
+!.config/vimium/**
 
 

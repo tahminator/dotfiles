@@ -1,0 +1,4 @@
+{
+  "keyMappings": "# Insert your preferred key mappings here.\n\nmap j scrollDown\nmap k scrollUp\n\nunmap u\nunmap d\nmap c-u scrollPageUp\nmap c-d scrollPageDown\n\nunmap yt\nmap tt duplicateTab\n\nunmap t\nunmap x\nunmap r\nunmap R\nunmap yy",
+  "settingsVersion": "2.4.2"
+}
