@@ -1,5 +1,6 @@
 tap "versent/taps"
 tap "databricks/tap"
+tap "databricks/tap"
 brew "awscli", args: ["HEAD"]
 brew "saml2aws"
 brew "tomcat@9"
@@ -10,3 +11,4 @@ brew "vegeta"
 brew "duckdb"
 brew "uv"
 brew "python@3.11"
+brew "databricks"
