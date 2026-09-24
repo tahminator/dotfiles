@@ -35,11 +35,11 @@ else
   tmux new-window -t "$session_name:4" -n "ai"
 
   if [[ "$WORK" == "true" ]]; then
-    # pi needs to start first to open socket
-    tmux send-keys -t "$session_name:4" "pi" C-m
+    # omp needs to start first to open socket
+    tmux send-keys -t "$session_name:4" "omp" C-m
   else
-    # pi needs to start first to open socket
-    tmux send-keys -t "$session_name:4" "pi" C-m
+    # omp needs to start first to open socket
+    tmux send-keys -t "$session_name:4" "omp" C-m
   fi
 
   tmux select-window -t "$session_name:1"
