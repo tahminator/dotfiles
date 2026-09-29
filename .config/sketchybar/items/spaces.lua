@@ -1,96 +1,19 @@
 local colors = require("colors")
 local icon_map = require("icon_map")
+local wm = require("wm")
 
-local binary = "aerospace"
+---@type table<string, SbarItem>
+local items = {}
+local previous_order
 
-SBAR.add("event", "aerospace_workspace_change")
-
-local function exec_lines(command, on_line, on_done)
-	SBAR.exec(command, function(out)
-		if type(out) == "string" then
-			for line in out:gmatch("[^\r\n]+") do
-				on_line(line)
-			end
-		end
-		if on_done then
-			on_done()
-		end
-	end)
-end
-
----@param workspace string
----@param is_focused boolean
-local function set_focus_appearance(workspace, is_focused)
-	local bg_color = is_focused and colors.bar.tertiary or colors.legacy.transparent
-	SBAR.set("space." .. workspace, {
-		background = { color = bg_color },
-		icon = { color = colors.legacy.accent },
-		label = { color = colors.legacy.accent },
-	})
-end
-
----@param workspace string
-local function refresh_icons(workspace)
-	local cmd = string.format(binary .. " list-windows --monitor 1 --workspace '%s' --format '%%{app-name}'", workspace)
-	SBAR.exec(cmd, function(out)
-		if type(out) ~= "string" then
-			return
-		end
-
-		local seen, apps = {}, {}
-		for app in out:gmatch("[^\r\n]+") do
-			if app ~= "" and not seen[app] then
-				seen[app] = true
-				apps[#apps + 1] = app
-			end
-		end
-		table.sort(apps)
-
-		local strip = " —"
-		if #apps > 0 then
-			strip = ""
-			for _, app in ipairs(apps) do
-				strip = strip .. " " .. (icon_map[app] or ":default:")
-			end
-		end
-
-		SBAR.animate("sin", 10, function()
-			SBAR.set("space." .. workspace, { label = { string = strip } })
-		end)
-	end)
-end
-
----@param focused string?
-local function refresh(focused)
-	exec_lines(binary .. " list-workspaces --monitor 1 --visible", function(workspace)
-		SBAR.set("space." .. workspace, { display = 1 })
-		refresh_icons(workspace)
-	end)
-	exec_lines(binary .. " list-workspaces --monitor 1 --empty", function(workspace)
-		if workspace ~= focused then
-			SBAR.set("space." .. workspace, { display = 0 })
-		end
-	end)
-end
-
----@param env SbarEnv
-local function on_workspace_change(env)
-	if env.PREV_WORKSPACE and env.PREV_WORKSPACE ~= "" then
-		set_focus_appearance(env.PREV_WORKSPACE, false)
-	end
-	if env.FOCUSED_WORKSPACE and env.FOCUSED_WORKSPACE ~= "" then
-		set_focus_appearance(env.FOCUSED_WORKSPACE, true)
-	end
-	refresh(env.FOCUSED_WORKSPACE)
-end
-
----@param workspace string
-local function create_space(workspace)
-	SBAR.add("space", "space." .. workspace, {
+---@param ws WMWorkspace
+local function create_space(ws)
+	-- Ordinary items: WM workspace IDs are not native macOS Space IDs.
+	local item = SBAR.add("item", "space." .. ws.id, {
 		position = "left",
-		space = workspace,
+		drawing = false,
 		icon = {
-			string = workspace,
+			string = ws.label,
 			color = colors.legacy.accent,
 			font = { family = "Monocraft Nerd Font", style = "Semibold", size = 14.0 },
 			y_offset = 1,
@@ -102,28 +25,67 @@ local function create_space(workspace)
 			y_offset = -1,
 		},
 		background = { color = colors.legacy.transparent },
-		display = 1,
-		click_script = binary .. " workspace " .. workspace,
 	})
+	item:subscribe("mouse.clicked", function(env)
+		wm.activate_workspace(ws.id, env.BUTTON)
+	end)
+	items[ws.id] = item
+	return item
 end
 
-exec_lines(binary .. " list-workspaces --all", function(workspace)
-	create_space(workspace)
-	refresh_icons(workspace)
-end, function()
-	SBAR.exec(binary .. " list-workspaces --focused", function(out)
-		if type(out) ~= "string" then
-			return
+---@param apps string[]
+local function icon_strip(apps)
+	local seen, sorted = {}, {}
+	for _, app in ipairs(apps) do
+		if app ~= "" and not seen[app] then
+			seen[app] = true
+			sorted[#sorted + 1] = app
 		end
-		local focused = out:match("[^\r\n]+")
-		if focused and focused ~= "" then
-			set_focus_appearance(focused, true)
+	end
+	table.sort(sorted)
+	if #sorted == 0 then
+		return " —"
+	end
+	local strip = ""
+	for _, app in ipairs(sorted) do
+		strip = strip .. " " .. (icon_map[app] or ":default:")
+	end
+	return strip
+end
+
+wm.subscribe(function(state)
+	local seen, ordered = {}, {}
+	for _, ws in ipairs(state.workspaces) do
+		local item = items[ws.id] or create_space(ws)
+		seen[ws.id] = true
+		ordered[#ordered + 1] = "space." .. ws.id
+		item:set({
+			drawing = ws.focused or #ws.apps > 0,
+			display = ws.display or "all",
+			icon = { string = ws.label },
+			background = { color = ws.focused and colors.bar.tertiary or colors.legacy.transparent },
+		})
+		SBAR.animate("sin", 10, function()
+			item:set({ label = { string = icon_strip(ws.apps) } })
+		end)
+	end
+	for id, item in pairs(items) do
+		if not seen[id] then
+			SBAR.remove(item.name)
+			items[id] = nil
 		end
-		refresh(focused)
-	end)
+	end
+	-- Async workspace creation must not place spaces after the front-app item.
+	ordered[#ordered + 1] = "front_app"
+	local quoted = {}
+	for _, name in ipairs(ordered) do
+		quoted[#quoted + 1] = "'" .. name:gsub("'", "'\\''") .. "'"
+	end
+	local order = table.concat(quoted, " ")
+	if order ~= previous_order then
+		SBAR.exec("sketchybar --reorder " .. order)
+		previous_order = order
+	end
 end)
 
-local aerospace_dummy = SBAR.add("item", "aerospace_dummy", { position = "left", display = 0 })
-aerospace_dummy:subscribe("aerospace_workspace_change", on_workspace_change)
-
-return aerospace_dummy
+return items

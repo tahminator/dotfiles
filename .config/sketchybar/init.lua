@@ -2,10 +2,12 @@ os.execute(
 	"[ ! -d $HOME/.local/share/sketchybar_lua/ ] && (git clone https://github.com/FelixKratz/SbarLua.git /tmp/SbarLua && cd /tmp/SbarLua/ && make install && rm -rf /tmp/SbarLua/)"
 )
 
--- ty @pyrorhythm
-os.execute(
-	"[ ! -d $HOME/.local/share/rift.lua/ ] && (git clone https://github.com/tahminator/rift.lua.git /tmp/rift.lua && cd /tmp/rift.lua/ && make install && rm -rf /tmp/rift.lua/)"
-)
+-- Only install the native Rift bridge when that backend is selected.
+if require("wm.config").backend == "rift" then
+	os.execute(
+		"[ ! -d $HOME/.local/share/rift.lua/ ] && (git clone https://github.com/tahminator/rift.lua.git /tmp/rift.lua && cd /tmp/rift.lua/ && make install && rm -rf /tmp/rift.lua/)"
+	)
+end
 
 local user = os.getenv("USER")
 package.cpath = package.cpath

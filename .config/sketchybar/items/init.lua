@@ -1,8 +1,8 @@
 -- left
 require("items.spaces")
 require("items.front_app")
--- require("items.spaces_rift")
--- require("items.front_app_rift")
+-- Both renderers subscribe before the backend publishes its initial state.
+require("wm").start()
 
 -- right
 require("items.calendar")
