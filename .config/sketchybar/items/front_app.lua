@@ -1,17 +1,17 @@
+local colors = require("colors")
+local font = require("font")
 local icon_map = require("icon_map")
 local wm = require("wm")
 
 local front_app = SBAR.add("item", "front_app", {
 	position = "left",
+	padding_left = 6, -- the spaces bracket absorbs its items' padding; supply the full 6pt gap
 	icon = {
 		string = ":default:",
-		font = { family = "sketchybar-app-font", style = "Regular", size = 14.0 },
+		font = font.apps,
+		color = colors.fg,
 	},
-	label = {
-		string = "...",
-		font = { family = "Monocraft Nerd Font", style = "Semibold", size = 12.0 },
-		y_offset = 1,
-	},
+	label = { string = "..." },
 })
 
 wm.subscribe(function(state)

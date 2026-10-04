@@ -1,11 +1,7 @@
 local wifi = SBAR.add("item", "wifi", {
 	position = "right",
-	icon = {
-		string = "􀙥",
-	},
-	label = {
-		string = "...",
-	},
+	icon = { string = "net" },
+	label = { string = "..." },
 })
 
 wifi:subscribe({ "routine", "wifi_change" }, function()
@@ -14,10 +10,7 @@ wifi:subscribe({ "routine", "wifi_change" }, function()
 		function(dbm)
 			if type(dbm) == "string" then
 				---@cast dbm string
-				wifi:set({
-					icon = { string = "􀙇" },
-					label = { string = dbm:gsub("%s+", " ") },
-				})
+				wifi:set({ label = { string = dbm:gsub("%s+", " ") } })
 			end
 		end
 	)

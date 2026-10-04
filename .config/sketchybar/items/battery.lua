@@ -1,8 +1,12 @@
 local colors = require("colors")
+local font = require("font")
 
 local battery = SBAR.add("item", "battery", {
 	position = "right",
 	update_freq = 180,
+	icon = { string = "bat" },
+	-- Fixed width ("100%"): SketchyBar ignores space padding.
+	label = { string = "...", width = font.label_width(4), align = "right" },
 })
 
 local function update_battery()
@@ -14,40 +18,22 @@ local function update_battery()
 		end
 
 		SBAR.exec("pmset -g batt | grep 'AC Power'", function(charging)
-			local icon
+			local on_ac = charging ~= ""
 			local color
 
 			if percentage > 60 then
-				if charging ~= "" then
-					color = colors.ios.green
-				else
-					color = nil
-				end
+				color = on_ac and colors.green or colors.fg
 			elseif percentage > 30 then
-				color = colors.ios.yellow
+				color = colors.yellow
 			elseif percentage > 10 then
-				color = colors.ios.orange
+				color = colors.orange
 			else
-				color = colors.ios.deepRed
-			end
-
-			if charging ~= "" then
-				icon = "􀢋"
-			elseif percentage > 90 then
-				icon = "􀛨"
-			elseif percentage > 60 then
-				icon = "􀺸"
-			elseif percentage > 30 then
-				icon = "􀺶"
-			elseif percentage > 10 then
-				icon = "􀛩"
-			else
-				icon = "􀛪"
+				color = colors.red
 			end
 
 			battery:set({
-				icon = { string = icon, color = color },
-				label = { string = percentage .. "%" },
+				icon = { string = on_ac and "ac" or "bat" },
+				label = { string = percentage .. "%", color = color },
 			})
 		end)
 	end)

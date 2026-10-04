@@ -1,31 +1,14 @@
+-- Text colors mirror the Ghostty theme in ~/.config/ghostty/config;
+-- surfaces keep the original translucent glass.
 return {
-	legacy = {
-		item = 0xff000000,
-		accent = 0xffc3c6cb,
-		transparent = 0x00ffffff,
-		bg = 0xaa000000,
-	},
-	bar = {
-		bg = 0x4a181a22, -- dark glass, cool tint, translucent
-		secondary = 0x2ab0b8cc, -- also translucent
-		tertiary = 0x7ab0b8cc, -- brighter than secondary
-		border = 0x2ab0b8cc, -- visible glass edge highlight
-	},
-	ios = {
-		green = 0xff4cd964,
-		yellow = 0xffe0af68,
-		orange = 0xfff7768e,
-		deepRed = 0xffd50606,
-	},
-	default = {
-		green = 0xff30d158,
-		darkGreen = 0xff248a3d,
-		yellow = 0xffe0af68,
-		red = 0xfff7768e,
-	},
-	battery = {
-		warning = 0xFFd97706,
-		danger = 0xFFf97316,
-		critical = 0xFFef4444,
-	},
+	bar = 0x80000000, -- Ghostty background #000000, translucent over blur
+	glass = 0x2ab0b8cc, -- pill fill and bar edge
+	fg = 0xfffeffff, -- foreground
+	muted = 0xffa8a8a8, -- palette 248
+	black = 0xff000000,
+	red = 0xffdc5e94, -- palette 1
+	green = 0xff67bb6e, -- palette 2
+	yellow = 0xfffbe98a, -- palette 3
+	orange = 0xffff8700, -- palette 208
+	transparent = 0x00000000,
 }

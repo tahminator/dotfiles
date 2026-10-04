@@ -29,16 +29,10 @@ brew install jq
 
 ## 🔤 Font Setup
 
-**Install SF Pro Font**
+**Install ProggyClean Nerd Font** (same font as Ghostty; set in `font.lua`)
 
 ```bash
-brew install font-sf-pro
-```
-
-**Install SF Symbols**
-
-```bash
-brew install --cask sf-symbols
+brew install --cask font-proggy-clean-tt-nerd-font
 ```
 
 **Install SketchyBar App Font**
@@ -103,7 +97,9 @@ good state when the window manager is unavailable. App names retain their spaces
 The configuration files are organized as follows:
 
 - `sketchybarrc` / `init.lua` - Entry points
-- `colors.lua` - Color definitions
+- `colors.lua` - Color definitions (mirrors the Ghostty palette)
+- `font.lua` - Fonts and character-cell spacing
+- `sparkline.lua` - Text meter used by the CPU and memory items
 - `items/` - Backend-independent UI components
 - `wm/config.lua` - Backend selection
 - `wm/aerospace.lua` / `wm/rift.lua` - The two backend implementations

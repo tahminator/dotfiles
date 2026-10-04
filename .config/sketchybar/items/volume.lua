@@ -1,25 +1,20 @@
+local colors = require("colors")
+local font = require("font")
+
 local volume = SBAR.add("item", "volume", {
 	position = "right",
+	icon = { string = "vol" },
+	-- Fixed width ("100%", "mute"): SketchyBar ignores space padding.
+	label = { string = "...", width = font.label_width(4), align = "right" },
 })
 
 volume:subscribe("volume_change", function(env)
 	local volume_percent = tonumber(env.INFO)
 
 	if volume_percent then
-		local icon
-		if volume_percent >= 60 then
-			icon = "􀊩"
-		elseif volume_percent >= 30 then
-			icon = "􀊥"
-		elseif volume_percent >= 1 then
-			icon = "􀊡"
-		else
-			icon = "􀊣"
-		end
-
 		volume:set({
-			icon = { string = icon },
-			label = { string = volume_percent .. "%" },
+			label = volume_percent == 0 and { string = "mute", color = colors.muted }
+				or { string = volume_percent .. "%", color = colors.fg },
 		})
 	end
 end)

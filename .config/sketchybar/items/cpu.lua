@@ -1,31 +1,13 @@
-local colors = require("colors")
-local utils = require("utils")
-local alpha = require("alpha")
+local sparkline = require("sparkline")
 
-local cpu = SBAR.add("graph", "cpu", 50, {
+local cpu = SBAR.add("item", "cpu", {
 	position = "right",
 	update_freq = 10,
-	icon = {
-		string = "􀧓",
-	},
-	label = {
-		string = "0%",
-		padding_left = 8,
-	},
-	graph = {
-		color = colors.default.darkGreen,
-	},
+	icon = { string = "cpu" },
+	label = { string = "...", width = sparkline.label.width, align = sparkline.label.align },
 })
 
-local function get_color(percent)
-	if percent <= 50 then
-		return colors.default.darkGreen
-	elseif percent <= 75 then
-		return colors.default.yellow
-	else
-		return colors.default.red
-	end
-end
+local push = sparkline.new()
 
 local function update_cpu()
 	return SBAR.exec(
@@ -33,18 +15,11 @@ local function update_cpu()
 		function(cpu_percent)
 			if type(cpu_percent) == "string" then
 				---@cast cpu_percent string
-				local cleaned = cpu_percent:gsub("%s+", "")
-				local cpu_num = tonumber(cleaned)
+				local cpu_num = tonumber((cpu_percent:gsub("%s+", "")))
 
 				if cpu_num then
-					local color = get_color(cpu_num)
-					cpu:push({ cpu_num / 100 })
-					cpu:set({
-						graph = {
-							color = color,
-						},
-						label = { string = cleaned .. "%" },
-					})
+					local text, color = push(cpu_num)
+					cpu:set({ label = { string = text, color = color } })
 				end
 			end
 		end
