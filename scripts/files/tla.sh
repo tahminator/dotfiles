@@ -1,30 +1,16 @@
 #!/bin/zsh
 
-# can pt anywhere
-DIR="$1"
+# tla - tmux launch [session] app
+# unlike tl/tlp/tlw, this just launches a single window running a single binary
 
-cd $DIR
-
-session_name="$2"
-
-if [[ ! -v 2 ]]; then
-  echo "2nd argument must be passed in and it must be the name of the session"
-  return 1
+if [[ -z "$1" ]]; then
+  echo "Pass in a binary name. e.g. tla htop"
+  exit 1
 fi
 
-tmux new-session -d -s "$session_name" -n "editor"
+binary="$1"
+session_name="$binary"
 
-tmux send-keys -t "$session_name:1" "nvim ." C-m
+tmux new-session -d -s "$session_name" -n "$binary"
 
-tmux new-window -t "$session_name:2"
-tmux new-window -t "$session_name:3"
-
-tmux new-window -t "$session_name:4" -n "ai"
-
-if [[ "$WORK" == "true" ]]; then
-  # omp needs to start first to open socket
-  tmux send-keys -t "$session_name:4" "omp" C-m
-else
-  # omp needs to start first to open socket
-  tmux send-keys -t "$session_name:4" "omp" C-m
-fi
+tmux send-keys -t "$session_name:1" "$binary" C-m

@@ -100,6 +100,9 @@ eval "$(direnv hook zsh)"
 setopt noincappendhistory
 setopt nosharehistory
 
+# for lazyjira
+export LAZYJIRA_CONFIG_DIR=~/.config/lazyjira
+
 autoload -Uz compinit
 
 # zprof
