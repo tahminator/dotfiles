@@ -26,6 +26,7 @@ SCRIPTS=(
   "bws"
   "tla"
   "memk"
+  "jp"
 )
 
 for script in "${SCRIPTS[@]}"; do
