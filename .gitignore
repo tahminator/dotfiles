@@ -54,3 +54,8 @@
 !.config/vimium/**
 
 
+!.config/lazyjira/
+!.config/lazyjira/**
+.config/lazyjira/auth.json
+
+

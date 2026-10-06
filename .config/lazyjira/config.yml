@@ -1,0 +1,97 @@
+jira:
+    host: ""
+    email: ""
+    serverType: cloud
+projects: []
+gui:
+    theme: default
+    themeColors: {}   # optional palette overrides (see Themes section)
+    themeDark: {}     # applied on dark presets only
+    themeLight: {}    # applied on light presets only
+    language: en
+    sidePanelWidth: 40
+    collapsedPanelHeight: 5
+    showIcons: true
+    dateFormat: "2006-01-02"
+    mouse: true
+    borders: rounded
+    issueListFields:
+        - key
+        - status
+        - summary
+    selectCreatedIssue: true
+    typeIcons:
+        Bug: "🐞"
+        Story: "📖"
+        Sub-task: "📎"
+    statusIcons:
+        To do: "📋"
+        On hold: "⏸️"
+        Future: "🔜"
+    priorityIcons:
+        Highest: "⇈"
+        High: "↑"
+        Medium: "→"
+        Low: "↓"
+        Lowest: "⇊"
+
+keybinding:
+    universal:
+        quit: q
+        help: '?'
+        search: /
+        switchPanel: tab
+        refresh: r
+        refreshAll: R
+        prevTab: '['
+        nextTab: ']'
+        focusDetail: "0"
+        focusStatus: "1"
+        focusIssues: "2"
+        focusInfo: "3"
+        focusProjects: "4"
+        jqlSearch: s
+    navigation:
+        down: k
+        up: j
+        top: g
+        bottom: G
+        halfPageDown: ctrl+d
+        halfPageUp: ctrl+u
+    issues:
+        select: ' '
+        open: enter
+        focusRight: l
+        transition: t
+        browser: o
+        urlPicker: u
+        copyURL: "y"
+        closeJQLTab: x
+        createBranch: b
+    projects:
+        select: ' '
+        open: enter
+        focusRight: l
+    detail:
+        focusLeft: h
+        infoTab: i
+        scrollDown: K
+        scrollUp: J
+        halfPageDown: ctrl+f
+        halfPageUp: ctrl+b
+issueTabs:
+    - name: All
+      jql: project = {{.ProjectKey}} AND statusCategory != Done ORDER BY updated DESC
+    - name: Assigned
+      jql: project = {{.ProjectKey}} AND assignee=currentUser() AND statusCategory != Done ORDER BY priority DESC, updated DESC
+cache:
+    enabled: true
+    ttl: 5m
+refresh:
+    autoRefresh: true
+    interval: 30s
+fields: []
+git:
+    closeOnCheckout: false
+    asciiOnly: false
+    branchFormat: []
