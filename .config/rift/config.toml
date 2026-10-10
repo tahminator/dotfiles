@@ -1,16 +1,23 @@
 [settings]
-mouse_follows_focus = false
+# aerospace: on-focus-changed = 'move-mouse window-lazy-center'
+mouse_follows_focus = true
+mouse_hides_on_focus = false
 focus_follows_mouse = false
 hot_reload = true
 default_disable = false
+# sketchybar subscribes to rift events itself (sketchybar/wm/rift.lua); no trigger hooks needed
 run_on_start = ["sketchybar"]
 
 [settings.layout]
 mode = "traditional"
 
-# 4E2116A2-679C-46A0-B587-A5BE8511D54A - Sceptre K25 (home monitor)
+# aerospace: accordion-padding = 30
+[settings.layout.stack]
+stack_offset = 30.0
+
+# default: built-in display and any unlisted monitor
 [settings.layout.gaps]
-outer.top = 30
+outer.top = 20
 outer.left = 15
 outer.right = 15
 outer.bottom = 15
@@ -18,7 +25,7 @@ inner.horizontal = 15
 inner.vertical = 15
 # personal laptop - Sceptre K25
 [settings.layout.gaps.per_display."4E2116A2-679C-46A0-B587-A5BE8511D54A".outer]
-top = 60
+top = 54
 left = 15
 right = 15
 bottom = 15
@@ -27,7 +34,7 @@ horizontal = 15
 vertical = 15
 # IAS laptop - Sceptre K25
 [settings.layout.gaps.per_display."95D52A22-D38F-44C5-ACFB-EA7140371471".outer]
-top = 60
+top = 54
 left = 15
 right = 15
 bottom = 15
@@ -36,7 +43,7 @@ horizontal = 15
 vertical = 15
 # C1 laptop - LG
 [settings.layout.gaps.per_display."AD4794A3-0FBD-45EF-B517-007E0AF078DA".outer]
-top = 60
+top = 50
 left = 15
 right = 15
 bottom = 15
@@ -49,23 +56,26 @@ enabled = false
 
 [virtual_workspaces]
 enabled = true
-default_workspace_count = 24
+default_workspace_count = 30
 default_workspace = 1
 workspace_auto_back_and_forth = false
 preserve_focus_per_workspace = true
-# 1=1 2=2 3=3 4=4 5=5 6=6 a=7 c=8 d=9 e=10 f=11 g=12 i=13 m=14 o=15 p=16 q=17 s=18 t=19 u=20 w=21 y=22 z=23
-workspace_names = ["0","1","2","3","4","5","6","a","c","d","e","f","g","i","m","o","p","q","s","t","u","w","y","z"]
+# index: 0-9 = digits, a=10 b=11 c=12 d=13 e=14 f=15 g=16 i=17 m=18 o=19 p=20 q=21 r=22 s=23 t=24 u=25 w=26 x=27 y=28 z=29
+workspace_names = ["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","i","m","o","p","q","r","s","t","u","w","x","y","z"]
 
 app_rules = [
   { app_id = "com.apple.Safari", title_regex = "Bitwarden", floating = true },
-  { app_id = "com.spotify.client",        workspace = 14 }, # m
-  { app_id = "com.apple.ActivityMonitor", workspace = 17 }, # q
-  { app_id = "com.apple.iCal",            workspace = 8 },  # c
-  { app_id = "us.zoom.xos",               workspace = 23 }, # z
-  { app_id = "com.tinyspeck.slackmacgap", workspace = 18 }, # s
-  { app_name = "Docker",                  workspace = 9 },  # d
-  { app_id = "com.apple.MobileSMS",       workspace = 19 }, # t
-  { app_name = "Discord",                 workspace = 9 },  # d
+  { app_id = "com.spotify.client",        workspace = "m" },
+  { app_id = "com.apple.ActivityMonitor", workspace = "q" },
+  { app_id = "com.apple.iCal",            workspace = "0" },
+  { app_id = "us.zoom.xos",               workspace = "z" },
+  { app_id = "com.apple.mail",            workspace = "0" },
+  # work
+  { app_id = "com.tinyspeck.slackmacgap", workspace = "s" },
+  { app_id = "com.docker.docker",         workspace = "d" },
+  # personal
+  { app_id = "com.apple.MobileSMS",       workspace = "t" },
+  { app_id = "com.hnc.Discord",           workspace = "d" },
 ]
 
 [modifier_combinations]
@@ -73,6 +83,13 @@ alt-s = "Alt + Shift"
 alt-c = "Alt + Control"
 
 [keys]
+# disable "hide application" / "hide others"
+"Meta + H" = { exec = "/usr/bin/true" }
+"Meta + Alt + H" = { exec = "/usr/bin/true" }
+
+"Alt + Slash" = "toggle_orientation"
+"Alt + Comma" = "toggle_stack"
+
 "Alt + H" = { move_focus = "left" }
 "Alt + J" = { move_focus = "up" }
 "Alt + K" = { move_focus = "down" }
@@ -83,62 +100,76 @@ alt-c = "Alt + Control"
 "alt-s + K" = { move_node = "down" }
 "alt-s + L" = { move_node = "right" }
 
-"Alt + Minus" = "resize_window_shrink"
-"Alt + Equal" = "resize_window_grow"
+"Alt + Minus" = { resize_window_shrink = "smart" }
+"Alt + Equal" = { resize_window_grow = "smart" }
 
-"Alt + Slash" = "toggle_orientation"
-
+"Alt + 0" = { switch_to_workspace = 0 }
 "Alt + 1" = { switch_to_workspace = 1 }
 "Alt + 2" = { switch_to_workspace = 2 }
 "Alt + 3" = { switch_to_workspace = 3 }
 "Alt + 4" = { switch_to_workspace = 4 }
 "Alt + 5" = { switch_to_workspace = 5 }
 "Alt + 6" = { switch_to_workspace = 6 }
+"Alt + 7" = { switch_to_workspace = 7 }
+"Alt + 8" = { switch_to_workspace = 8 }
+"Alt + 9" = { switch_to_workspace = 9 }
+"Alt + A" = { switch_to_workspace = 10 }
+"Alt + B" = { switch_to_workspace = 11 }
+"Alt + C" = { switch_to_workspace = 12 }
+"Alt + D" = { switch_to_workspace = 13 }
+"Alt + E" = { switch_to_workspace = 14 }
+"Alt + F" = { switch_to_workspace = 15 }
+"Alt + G" = { switch_to_workspace = 16 }
+"Alt + I" = { switch_to_workspace = 17 }
+"Alt + M" = { switch_to_workspace = 18 }
+"Alt + O" = { switch_to_workspace = 19 }
+"Alt + P" = { switch_to_workspace = 20 }
+"Alt + Q" = { switch_to_workspace = 21 }
+"Alt + R" = { switch_to_workspace = 22 }
+"Alt + S" = { switch_to_workspace = 23 }
+"Alt + T" = { switch_to_workspace = 24 }
+"Alt + U" = { switch_to_workspace = 25 }
+"Alt + W" = { switch_to_workspace = 26 }
+"Alt + X" = { switch_to_workspace = 27 }
+"Alt + Y" = { switch_to_workspace = 28 }
+"Alt + Z" = { switch_to_workspace = 29 }
 
+"alt-s + 0" = { move_window_to_workspace = 0 }
 "alt-s + 1" = { move_window_to_workspace = 1 }
 "alt-s + 2" = { move_window_to_workspace = 2 }
 "alt-s + 3" = { move_window_to_workspace = 3 }
 "alt-s + 4" = { move_window_to_workspace = 4 }
 "alt-s + 5" = { move_window_to_workspace = 5 }
 "alt-s + 6" = { move_window_to_workspace = 6 }
-
-"Alt + A" = { switch_to_workspace = 7 }
-"Alt + C" = { switch_to_workspace = 8 }
-"Alt + D" = { switch_to_workspace = 9 }
-"Alt + E" = { switch_to_workspace = 10 }
-"Alt + F" = { switch_to_workspace = 11 }
-"Alt + G" = { switch_to_workspace = 12 }
-"Alt + I" = { switch_to_workspace = 13 }
-"Alt + M" = { switch_to_workspace = 14 }
-"Alt + O" = { switch_to_workspace = 15 }
-"Alt + P" = { switch_to_workspace = 16 }
-"Alt + Q" = { switch_to_workspace = 17 }
-"Alt + S" = { switch_to_workspace = 18 }
-"Alt + T" = { switch_to_workspace = 19 }
-"Alt + U" = { switch_to_workspace = 20 }
-"Alt + W" = { switch_to_workspace = 21 }
-"Alt + Y" = { switch_to_workspace = 22 }
-"Alt + Z" = { switch_to_workspace = 23 }
-
-"alt-s + A" = { move_window_to_workspace = 7 }
-"alt-s + C" = { move_window_to_workspace = 8 }
-"alt-s + D" = { move_window_to_workspace = 9 }
-"alt-s + E" = { move_window_to_workspace = 10 }
-"alt-s + F" = { move_window_to_workspace = 11 }
-"alt-s + G" = { move_window_to_workspace = 12 }
-"alt-s + I" = { move_window_to_workspace = 13 }
-"alt-s + M" = { move_window_to_workspace = 14 }
-"alt-s + O" = { move_window_to_workspace = 15 }
-"alt-s + P" = { move_window_to_workspace = 16 }
-"alt-s + Q" = { move_window_to_workspace = 17 }
-"alt-s + S" = { move_window_to_workspace = 18 }
-"alt-s + T" = { move_window_to_workspace = 19 }
-"alt-s + U" = { move_window_to_workspace = 20 }
-"alt-s + W" = { move_window_to_workspace = 21 }
-"alt-s + Y" = { move_window_to_workspace = 22 }
-"alt-s + Z" = { move_window_to_workspace = 23 }
+"alt-s + 7" = { move_window_to_workspace = 7 }
+"alt-s + 8" = { move_window_to_workspace = 8 }
+"alt-s + 9" = { move_window_to_workspace = 9 }
+"alt-s + A" = { move_window_to_workspace = 10 }
+"alt-s + B" = { move_window_to_workspace = 11 }
+"alt-s + C" = { move_window_to_workspace = 12 }
+"alt-s + D" = { move_window_to_workspace = 13 }
+"alt-s + E" = { move_window_to_workspace = 14 }
+"alt-s + F" = { move_window_to_workspace = 15 }
+"alt-s + G" = { move_window_to_workspace = 16 }
+"alt-s + I" = { move_window_to_workspace = 17 }
+"alt-s + M" = { move_window_to_workspace = 18 }
+"alt-s + O" = { move_window_to_workspace = 19 }
+"alt-s + P" = { move_window_to_workspace = 20 }
+"alt-s + Q" = { move_window_to_workspace = 21 }
+"alt-s + R" = { move_window_to_workspace = 22 }
+"alt-s + S" = { move_window_to_workspace = 23 }
+"alt-s + T" = { move_window_to_workspace = 24 }
+"alt-s + U" = { move_window_to_workspace = 25 }
+"alt-s + W" = { move_window_to_workspace = 26 }
+"alt-s + X" = { move_window_to_workspace = 27 }
+"alt-s + Y" = { move_window_to_workspace = 28 }
+"alt-s + Z" = { move_window_to_workspace = 29 }
 
 "Alt + Tab" = "switch_to_last_workspace"
+"alt-s + Tab" = { move_workspace_to_display = { selector = "right", wrap_around = true } }
+
+"Alt + N" = { binding_mode = "open" }
+"alt-s + Semicolon" = { binding_mode = "service" }
 
 # chained shortcuts
 "alt-c + T" = { exec = "/Applications/Ghostty.app/Contents/MacOS/ghostty" }
@@ -155,5 +186,33 @@ alt-c = "Alt + Control"
 """] }
 "alt-c + F" = "toggle_fullscreen_within_gaps"
 "alt-c + R" = "toggle_window_floating"
+"alt-c + X" = "toggle_space_activated"
 
-"alt-s + X" = "toggle_space_activated"
+# Binding modes hold one command per key, so each action that should also
+# return to the default keymap (aerospace's trailing 'mode main') runs
+# `rift-cli execute binding-mode default` first, then the action.
+
+[binding_modes.open]
+"Escape" = { binding_mode = "default" }
+"T" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; /Applications/Ghostty.app/Contents/MacOS/ghostty"] }
+"W" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; /Applications/Ghostty.app/Contents/MacOS/ghostty -e spacelist"] }
+"C" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; osascript -e 'tell application \"/Applications/Google Chrome.app\" to make new window' -e 'tell application \"/Applications/Google Chrome.app\" to activate'"] }
+"S" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; osascript -e 'tell application \"Safari\" to make new document at end of documents' -e 'tell application \"Safari\" to activate'"] }
+"F" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; osascript -e 'tell application \"Finder\" to make new Finder window' -e 'tell application \"Finder\" to activate'"] }
+"B" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; sketchybar"] }
+
+[binding_modes.service]
+"Escape" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; sketchybar --reload ~/.config/sketchybar/sketchybarrc; rift-cli execute config reload"] }
+"T" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; rift-cli execute window toggle-float"] }
+"F" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; rift-cli execute window toggle-fullscreen-within-gaps"] }
+# close every other window on the active workspace
+"Backspace" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; rift-cli query workspaces | jq -r '.[] | select(.is_active) | .windows[] | select(.is_focused | not) | .window_server_id // empty' | while read -r id; do rift-cli execute window close --window-id \"$id\"; done"] }
+
+"Alt + Shift + H" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; rift-cli execute layout join-window left"] }
+"Alt + Shift + K" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; rift-cli execute layout join-window down"] }
+"Alt + Shift + J" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; rift-cli execute layout join-window up"] }
+"Alt + Shift + L" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; rift-cli execute layout join-window right"] }
+
+"Down" = { exec = ["/bin/sh", "-c", "osascript -e 'set volume output volume ((output volume of (get volume settings)) - 6.25)'"] }
+"Up" = { exec = ["/bin/sh", "-c", "osascript -e 'set volume output volume ((output volume of (get volume settings)) + 6.25)'"] }
+"Shift + Down" = { exec = ["/bin/sh", "-c", "rift-cli execute binding-mode default; osascript -e 'set volume output volume 0'"] }

@@ -126,7 +126,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = "*.{ts,js,tsx,jsx}",
-  command = "LspEslintFixAll",
+  command = "LspOxlintFixAll",
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
