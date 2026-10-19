@@ -48,6 +48,7 @@ fpath+=$(brew --prefix)/share/zsh/site-functions
 export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
 [[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+export PATH="$PATH:$HOME/.docker/bin"
 eval "$(fnm env --use-on-cd --shell zsh)"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=180'
