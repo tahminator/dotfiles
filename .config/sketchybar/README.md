@@ -97,7 +97,7 @@ good state when the window manager is unavailable. App names retain their spaces
 The configuration files are organized as follows:
 
 - `sketchybarrc` / `init.lua` - Entry points
-- `colors.lua` - Color definitions (mirrors the Ghostty palette)
+- `colors.lua` - Color definitions (monochrome, Ghostty palette)
 - `font.lua` - Fonts and character-cell spacing
 - `sparkline.lua` - Text meter used by the CPU and memory items
 - `items/` - Backend-independent UI components

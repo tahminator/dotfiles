@@ -1,0 +1,25 @@
+# Monochrome: white on black, greys for structure, ANSI accents.
+# Shared with Neovim (~/.config/nvim/lua/plugins/nightfox-theme.lua),
+# SketchyBar (~/.config/sketchybar/colors.lua) and tmux (~/.tmux.conf).
+palette = 0=#252525
+palette = 1=#dc5e94
+palette = 2=#67bb6e
+palette = 3=#fbe98a
+palette = 4=#5baef8
+palette = 5=#ee85b4
+palette = 6=#70d7d7
+palette = 7=#dde0e5
+palette = 8=#393939
+palette = 9=#dc5e94
+palette = 10=#67bb6e
+palette = 11=#fbe98a
+palette = 12=#5baef8
+palette = 13=#ee85b4
+palette = 14=#70d7d7
+palette = 15=#feffff
+background = #000000
+foreground = #feffff
+cursor-color = #feffff
+cursor-text = #000000
+selection-background = #393939
+selection-foreground = #feffff
