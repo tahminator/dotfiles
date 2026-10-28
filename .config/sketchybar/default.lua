@@ -5,11 +5,10 @@ local font = require("font")
 -- For a full list of all available item properties see:
 -- https://felixkratz.github.io/SketchyBar/config/items
 
--- Plain text on the bar; one character cell on each side separates items.
 SBAR.default({
 	icon = {
 		font = font.text,
-		color = colors.fg,
+		color = colors.muted,
 		padding_left = font.cell,
 		padding_right = font.cell,
 	},
@@ -19,7 +18,12 @@ SBAR.default({
 		padding_left = 0,
 		padding_right = font.cell,
 	},
-	background = { drawing = false },
-	padding_left = 0,
-	padding_right = 0,
+	-- Glass pill; 6pt inset and radius keep it concentric with the bar corners.
+	background = {
+		color = colors.glass,
+		corner_radius = 6,
+		height = 24,
+	},
+	padding_left = 3,
+	padding_right = 3,
 })

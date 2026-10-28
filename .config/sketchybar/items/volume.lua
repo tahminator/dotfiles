@@ -1,3 +1,4 @@
+local colors = require("colors")
 local font = require("font")
 
 local volume = SBAR.add("item", "volume", {
@@ -11,7 +12,10 @@ volume:subscribe("volume_change", function(env)
 	local volume_percent = tonumber(env.INFO)
 
 	if volume_percent then
-		volume:set({ label = { string = volume_percent == 0 and "mute" or volume_percent .. "%" } })
+		volume:set({
+			label = volume_percent == 0 and { string = "mute", color = colors.muted }
+				or { string = volume_percent .. "%", color = colors.fg },
+		})
 	end
 end)
 

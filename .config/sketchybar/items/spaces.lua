@@ -1,3 +1,4 @@
+local colors = require("colors")
 local font = require("font")
 local icon_map = require("icon_map")
 local wm = require("wm")
@@ -5,6 +6,7 @@ local wm = require("wm")
 ---@type table<string, SbarItem>
 local items = {}
 local previous_order
+local has_group = false
 
 ---@param ws WMWorkspace
 local function create_space(ws)
@@ -12,10 +14,10 @@ local function create_space(ws)
 	local item = SBAR.add("item", "space." .. ws.id, {
 		position = "left",
 		drawing = false,
-		-- Half a character cell after each workspace.
-		padding_right = font.cell // 2,
 		icon = { string = ws.label },
 		label = { font = font.apps },
+		-- Inset 3pt (item padding) inside the group pill, with a matching smaller radius.
+		background = { height = 18, corner_radius = 3 },
 	})
 	item:subscribe("mouse.clicked", function(env)
 		wm.activate_workspace(ws.id, env.BUTTON)
@@ -50,16 +52,14 @@ wm.subscribe(function(state)
 		local item = items[ws.id] or create_space(ws)
 		seen[ws.id] = true
 		ordered[#ordered + 1] = "space." .. ws.id
-		-- The current workspace is bracketed, "[3]"; the fixed width keeps
-		-- neighbours from shifting when focus moves.
+		-- The focused workspace is inverted, like Ghostty's block cursor.
+		local text = ws.focused and colors.black or colors.muted
 		item:set({
 			drawing = ws.focused or #ws.apps > 0,
 			display = ws.display or "all",
-			icon = {
-				string = ws.focused and "[" .. ws.label .. "]" or ws.label,
-				width = font.label_width(#ws.label + 2),
-				align = "center",
-			},
+			icon = { string = ws.label, color = text },
+			label = { color = text },
+			background = { color = ws.focused and colors.fg or colors.transparent },
 		})
 		SBAR.animate("sin", 10, function()
 			item:set({ label = { string = icon_strip(ws.apps) } })
@@ -71,6 +71,7 @@ wm.subscribe(function(state)
 			items[id] = nil
 		end
 	end
+	local members = { table.unpack(ordered) }
 	-- Async workspace creation must not place spaces after the front-app item.
 	ordered[#ordered + 1] = "front_app"
 	local quoted = {}
@@ -81,6 +82,14 @@ wm.subscribe(function(state)
 	if order ~= previous_order then
 		SBAR.exec("sketchybar --reorder " .. order)
 		previous_order = order
+		-- One glass pill behind the whole workspace strip.
+		if has_group then
+			SBAR.remove("spaces")
+		end
+		has_group = #members > 0
+		if has_group then
+			SBAR.add("bracket", "spaces", members, { background = { color = colors.glass } })
+		end
 	end
 end)
 
