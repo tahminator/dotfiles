@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # tla - tmux launch [session] app
-# unlike tl/tlp/tlw, this just launches a single window running a single binary
+# unlike tlg, this just launches a single window running a single binary
 
 if [[ -z "$1" ]]; then
   echo "Pass in a binary name. e.g. tla htop"

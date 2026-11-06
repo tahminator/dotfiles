@@ -4,6 +4,7 @@
 
 vim.g.lazyvim_eslint_auto_format = true
 vim.g.lazyvim_prettier_needs_config = false
+vim.g.snacks_animate = false
 vim.opt.spell = false
 
 vim.lsp.enable("kotlin_lsp")

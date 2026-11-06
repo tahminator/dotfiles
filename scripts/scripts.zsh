@@ -11,9 +11,8 @@ SCRIPTS=(
   "t"
   "td"
   "tk"
-  "tl"
-  "tlp"
-  "tlw"
+  "tlg"
+  "tlprune"
   "tspot"
   "ts"
   "launcher"
@@ -36,6 +35,8 @@ done
 for script in "${SCRIPTS[@]}"; do
   chmod +x "$SCRIPTS_DIR/$script.sh"
 done
+
+source "${0:A:h}/completions.zsh"
 
 # extra short aliases below here
 alias lc=latex-compile
