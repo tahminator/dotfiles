@@ -27,6 +27,9 @@
 !personal/
 !personal/README.md
 
+!github/
+!github/.zshrc
+
 !.config/
 !.config/aerospace/
 !.config/aerospace/**

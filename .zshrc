@@ -91,6 +91,9 @@ source "$HOME/work/.zshrc"
 # commit personal specific config here
 source "$HOME/personal/.zshrc"
 
+# commit ~/github specific config here
+source "$HOME/github/.zshrc"
+
 # direnv
 eval "$(direnv hook zsh)"
 
