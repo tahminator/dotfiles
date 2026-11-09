@@ -1,5 +1,9 @@
 SCRIPTS_DIR=$(eval echo "~/scripts/files")
 
+# the rex CLI, for the r* scripts; the Rex app doesn't put it on PATH
+(( $+commands[rex] )) ||
+  path+=("$HOME/Library/Application Support/com.superlogical.rex/RexServer/Versions/Current/Rex Server.app/Contents/MacOS")
+
 # no extensions, just filenames
 SCRIPTS=(
   "gradle-fix"
@@ -27,6 +31,16 @@ SCRIPTS=(
   "memk"
   "jp"
   "tmux-reload"
+  "tmux-agents"
+  "rt"
+  "rd"
+  "rk"
+  "rlg"
+  "rlprune"
+  "rspot"
+  "rs"
+  "rla"
+  "rex-reload"
 )
 
 for script in "${SCRIPTS[@]}"; do

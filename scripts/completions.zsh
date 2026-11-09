@@ -61,7 +61,7 @@ _tlg() {
     '2:branch:_tlg_branches'
 }
 
-compdef _tlg tlg tlg.sh
+compdef _tlg tlg tlg.sh rlg rlg.sh
 
 # tlprune [worktree]
 _tlprune() {
@@ -87,4 +87,4 @@ _tlprune() {
     '1:worktree:_tlprune_worktrees'
 }
 
-compdef _tlprune tlprune tlprune.sh
+compdef _tlprune tlprune tlprune.sh rlprune rlprune.sh
