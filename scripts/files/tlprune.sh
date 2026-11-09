@@ -1,6 +1,11 @@
 #!/bin/zsh
 
-# tlprune - remove every tlg worktree (~/github/{owner}/{repo}.wt.*)
+# tlprune - remove tlg worktrees (~/github/{owner}/{repo}.wt.*)
+#
+# usage: tlprune [worktree]
+#
+#   tlprune                 every worktree
+#   tlprune repo.wt.name    just that one (owner/repo.wt.name if the bare name is ambiguous)
 #
 # lists them, asks for confirmation, then for each one:
 #   - skips it if it has uncommitted or untracked changes (gitignored files don't count)
@@ -10,7 +15,33 @@
 
 GITHUB_DIR="$HOME/github"
 
-worktrees=("$GITHUB_DIR"/*/*.wt.*(N/))
+die() {
+  echo "$1" >&2
+  exit 1
+}
+
+usage="usage: tlprune [worktree]"
+
+[[ "$1" == (-h|--help) ]] && { echo "$usage"; exit 0; }
+[[ $# -le 1 && "$1" != -* ]] || die "$usage"
+
+if [[ -n "$1" ]]; then
+  [[ "$1" == *.wt.* ]] || die "Not a worktree name: $1 (expected repo.wt.name)"
+  if [[ "$1" == */* ]]; then
+    worktrees=("$GITHUB_DIR/$1"(N/))
+  else
+    worktrees=("$GITHUB_DIR"/*/"$1"(N/))
+  fi
+
+  (( ${#worktrees} == 0 )) && die "No worktree named $1 in $GITHUB_DIR"
+  if (( ${#worktrees} > 1 )); then
+    echo "Multiple worktrees named $1, pass owner/$1 instead:" >&2
+    for dir in "${worktrees[@]}"; do echo "  ${dir#$GITHUB_DIR/}" >&2; done
+    exit 1
+  fi
+else
+  worktrees=("$GITHUB_DIR"/*/*.wt.*(N/))
+fi
 
 if (( ${#worktrees} == 0 )); then
   echo "No worktrees to prune"

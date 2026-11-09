@@ -4,7 +4,7 @@
 #
 # usage: tlg <repo|owner/repo> [branch]
 #
-#   tlg repo         open the main checkout as-is
+#   tlg repo         open the main checkout as-is (owner/repo clones it if missing)
 #   tlg repo branch  open the checkout that has branch checked out (the main
 #                    checkout or any worktree); if none does, create worktree
 #                    ~/github/{owner}/{repo}.wt.{branch, / replaced by -} first
@@ -36,7 +36,11 @@ branch="$2"
 # resolve the main checkout
 if [[ "$target" == */* ]]; then
   repo_dir="$GITHUB_DIR/$target"
-  [[ -d "$repo_dir" ]] || die "No repo at $repo_dir"
+  if [[ ! -d "$repo_dir" ]]; then
+    echo "Cloning $target..."
+    mkdir -p "${repo_dir:h}" || die "Could not create ${repo_dir:h}"
+    gh repo clone "$target" "$repo_dir" || die "Clone of $target failed"
+  fi
 else
   matches=("$GITHUB_DIR"/*/"$target"(N/))
 

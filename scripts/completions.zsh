@@ -25,7 +25,7 @@ _tlg() {
     local -a unique=(${(u)names})
     local name
     for name in $unique; do
-      (( ${#${(M)names:#$name}} > 1 )) && unique=(${unique:#$name})
+      (( ${#${(@M)names:#$name}} > 1 )) && unique=(${unique:#$name})
     done
     _describe -t repos 'repo' unique
     _describe -t qualified-repos 'owner/repo' qualified
@@ -62,3 +62,29 @@ _tlg() {
 }
 
 compdef _tlg tlg tlg.sh
+
+# tlprune [worktree]
+_tlprune() {
+  local github_dir="$HOME/github"
+  local -a wt_dirs=("$github_dir"/*/*.wt.*(N/))
+
+  # bare names only when unique; owner/name always. described by checked out branch
+  _tlprune_worktrees() {
+    local -a names=(${wt_dirs:t}) bare=() qualified=()
+    local dir name branch
+    for dir in $wt_dirs; do
+      name="${dir:t}"
+      branch="$(git -C "$dir" branch --show-current 2>/dev/null)"
+      qualified+=("${${dir#$github_dir/}//:/\\:}:$branch")
+      (( ${#${(@M)names:#$name}} == 1 )) && bare+=("${name//:/\\:}:$branch")
+    done
+    _describe -t worktrees 'worktree' bare
+    _describe -t qualified-worktrees 'owner/worktree' qualified
+  }
+
+  _arguments \
+    '(-)-h[show usage]' \
+    '1:worktree:_tlprune_worktrees'
+}
+
+compdef _tlprune tlprune tlprune.sh
