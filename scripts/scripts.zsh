@@ -26,6 +26,7 @@ SCRIPTS=(
   "tla"
   "memk"
   "jp"
+  "tmux-reload"
 )
 
 for script in "${SCRIPTS[@]}"; do
