@@ -100,10 +100,6 @@ eval "$(direnv hook zsh)"
 # uncomment next line & commit inline secrets if you REALLY need to (would not recommend)
 # source ~/.zshrc-local
 
-# disable shared history (enabled by default from oh-my-zsh)
-setopt noincappendhistory
-setopt nosharehistory
-
 # for lazyjira
 export LAZYJIRA_CONFIG_DIR=~/.config/lazyjira
 
