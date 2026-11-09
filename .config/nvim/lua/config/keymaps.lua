@@ -2,6 +2,12 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+vim.keymap.set({ "n", "v", "o" }, "j", "k", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v", "o" }, "k", "j", { noremap = true, silent = true })
+
+vim.keymap.set({ "n", "v", "o" }, "<C-k>", "<C-w>j", { noremap = true, silent = true })
+vim.keymap.set({ "n", "v", "o" }, "<C-j>", "<C-w>k", { noremap = true, silent = true })
+
 vim.keymap.set(
   "n",
   "<leader>mt",
@@ -175,3 +181,8 @@ vim.keymap.set(
   end,
   { noremap = true, silent = true, desc = "Toggle Kubectl in new tab" }
 )
+
+vim.g.VM_custom_motions = {
+  ["k"] = "j",
+  ["j"] = "k",
+}

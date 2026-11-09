@@ -30,8 +30,8 @@ return {
     use_popups_for_input = false,
     window = {
       fuzzy_finder_mappings = {
-        ["<C-j>"] = "move_cursor_down",
-        ["<C-k>"] = "move_cursor_up",
+        ["<C-j>"] = "move_cursor_up",
+        ["<C-k>"] = "move_cursor_down",
       },
     },
     filesystem = {
