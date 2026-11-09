@@ -113,20 +113,20 @@ return {
       win = {
         input = {
           keys = {
-            ["<c-k>"] = { "list_down", mode = { "i", "n" } },
-            ["<c-j>"] = { "list_up", mode = { "i", "n" } },
-            ["k"] = "list_down",
-            ["j"] = "list_up",
+            ["<c-k>"] = { "list_up", mode = { "i", "n" } },
+            ["<c-j>"] = { "list_down", mode = { "i", "n" } },
+            ["k"] = "list_up",
+            ["j"] = "list_down",
           },
         },
         list = {
           wo = { number = true, relativenumber = true, signcolumn = "no" },
           keys = {
             ["e"] = "toggle_maximize",
-            ["<c-k>"] = "list_down",
-            ["<c-j>"] = "list_up",
-            ["k"] = "list_down",
-            ["j"] = "list_up",
+            ["<c-k>"] = "list_up",
+            ["<c-j>"] = "list_down",
+            ["k"] = "list_up",
+            ["j"] = "list_down",
           },
         },
       },

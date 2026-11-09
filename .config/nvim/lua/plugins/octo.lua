@@ -8,8 +8,8 @@ return {
     enable_builtin = true,
     mappings = {
       file_panel = {
-        next_entry = { lhs = "k", desc = "move to next changed file" },
-        prev_entry = { lhs = "j", desc = "move to previous changed file" },
+        next_entry = { lhs = "j", desc = "move to next changed file" },
+        prev_entry = { lhs = "k", desc = "move to previous changed file" },
       },
     },
     use_local_fs = true,
