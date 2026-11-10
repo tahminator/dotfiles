@@ -1,6 +1,7 @@
 return {
   {
-    "rauls-kjarners/omp.nvim",
+    "omp.nvim",
+    dir = vim.fn.expand("~/.omp/dev/omp.nvim"),
     event = "VeryLazy",
     config = function()
       require("omp").setup()

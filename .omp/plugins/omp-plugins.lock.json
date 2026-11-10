@@ -1,0 +1,15 @@
+{
+  "plugins": {
+    "jenkins-debug": {
+      "version": "0.2.8",
+      "enabledFeatures": null,
+      "enabled": true
+    },
+    "omp.nvim": {
+      "version": "2.0.0",
+      "enabledFeatures": null,
+      "enabled": true
+    }
+  },
+  "settings": {}
+}

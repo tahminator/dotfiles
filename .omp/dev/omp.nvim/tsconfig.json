@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"target": "ES2025",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"noEmit": true,
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"exactOptionalPropertyTypes": true,
+		"noImplicitOverride": true,
+		"erasableSyntaxOnly": true,
+		"noUncheckedIndexedAccess": true,
+		"types": ["node", "bun"]
+	},
+	// rootDir is omitted deliberately: noEmit makes it meaningless, and it would
+	// reject tests/ living outside src/.
+	"include": ["src/**/*", "tests/**/*.ts"]
+}
