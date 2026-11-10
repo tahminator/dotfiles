@@ -8,7 +8,8 @@
 #   working  busy
 #
 # state comes from the tmux-state omp extension (~/.omp/agent/extensions/tmux-state.ts);
-# agents started before it was installed fall back to omp's pane title (working/idle only, no age).
+# agents started before it was installed fall back to omp's pane title glyph (no age):
+# "!" needs attention, ">" idle, anything else (spinner frame or ":") working.
 #
 # keys: every agent owns one jump key (1-9, then a-z skipping q) for its whole lifetime. a new
 # agent takes the lowest free key; a key frees up when its omp process exits. the key is stored on
@@ -66,14 +67,18 @@ render() {
       unkeyed+=("$id")
     fi
 
-    # omp titles look like "π > title" (idle) or "π <spinner> title" (working)
+    # omp titles look like "π > title" (idle), "π ! title" (attention) or "π <spinner> title" (working)
     local glyph=""
     if [[ "$title" == "π "* ]]; then
       glyph="${title[3]}"
       title="${title[5,-1]}"
     fi
     if [[ -z "$state" ]]; then
-      [[ "$glyph" == [⠀-⣿] ]] && state=working || state=idle
+      case $glyph in
+        '!') state=input ;;
+        ''|'>') state=idle ;;
+        *) state=working ;;
+      esac
       since=""
     fi
 
@@ -120,7 +125,7 @@ render() {
     [[ -n "$since" ]] && when=$(age $(( EPOCHSECONDS - since )))
 
     local mark=" "
-    [[ "$id" == "$current_pane" ]] && mark=$'\e[1m*\e[0m'
+    [[ "$id" == "$current_pane" ]] && mark="*"
 
     out+=$(printf '%s %s %s%-8s\e[0m %6s  %-6s %s' "$mark" "${k:- }" "$color" "$state" "$when" "$p[3]" "$title")
     out+=$'\e[K\n'
