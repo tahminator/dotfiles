@@ -49,7 +49,8 @@ if (( ${#worktrees} == 0 )); then
 fi
 
 for dir in "${worktrees[@]}"; do
-  session_name="${${dir:t}//[.:]/_}"
+  session_name="${dir:h:t}/${dir:t}"
+  session_name="${session_name//[.:]/_}"
   open=""
   tmux has-session -t "=$session_name" 2>/dev/null && open=" (tmux session $session_name open, killed on removal)"
   echo "  ${dir#$GITHUB_DIR/} [$(git -C "$dir" branch --show-current 2>/dev/null)]$open"
@@ -69,7 +70,8 @@ for dir in "${worktrees[@]}"; do
     continue
   fi
 
-  session_name="${${dir:t}//[.:]/_}"
+  session_name="${dir:h:t}/${dir:t}"
+  session_name="${session_name//[.:]/_}"
   tmux kill-session -t "=$session_name" 2>/dev/null
 
   if git -C "$dir" worktree remove "$dir"; then

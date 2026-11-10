@@ -123,8 +123,9 @@ if [[ -n "$branch" ]]; then
   fi
 fi
 
-# tmux treats . and : as target separators
-session_name="${${dir:t}//[.:]/_}"
+# session is owner/repo (dirs live in ~/github/{owner}/); tmux treats . and : as target separators
+session_name="${dir:h:t}/${dir:t}"
+session_name="${session_name//[.:]/_}"
 
 if tmux has-session -t "=$session_name" 2>/dev/null; then
   echo "Session $session_name already exists"
