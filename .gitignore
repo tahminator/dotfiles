@@ -61,4 +61,9 @@
 !.config/lazyjira/**
 .config/lazyjira/auth.json
 
+!.omp/
+!.omp/agent/
+!.omp/agent/extensions/
+!.omp/agent/extensions/tmux-state.ts
+
 
