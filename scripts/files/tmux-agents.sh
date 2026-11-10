@@ -14,6 +14,7 @@
 # agent takes the lowest free key; a key frees up when its omp process exits. the key is stored on
 # the pane as @omp_key = "<key>:<omp pid>", so a different omp started later in the same pane gets
 # a fresh assignment. q/esc quits. refreshes every 2s. bound to prefix+a as a popup in ~/.tmux.conf.
+# * marks the agent in the pane you were on when you opened this popup (if any).
 
 zmodload zsh/datetime
 
@@ -30,6 +31,9 @@ jump_keys=({1..9} {a..p} {r..z})
 
 # jump key -> tmux target / pane id, rebuilt every render
 typeset -A jump_target jump_pane
+
+# inside the popup this resolves to the client's active pane, i.e. the one you opened it from
+current_pane=$(tmux display-message -p '#{pane_id}')
 
 render() {
   # foreground omp process per tty: the identity that a key is bound to
@@ -115,7 +119,10 @@ render() {
     local when="-"
     [[ -n "$since" ]] && when=$(age $(( EPOCHSECONDS - since )))
 
-    out+=$(printf '  %s %s%-8s\e[0m %6s  %-6s %s' "${k:- }" "$color" "$state" "$when" "$p[3]" "$title")
+    local mark=" "
+    [[ "$id" == "$current_pane" ]] && mark=$'\e[1m*\e[0m'
+
+    out+=$(printf '%s %s %s%-8s\e[0m %6s  %-6s %s' "$mark" "${k:- }" "$color" "$state" "$when" "$p[3]" "$title")
     out+=$'\e[K\n'
   done
 
