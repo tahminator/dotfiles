@@ -2,12 +2,15 @@
 
 # tlg - tmux launch [session] git repo in ~/github/{owner}/{repo}
 #
-# usage: tlg <repo|owner/repo> [branch]
+# usage: tlg <repo|owner/repo|.> [branch]
 #
 #   tlg repo         open the main checkout as-is (owner/repo clones it if missing)
 #   tlg repo branch  open the checkout that has branch checked out (the main
 #                    checkout or any worktree); if none does, create worktree
 #                    ~/github/{owner}/{repo}.wt.{branch, / replaced by -} first
+#   tlg . branch     shorthand for "tlg repo branch" using the repo containing
+#                    the current directory (resolved to its main checkout,
+#                    even when run from inside one of its worktrees)
 #
 # a new worktree's branch is resolved as:
 #   - the local branch if it exists
@@ -25,7 +28,7 @@ die() {
   exit 1
 }
 
-usage="usage: tlg <repo|owner/repo> [branch]"
+usage="usage: tlg <repo|owner/repo|.> [branch]"
 
 [[ "$1" == (-h|--help) ]] && { echo "$usage"; exit 0; }
 [[ -n "$1" && $# -le 2 && "$1" != -* && "$2" != -* ]] || die "$usage"
@@ -33,8 +36,20 @@ usage="usage: tlg <repo|owner/repo> [branch]"
 target="$1"
 branch="$2"
 
+[[ "$target" == "." && -z "$branch" ]] && die "tlg . <branch>: branch is required"
+
 # resolve the main checkout
-if [[ "$target" == */* ]]; then
+if [[ "$target" == "." ]]; then
+  git rev-parse --is-inside-work-tree >/dev/null 2>&1 || die "$PWD is not a git repo"
+
+  # use the main checkout even if the cwd is itself a worktree (it's always listed first)
+  repo_dir="$PWD"
+  for line in "${(@f)$(git worktree list --porcelain)}"; do
+    case "$line" in
+    "worktree "*) repo_dir="${line#worktree }"; break ;;
+    esac
+  done
+elif [[ "$target" == */* ]]; then
   repo_dir="$GITHUB_DIR/$target"
   if [[ ! -d "$repo_dir" ]]; then
     echo "Cloning $target..."
