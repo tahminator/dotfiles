@@ -1,11 +1,14 @@
-// Publishes this agent's state on its tmux pane so `tmux-agents` can show who needs attention.
+// Publishes this agent's state on its tmux pane so `tmux-agents` can show who needs attention
+// and `omp-restart` can resume the session it was on.
 //
 // Pane options written (on $TMUX_PANE):
-//   @omp_state  input   - blocked on you: an `ask` question or a tool approval prompt
-//               idle    - turn finished, waiting for your next prompt
-//               working - agent turn in flight
-//   @omp_since  epoch seconds of the last state change
-// Both are unset when the session shuts down.
+//   @omp_state    input   - blocked on you: an `ask` question or a tool approval prompt
+//                 idle    - turn finished, waiting for your next prompt
+//                 working - agent turn in flight
+//   @omp_since    epoch seconds of the last state change
+//   @omp_session  "<omp pid>:<session file>", updated on /new, /resume, /fork. The pid lets a
+//                 reader reject a value left behind by an omp that died without shutting down.
+// All are unset when the session shuts down.
 
 import { execFile } from "node:child_process";
 import type { ExtensionAPI } from "@oh-my-pi/pi-coding-agent";
@@ -26,11 +29,16 @@ function tmux(args: string[]): void {
 function publish(state: State | null): void {
   if (!pane) return;
   if (state === null) {
-    tmux(["set-option", "-p", "-u", "-t", pane, "@omp_state", ";", "set-option", "-p", "-u", "-t", pane, "@omp_since"]);
+    tmux(["set-option", "-p", "-u", "-t", pane, "@omp_state", ";", "set-option", "-p", "-u", "-t", pane, "@omp_since", ";", "set-option", "-p", "-u", "-t", pane, "@omp_session"]);
     return;
   }
   const now = String(Math.floor(Date.now() / 1000));
   tmux(["set-option", "-p", "-t", pane, "@omp_state", state, ";", "set-option", "-p", "-t", pane, "@omp_since", now]);
+}
+
+function publishSession(file: string | undefined): void {
+  if (!pane || !file) return;
+  tmux(["set-option", "-p", "-t", pane, "@omp_session", `${process.pid}:${file}`]);
 }
 
 export default function tmuxState(pi: ExtensionAPI) {
@@ -40,7 +48,12 @@ export default function tmuxState(pi: ExtensionAPI) {
   // lifecycle reflects the pane. Subagent questions/approvals still render in this pane, so those count.
   const isMain = (ctx: { agent?: { kind: string }; hasUI: boolean }) => ctx.hasUI && ctx.agent?.kind !== "sub";
 
-  pi.on("session_start", (_event, ctx) => { if (isMain(ctx)) publish("idle"); });
+  pi.on("session_start", (_event, ctx) => {
+    if (!isMain(ctx)) return;
+    publish("idle");
+    publishSession(ctx.sessionManager.getSessionFile());
+  });
+  pi.on("session_switch", (_event, ctx) => { if (isMain(ctx)) publishSession(ctx.sessionManager.getSessionFile()); });
   pi.on("agent_start", (_event, ctx) => { if (isMain(ctx)) publish("working"); });
   pi.on("agent_end", (_event, ctx) => { if (isMain(ctx)) publish("idle"); });
   pi.on("session_shutdown", (_event, ctx) => { if (isMain(ctx)) publish(null); });

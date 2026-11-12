@@ -32,6 +32,7 @@ SCRIPTS=(
   "jp"
   "tmux-reload"
   "tmux-agents"
+  "omp-restart"
   "rt"
   "rd"
   "rk"
