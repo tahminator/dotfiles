@@ -17,6 +17,7 @@ SCRIPTS=(
   "tk"
   "tlg"
   "tlprune"
+  "tld"
   "tspot"
   "ts"
   "launcher"
