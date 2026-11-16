@@ -29,6 +29,55 @@ export GPG_TTY=$(tty)
 # configure shell to append to history, not overwrite.
 setopt inc_append_history
 setopt share_history
+# per-repo history: inside ~/github/<owner>/<repo>/** use that repo's own history,
+# everywhere else fall back to the global $HISTFILE (~/.zsh_history).
+_repo_hist_root=${${:-$HOME/github}:A}
+_repo_hist_dir=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/repo-history
+_repo_hist_file=  # empty = global history active
+_repo_hist_global_file=$HISTFILE
+_repo_hist_switch() {
+  local cwd=${PWD:A} target=
+  if [[ $cwd/ == $_repo_hist_root/*/*/* ]]; then
+    local -a parts=(${(s:/:)${cwd#$_repo_hist_root/}})
+    target=$_repo_hist_dir/$parts[1]/$parts[2]
+  fi
+  [[ $target == $_repo_hist_file ]] && return  # same scope, keep current list
+  [[ -n $_repo_hist_file ]] && fc -P           # save repo list, restore global
+  if [[ -n $target ]]; then
+    mkdir -p ${target:h}
+    fc -p $target $HISTSIZE $SAVEHIST          # no -a: must outlive this function
+  fi
+  _repo_hist_file=$target
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd _repo_hist_switch
+_repo_hist_switch
+# autosuggestions: try the active (repo) history first, then fall back to global.
+# Global entries are cached and only re-read at the prompt when ~/.zsh_history changes.
+zmodload -F zsh/stat b:zstat
+typeset -ga _repo_hist_global
+_repo_hist_global_stamp=
+_repo_hist_global_refresh() {
+  [[ -n $_repo_hist_file ]] || return  # global list is already $history
+  local -A st
+  zstat -H st -- $_repo_hist_global_file 2>/dev/null || return
+  [[ $st[mtime]:$st[size] == $_repo_hist_global_stamp ]] && return
+  fc -ap /dev/null $HISTSIZE 0         # scratch list, popped on return, never saved
+  fc -R $_repo_hist_global_file
+  _repo_hist_global=("${(@v)history}")  # newest first
+  _repo_hist_global_stamp=$st[mtime]:$st[size]
+}
+add-zsh-hook precmd _repo_hist_global_refresh
+_zsh_autosuggest_strategy_global_history() {
+  emulate -L zsh
+  setopt EXTENDED_GLOB
+  [[ -n $_repo_hist_file ]] || return
+  local prefix="${1//(#m)[\\*?[\]<>()|^~#]/\\$MATCH}"  # same escaping as the `history` strategy
+  local pattern="$prefix*"
+  [[ -n $ZSH_AUTOSUGGEST_HISTORY_IGNORE ]] && pattern="($pattern)~($ZSH_AUTOSUGGEST_HISTORY_IGNORE)"
+  typeset -g suggestion="${_repo_hist_global[(r)$pattern]}"
+}
+ZSH_AUTOSUGGEST_STRATEGY=(history global_history)
 # Stop showing the annoying zsh update msg so frequently
 export UPDATE_ZSH_DAYS=5
 # so your fingers dont fall off
