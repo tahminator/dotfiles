@@ -22,6 +22,7 @@ SCRIPTS=(
   "ts"
   "launcher"
   "gcw"
+  "git-amend-oops"
   "desc"
   "gradlek"
   "bp"
