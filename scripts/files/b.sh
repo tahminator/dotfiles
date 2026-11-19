@@ -2,6 +2,15 @@
 
 set -e
 
+if [[ "$WORK" == "true" ]]; then
+  echo "mode: work"
+  BREWFILES=(~/.Brewfile.common ~/.Brewfile.work ~/.Brewfile.worksecret)
+else
+  echo "mode: personal"
+  BREWFILES=(~/.Brewfile.common ~/.Brewfile.personal)
+fi
+echo ""
+
 if [ -z "${SUDO_KEEPALIVE_PID:-}" ]; then
   sudo -v
   (set +e; while true; do sudo -n -v 2>/dev/null || sudo -v; sleep 60; kill -0 "$$" 2>/dev/null || exit; done) &
@@ -11,7 +20,7 @@ fi
 TEMP_BREWFILE=$(mktemp)
 trap 'kill "$SUDO_KEEPALIVE_PID" 2>/dev/null; rm -f "$TEMP_BREWFILE"' EXIT
 
-cat ~/.Brewfile.common ~/.Brewfile.work ~/.Brewfile.worksecret >"$TEMP_BREWFILE"
+cat "${BREWFILES[@]}" >"$TEMP_BREWFILE"
 
 echo "checking for packages to install..."
 echo ""
@@ -28,7 +37,7 @@ while true; do
 
     echo ""
     echo "install complete"
-    exec "$(dirname "$0")/bws.sh"
+    exec "$(dirname "$0")/bs.sh"
     ;;
   [Nn])
     echo "install cancelled"
