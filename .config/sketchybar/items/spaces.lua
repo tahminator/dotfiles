@@ -56,7 +56,7 @@ wm.subscribe(function(state)
 		local text = ws.focused and colors.black or colors.muted
 		item:set({
 			drawing = ws.focused or #ws.apps > 0,
-			display = ws.display or "all",
+			display = ws.display,
 			icon = { string = ws.label, color = text },
 			label = { color = text },
 			background = { color = ws.focused and colors.fg or colors.transparent },
@@ -72,8 +72,7 @@ wm.subscribe(function(state)
 		end
 	end
 	local members = { table.unpack(ordered) }
-	-- Async workspace creation must not place spaces after the front-app item.
-	ordered[#ordered + 1] = "front_app"
+	table.insert(ordered, 1, "front_app")
 	local quoted = {}
 	for _, name in ipairs(ordered) do
 		quoted[#quoted + 1] = "'" .. name:gsub("'", "'\\''") .. "'"

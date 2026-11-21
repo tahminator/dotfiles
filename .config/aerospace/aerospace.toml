@@ -14,7 +14,7 @@ after-login-command = []
 after-startup-command = ['exec-and-forget sketchybar']
 
 # Start AeroSpace at login
-start-at-login = true
+start-at-login = false
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -205,8 +205,8 @@ alt-n = 'mode open'
 
 [mode.open.binding]
 esc = 'mode main'
-t = ["exec-and-forget /Applications/Ghostty.app/Contents/MacOS/ghostty", 'mode main']
-w = ["exec-and-forget /Applications/Ghostty.app/Contents/MacOS/ghostty -e 'spacelist'", 'mode main']
+t = ["exec-and-forget /usr/bin/open -na /Applications/Ghostty.app --args --quit-after-last-window-closed=true", 'mode main']
+w = ["exec-and-forget /usr/bin/open -na /Applications/Ghostty.app --args --quit-after-last-window-closed=true -e spacelist", 'mode main']
 # t = ['''exec-and-forget osascript -e '
 # set appName to "WezTerm"
 # if application appName is running then
@@ -215,19 +215,7 @@ w = ["exec-and-forget /Applications/Ghostty.app/Contents/MacOS/ghostty -e 'space
 #   tell application appName to activate
 # end if'
 # ''', 'mode main']
-# c = ['''exec-and-forget osascript -e '
-#   tell application "/Applications/Google Chrome.app"
-#       make new window
-#       activate
-#   end tell'
-#   ''', 'mode main']
-c = ['''exec-and-forget osascript -e '
-          tell application "/Applications/Google Chrome.app"
-              make new window
-              activate
-          end tell
-'
-    ''', 'mode main']
+c = ['exec-and-forget /usr/bin/open -na "/Applications/Google Chrome.app" --args --new-window', 'mode main']
 s = ['''exec-and-forget osascript -e '
         tell application "Safari"
             make new document at end of documents

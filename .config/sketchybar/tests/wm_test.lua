@@ -117,8 +117,8 @@ package.loaded.riftapi = {
 	query = {
 		workspaces = function()
 			return {
-				{ index = 0, is_active = false, windows = {} },
-				{ index = 30, is_active = true, windows = {
+				{ index = 0, name = "a", is_active = true, is_focused = false, windows = {} },
+				{ index = 30, is_active = true, is_focused = true, windows = {
 					{ app_name = "Mail", is_focused = false },
 					{ app_name = "Google Chrome", is_focused = true },
 				} },
@@ -135,6 +135,9 @@ package.loaded.riftapi = {
 local rift = require("wm.rift").new()
 rift.get_state(function(state)
 	equal(state.front_app, "Google Chrome")
+	equal(state.workspaces[1].label, "A")
+	equal(state.workspaces[1].focused, false)
+	equal(state.workspaces[2].focused, true)
 	equal(state.workspaces[2].id, "30")
 	equal(state.workspaces[2].label, "31")
 end)
@@ -145,7 +148,7 @@ assert(created)
 rift.watch(function() end)
 assert(watching)
 package.loaded.riftapi.query.applications = function()
-	return { { name = "Finder", is_active = true } }
+	return { { name = "Mail", is_frontmost = false }, { name = "Finder", is_frontmost = true } }
 end
 rift.get_state(function(state) equal(state.front_app, "Finder") end)
 

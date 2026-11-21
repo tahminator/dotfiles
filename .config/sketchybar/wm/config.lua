@@ -1,5 +1,5 @@
 ---@type WindowManagerName
-local backend = "aerospace" -- "aerospace", "flightdeck", or "rift"
+local backend = "rift" -- "aerospace", "flightdeck", or "rift"
 
 return {
 	backend = backend,

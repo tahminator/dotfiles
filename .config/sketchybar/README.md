@@ -69,9 +69,14 @@ Rift is selected. Restart/reload SketchyBar after changing backends.
 
 Both `items/spaces.lua` and `items/front_app.lua` render the same normalized state.
 Empty, inactive workspaces are hidden; focused or occupied workspaces are shown.
+The front application appears to the left of the workspace strip.
 Left-click switches workspace. Right-click creates a workspace on Rift; on the
-AeroSpace-compatible backend it switches workspace normally. Rift retains its
-existing labels, with numeric fallback for additional workspaces.
+AeroSpace-compatible backend it switches workspace normally. Rift displays the
+workspace names reported by Rift (uppercased), with a numeric fallback when a
+name is absent. It uses Rift's globally focused workspace and frontmost application
+flags rather than treating every display's active workspace as focused.
+Rift workspaces appear on all SketchyBar displays; AeroSpace-compatible
+workspaces use the configured display.
 
 Existing `aerospace_workspace_change` and `front_app_changed` hooks still work.
 Flightdeck accepts those same hooks plus `flightdeck_workspace_change`. Native

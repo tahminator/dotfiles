@@ -1,32 +1,5 @@
 local M = {}
 
-local labels = {
-	"",
-	"1",
-	"2",
-	"3",
-	"4",
-	"5",
-	"6",
-	"A",
-	"C",
-	"D",
-	"E",
-	"F",
-	"G",
-	"I",
-	"M",
-	"O",
-	"P",
-	"Q",
-	"S",
-	"T",
-	"U",
-	"W",
-	"Y",
-	"Z",
-}
-
 ---@return WMBackend
 function M.new()
 	---@type RiftAPI
@@ -48,22 +21,22 @@ function M.new()
 			for _, window in ipairs(ws.windows or {}) do
 				if window.app_name and window.app_name ~= "" then
 					apps[#apps + 1] = window.app_name
-					if ws.is_active and window.is_focused then
+					if ws.is_focused and window.is_focused then
 						state.front_app = window.app_name
 					end
 				end
 			end
 			state.workspaces[#state.workspaces + 1] = {
 				id = tostring(ws.index),
-				label = labels[ws.index + 1] or tostring(ws.index + 1),
-				focused = ws.is_active,
+				label = type(ws.name) == "string" and ws.name ~= "" and ws.name:upper() or tostring(ws.index + 1),
+				focused = ws.is_focused,
 				apps = apps,
 			}
 		end
 		-- An active application's window need not be managed by Rift.
 		local applications = rift.query.applications()
 		for _, app in ipairs(applications or {}) do
-			if app.is_active then
+			if app.is_frontmost then
 				state.front_app = app.name
 				break
 			end

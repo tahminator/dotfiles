@@ -5,7 +5,7 @@ local wm = require("wm")
 
 local front_app = SBAR.add("item", "front_app", {
 	position = "left",
-	padding_left = 6, -- the spaces bracket absorbs its items' padding; supply the full 6pt gap
+	padding_right = 6,
 	icon = {
 		string = ":default:",
 		font = font.apps,

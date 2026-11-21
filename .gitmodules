@@ -1,3 +1,4 @@
 [submodule ".config/sketchybar/riftapi"]
 	path = .config/sketchybar/riftapi
-	url = https://github.com/pyrorhythm/riftapi
+	url = https://github.com/tahminator/riftapi.git
+	branch = rift-0.8.5
