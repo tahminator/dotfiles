@@ -64,6 +64,9 @@ bottom = 15
 horizontal = 15
 vertical = 15
 
+[settings.drag_drop]
+enabled = false
+
 [settings.gestures]
 enabled = false
 

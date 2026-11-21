@@ -19,6 +19,20 @@ return {
     },
     event_handlers = {
       {
+        event = "before_git_status",
+        handler = function(args)
+          if vim.fs.normalize(args.git_root) ~= vim.fs.normalize(vim.fn.expand("~")) then
+            return
+          end
+          -- Scanning ignored home directories can trigger macOS app-data prompts.
+          for i, value in ipairs(args.status_args) do
+            if value:match("^%-%-ignored=") then
+              args.status_args[i] = "--ignored=no"
+            end
+          end
+        end,
+      },
+      {
         event = "neo_tree_buffer_enter",
         handler = function(arg)
           vim.cmd([[
