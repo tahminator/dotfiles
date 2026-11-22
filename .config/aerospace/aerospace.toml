@@ -215,7 +215,7 @@ w = ["exec-and-forget /usr/bin/open -na /Applications/Ghostty.app --args --quit-
 #   tell application appName to activate
 # end if'
 # ''', 'mode main']
-c = ['exec-and-forget /usr/bin/open -na "/Applications/Google Chrome.app" --args --new-window', 'mode main']
+c = ['exec-and-forget /usr/bin/open -na "/Applications/Helium.app" --args --new-window', 'mode main']
 s = ['''exec-and-forget osascript -e '
         tell application "Safari"
             make new document at end of documents

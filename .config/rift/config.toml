@@ -233,9 +233,11 @@ alt-c = "Alt + Control"
   "osascript -e 'tell application \"Safari\" to make new document at end of documents' -e 'tell application \"Safari\" to activate'",
 ] }
 "alt-c + C" = { exec = [
-  "/bin/sh",
-  "-c",
-  "open -na /Applications/Helium.app --args --new-window || open -na '/Applications/Google Chrome.app' --args --new-window",
+  "open",
+  "-na",
+  "/Applications/Helium.app",
+  "--args",
+  "--new-window",
 ] }
 "alt-c + F" = "toggle_fullscreen_within_gaps"
 "alt-c + R" = "toggle_window_floating"
@@ -273,7 +275,7 @@ alt-c = "Alt + Control"
   { exec = [
     "open",
     "-na",
-    "/Applications/Google Chrome.app",
+    "/Applications/Helium.app",
     "--args",
     "--new-window",
   ] },
