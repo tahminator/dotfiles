@@ -1,6 +1,6 @@
 [settings]
 # aerospace: on-focus-changed = 'move-mouse window-lazy-center'
-mouse_follows_focus = true
+mouse_follows_focus = false
 mouse_hides_on_focus = false
 focus_follows_mouse = false
 hot_reload = true
@@ -232,13 +232,7 @@ alt-c = "Alt + Control"
   "-c",
   "osascript -e 'tell application \"Safari\" to make new document at end of documents' -e 'tell application \"Safari\" to activate'",
 ] }
-"alt-c + C" = { exec = [
-  "open",
-  "-na",
-  "/Applications/Helium.app",
-  "--args",
-  "--new-window",
-] }
+"alt-c + C" = { exec = ["open", "-na", "/Applications/Helium.app", "--args", "--new-window"] }
 "alt-c + F" = "toggle_fullscreen_within_gaps"
 "alt-c + R" = "toggle_window_floating"
 "alt-c + X" = "toggle_space_activated"

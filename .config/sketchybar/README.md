@@ -133,6 +133,7 @@ The configuration files are organized as follows:
 - `font.lua` - System text, status icon, and app icon fonts
 - `sparkline.lua` - Shared CPU and memory graph styling and sampling
 - `ring.lua` / `ring_images.swift` - Shared status rings and cached SF Symbol images
+- `status_gap.lua` - Outer spacing for grouped status backgrounds
 - `items/` - Backend-independent UI components
 - `wm/config.lua` - Backend selection
 - `wm/aerospace.lua` / `wm/rift.lua` - The two backend implementations
