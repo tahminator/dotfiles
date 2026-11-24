@@ -29,7 +29,9 @@ brew install jq
 
 ## 🔤 Font Setup
 
-**Install ProggyClean Nerd Font** (same font as Ghostty; set in `font.lua`)
+The bar uses macOS's SF Pro for text.
+
+Status icons use ProggyClean Nerd Font:
 
 ```bash
 brew install --cask font-proggy-clean-tt-nerd-font
@@ -78,6 +80,31 @@ flags rather than treating every display's active workspace as focused.
 Rift workspaces appear on all SketchyBar displays; AeroSpace-compatible
 workspaces use the configured display.
 
+The bar uses neutral translucent chrome and softly outlined status pills. The workspace
+strip has a recessed track and a translucent selection. When both workspaces
+have visible geometry on the same display, the selection slides to the newly
+focused workspace; otherwise it appears in place. Empty source workspaces stay
+visible while the selection slides, then collapse before being hidden.
+Interrupted transitions restore the source's normal width. The animation uses
+SketchyBar's `sin` curve over 12 frames. Colors are in `colors.lua` and fonts
+are in `font.lua`.
+
+Battery, sound and Wi-Fi use circular SF Symbol indicators inside matching
+status backgrounds. Ring values ease between readings using cached 1% frames;
+state changes also pulse the background. Wi-Fi maps signal strength from
+-90 dBm (empty) to -50 dBm (full), and a slashed icon indicates no reading.
+Battery charging and low-charge states have distinct colors. The first launch
+generates the ring images with macOS Swift/AppKit and caches them under
+`~/.cache/sketchybar/rings-v2`.
+
+The clock shows seconds. Each changing digit crossfades in place; stationary
+digits remain unchanged.
+
+CPU and memory show unfilled line graphs and numeric utilization values, with
+changing digits crossfading like the clock. They sample every 10 seconds; four
+eased points connect consecutive samples. Each graph starts flat at its first
+reading until a history has accumulated.
+
 Existing `aerospace_workspace_change` and `front_app_changed` hooks still work.
 Flightdeck accepts those same hooks plus `flightdeck_workspace_change`. Native
 SketchyBar events and a five-second fallback refresh cover missed window changes;
@@ -102,9 +129,10 @@ good state when the window manager is unavailable. App names retain their spaces
 The configuration files are organized as follows:
 
 - `sketchybarrc` / `init.lua` - Entry points
-- `colors.lua` - Color definitions (mirrors the Ghostty palette)
-- `font.lua` - Fonts and character-cell spacing
-- `sparkline.lua` - Text meter used by the CPU and memory items
+- `colors.lua` - Neutral chrome and Ghostty-inspired status colors
+- `font.lua` - System text, status icon, and app icon fonts
+- `sparkline.lua` - Shared CPU and memory graph styling and sampling
+- `ring.lua` / `ring_images.swift` - Shared status rings and cached SF Symbol images
 - `items/` - Backend-independent UI components
 - `wm/config.lua` - Backend selection
 - `wm/aerospace.lua` / `wm/rift.lua` - The two backend implementations
@@ -116,6 +144,7 @@ Run mocked adapter/controller/UI tests without a running bar:
 ```bash
 cd ~/.config/sketchybar
 lua tests/wm_test.lua
+lua tests/ui_animation_test.lua
 ```
 
 ## 🔗 Useful Links

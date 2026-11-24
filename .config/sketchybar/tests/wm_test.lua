@@ -214,6 +214,105 @@ render({ front_app = "", workspaces = {
 equal(added["space.named"].props.drawing, true)
 equal(added["space.named"].props.label.string, " —")
 equal(added["space.empty"].props.drawing, false)
+-- Late geometry replies must not move a newer workspace selection.
+requests = {}
+local function focused(id)
+	render({ front_app = "", workspaces = {
+		{ id = "named", label = "A", focused = id == "named", apps = { "Finder" } },
+		{ id = "empty", label = "B", focused = id == "empty", apps = { "Mail" } },
+	} })
+end
+focused("empty")
+equal(added["space.empty"].props.background.color, require("colors").transparent)
+equal(added["space.named"].props.background.color, require("colors").selection)
+focused("empty")
+equal(added["space.empty"].props.background.color, require("colors").transparent)
+focused("named")
+focused("empty")
+equal(#requests, 2)
+local offsets, animation_item = {}, "empty"
+SBAR.animate = function(_, _, callback)
+	offsets[#offsets + 1] = added["space." .. animation_item].props.background.x_offset
+	callback()
+end
+local function rect(x, offset)
+	return {
+		bounding_rects = { ["display-1"] = { origin = { x, 0 }, size = { 32, 36 } } },
+		geometry = { background = { x_offset = offset or 0 }, padding_left = 3, padding_right = 3 },
+	}
+end
+requests[2].callback(rect(100, 15))
+requests[3].callback(rect(160))
+equal(offsets[1], -45)
+requests[1].callback(rect(100))
+equal(#offsets, 1)
+equal(added["space.empty"].props.background.x_offset, 0)
+focused("named")
+animation_item = "named"
+requests[4].callback(rect(-9999))
+requests[5].callback(rect(160))
+equal(added["space.named"].props.background.x_offset, 0)
+
+local function empty_state(active, occupied)
+	render({ front_app = "", workspaces = {
+		{ id = "named", label = "A", focused = active == "named", apps = occupied == "named" and { "Finder" } or {} },
+		{ id = "empty", label = "B", focused = active == "empty", apps = occupied == "empty" and { "Mail" } or {} },
+	} })
+end
+
+-- Keep an empty source until its selection has slid, then collapse it.
+empty_state("named")
+requests = {}
+empty_state("empty")
+equal(added["space.named"].props.drawing, true)
+requests[1].callback(rect(100))
+equal(added["space.named"].props.drawing, true)
+empty_state("empty")
+equal(added["space.named"].props.drawing, true)
+animation_item = "empty"
+requests[2].callback(rect(138))
+equal(offsets[#offsets], -38)
+equal(added["space.named"].props.drawing, true)
+requests[3].callback()
+equal(added["space.named"].props.width, 0)
+requests[4].callback()
+equal(added["space.named"].props.drawing, false)
+equal(added["space.named"].props.width, "dynamic")
+
+requests = {}
+empty_state("named", "named")
+equal(added["space.empty"].props.drawing, true)
+requests[1].callback(rect(130))
+equal(added["space.empty"].props.drawing, true)
+animation_item = "named"
+requests[2].callback(rect(100))
+equal(offsets[#offsets], 30)
+requests[3].callback()
+requests[4].callback()
+equal(added["space.empty"].props.drawing, false)
+
+-- A late destination query must not override a newer focus.
+requests = {}
+empty_state("empty")
+requests[1].callback(rect(100))
+empty_state("named", "named")
+local count = #offsets
+requests[2].callback(rect(130))
+equal(#offsets, count)
+equal(added["space.named"].props.background.color, require("colors").selection)
+
+-- Refocusing a retiring workspace cancels its delayed collapse.
+requests = {}
+empty_state("empty")
+requests[1].callback(rect(100))
+animation_item = "empty"
+requests[2].callback(rect(138))
+empty_state("named", "named")
+local request_count = #requests
+requests[3].callback()
+equal(#requests, request_count)
+equal(added["space.named"].props.drawing, true)
+equal(added["space.named"].props.width, "dynamic")
 render({ front_app = "", workspaces = {} })
 assert(removed["space.named"] and removed["space.empty"])
 equal(added.front_app.props.label.string, "")

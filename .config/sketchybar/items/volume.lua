@@ -1,22 +1,18 @@
-local colors = require("colors")
-local font = require("font")
+local ring = require("ring")
 
-local volume = SBAR.add("item", "volume", {
-	position = "right",
-	icon = { string = "vol" },
-	-- Fixed width ("100%", "mute"): SketchyBar ignores space padding.
-	label = { string = "...", width = font.label_width(4), align = "right" },
-})
+local volume = ring.add("volume", "volume")
+
+local function update_volume(value)
+	local percent = tonumber(value)
+	if percent then
+		ring.set(volume, percent == 0 and "mute" or "volume", percent)
+	end
+end
 
 volume:subscribe("volume_change", function(env)
-	local volume_percent = tonumber(env.INFO)
-
-	if volume_percent then
-		volume:set({
-			label = volume_percent == 0 and { string = "mute", color = colors.muted }
-				or { string = volume_percent .. "%", color = colors.fg },
-		})
-	end
+	update_volume(env.INFO)
 end)
+
+SBAR.exec("osascript -e 'if output muted of (get volume settings) then return 0' -e 'return output volume of (get volume settings)'", update_volume)
 
 return volume

@@ -1,6 +1,6 @@
 local colors = require("colors")
 
--- Blurred glass panel with window-like corners around pixel-font content.
+-- Translucent, floating menu bar.
 SBAR.bar({
 	height = 36,
 	blur_radius = 30,
@@ -17,5 +17,5 @@ SBAR.bar({
 	border_color = colors.glass,
 	border_width = 1,
 	notch_width = 0,
-	font_smoothing = false,
+	font_smoothing = true,
 })

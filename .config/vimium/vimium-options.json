@@ -7,6 +7,22 @@
     {
       "passKeys": "",
       "pattern": "https?://docs.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.youtube.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://leetcode.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://app.codesignal.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://vscode.dev/*"
     }
   ],
   "keyMappings": "# Insert your preferred key mappings here.\n\nmap j scrollUp\nmap k scrollDown\n\nunmap u\nunmap d\nmap <c-u> scrollPageUp\nmap <c-d> scrollPageDown\nmap <c-f> scrollFullPageDown\nmap <c-b> scrollFullPageUp\n\nunmap yt\nmap tt duplicateTab\n\nunmap t\nunmap x\nunmap r\nunmap R\nunmap yy",

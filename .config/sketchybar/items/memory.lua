@@ -1,13 +1,6 @@
 local sparkline = require("sparkline")
 
-local memory = SBAR.add("item", "memory", {
-	position = "right",
-	update_freq = 10,
-	icon = { string = "mem" },
-	label = { string = "...", width = sparkline.label.width, align = sparkline.label.align },
-})
-
-local push = sparkline.new()
+local memory, push = sparkline.new("memory", "\u{f035b}")
 
 local function update_mem()
 	return SBAR.exec(
@@ -18,8 +11,7 @@ local function update_mem()
 				local usage_num = tonumber((usage:gsub("%s+", "")))
 
 				if usage_num then
-					local text, color = push(usage_num)
-					memory:set({ label = { string = text, color = color } })
+					push(usage_num)
 				end
 			end
 		end

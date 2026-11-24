@@ -11,7 +11,7 @@ local front_app = SBAR.add("item", "front_app", {
 		font = font.apps,
 		color = colors.fg,
 	},
-	label = { string = "..." },
+	label = { string = "...", font = font.medium },
 })
 
 wm.subscribe(function(state)
