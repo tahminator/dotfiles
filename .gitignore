@@ -3,7 +3,11 @@
 
 !/.gitignore
 !/README.md
-!/showcase.gif
+!/showcase.mp4
+!/showcase.png
+!/.skill/
+!/.skill/record-showcase/
+!/.skill/record-showcase/SKILL.md
 !/.vimrc
 !/.lesskey
 !/.zprofile
