@@ -27,4 +27,13 @@ ffprobe -v error -select_streams v:0 -show_entries stream=avg_frame_rate,width,h
 
 A 60 fps encode cannot recover frames missing from the original recording. Report duplicated frames if the captured source runs below 60 fps. Don't claim native 60 fps capture based solely on the output frame rate.
 
-Generate `showcase.png` from the video for the README's clickable preview. GitHub repository READMEs don't reliably play a checked-in MP4 inline; link the preview and a text link to `showcase.mp4`. Verify both assets, and commit or push only when requested. Keep unrelated changes out of the commit.
+Keep `showcase.mp4` checked into the repository. For an inline GitHub README player, upload that MP4 as a GitHub user attachment and put the returned URL on a line by itself:
+
+```sh
+gh api --method POST -H 'Content-Type: application/octet-stream' \
+  -H 'Accept: application/vnd.github+json' --input showcase.mp4 \
+  'https://uploads.github.com/user-attachments/assets?name=showcase.mp4&content_type=video%2Fmp4&repository_id=1013598478' \
+  --jq .url
+```
+
+The repository ID above is for `tahminator/dotfiles`. If publishing elsewhere, retrieve its numeric ID with `gh api repos/OWNER/REPO --jq .id`. Verify the rendered README contains a video player, and commit or push only when requested. Keep unrelated changes out of the commit.
